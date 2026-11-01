@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "realm:item/banner_lion_yellow_brown",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 16701501
+      }
+    ]
+  }
+}

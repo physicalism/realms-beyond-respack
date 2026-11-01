@@ -1,39 +1,55 @@
-# Henry’s Realm Resource Pack
+# Realms Beyond
 
-A small Java 26.3 resource pack containing one decorative banner: a gold lion on red cloth, with a softened lower crease. Current version: v0.4.0.
+A custom resource pack for Minecraft Java 26.3.
+
+96 decorative banners: lion, dragon, and stag, each in all 16 dye colours with gold or brown detailing. All banner textures are 64 × 64.
 
 ## Use
 
-Enable the pack, then run with command permissions:
+Enable the pack and place the custom items in invisible wall-mounted item frames. No CIT mod is required.
 
 ```mcfunction
-/give @s minecraft:paper[minecraft:item_model="realm:royal_banner_red_lion"]
+/give @s minecraft:paper[minecraft:item_model="realm:banner_lion_red_gold"]
+/give @s minecraft:paper[minecraft:item_model="realm:banner_dragon_yellow_brown"]
+/give @s minecraft:paper[minecraft:item_model="realm:banner_stag_green_gold"]
 ```
 
-Place the item in an invisible wall-mounted item frame. Every viewer needs the resource pack enabled. No CIT mod or datapack is required. Existing red-lion items retain the same model ID; other experimental variants have been removed.
-
-To get an invisible frame:
-
-```mcfunction
-/give @s minecraft:item_frame[minecraft:entity_data={id:"minecraft:item_frame",Invisible:1b}] 1
-```
+Item IDs use `realm:banner_SYMBOL_COLOUR_TRIM`, where trim is `gold` or `brown`. Colours with two words use underscores, such as `light_blue`. Older item IDs remain supported for existing banners.
 
 ## Build
 
 ```sh
-python3 scripts/build.py
+python3 tools/build.py
 ```
 
-The build script validates JSON and resource references, then writes ../builds/Realm-Resource-Pack-v0.4.0.zip containing only pack.mcmeta and assets/.
-
-## Edit
-
-- Texture: assets/realm/textures/item/royal_banner_red_lion.png
-- Geometry and item-frame placement: assets/realm/models/item/royal_banner_red_lion.json
-- Item definition and red overlay tint: assets/realm/items/royal_banner_red_lion.json
-
-Reload resources in Minecraft after editing. The texture is 64 × 64 pixels and uses separate base and tinted overlay regions.
+Packages are written to `dist/`. Set the version in `tools/VERSION`. To preview a GitHub draft release, run `python3 tools/release.py --dry-run`; omit `--dry-run` after committing and pushing to create the draft. GitHub releases require the GitHub CLI.
 
 ## Credits
 
-The model and base texture originate from the user-supplied recovered Origin Realms pack. Changes for this project: namespace, frame display settings, fully red cloth, and a softer lower crease. Original model credit: Made with Blockbench. This project is not affiliated with Origin Realms. No licence or redistribution permission for the borrowed assets has been established; this repository does not grant one.
+Banner model and base texture adapted from Origin Realms.
+
+## Ivy paintings
+
+Four paintings share the Origin Realms wooden frame, with the canvas fitted to its opening so edge pixels remain whole. Place in invisible wall-mounted item frames.
+
+| Item model | Portrait | Canvas |
+| --- | --- | --- |
+| `realm:painting_ivy` | Original Ivy | 16 × 32 |
+| `realm:painting_ivy_crown` | Crown headshot, default coarse style | 16 × 32 |
+| `realm:painting_ivy_crown_detailed` | Detailed crown portrait | 32 × 64 |
+| `realm:painting_ivy_doublet` | Tudor library portrait, coarse style | 16 × 32 |
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy"]
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_crown"]
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_crown_detailed"]
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_doublet"]
+```
+
+The former `_coarse` IDs have been retired; replace items using those IDs with the commands above. Previous painting assets are archived in `tools/painting-archive/pre-selection-v0.1.9.zip` and are excluded from installable builds.
+
+Ivy artwork created from the supplied photographs; painting frame model and textures adapted from Origin Realms.
+
+## Pack menu formatting
+
+The description displays two large dark-purple square bullets, an aqua version, and a gold author line with only `(emotivist)` italicised. Building synchronises the description with `tools/VERSION`. The optional `dist/Realms Beyond.zip` copy uses a plain white menu title. Install either ZIP, not both. Live-linked folder titles come from the link name.

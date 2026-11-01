@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "realm:item/banner_dragon_pink_gold",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 15961002
+      }
+    ]
+  }
+}

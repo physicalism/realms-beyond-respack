@@ -1,0 +1,802 @@
+{
+  "minecraft_version": "26.3",
+  "motifs": [
+    "lion",
+    "dragon",
+    "stag"
+  ],
+  "finishes": [
+    "gold",
+    "brown"
+  ],
+  "dyes": {
+    "white": 16383998,
+    "light_gray": 10329495,
+    "gray": 4673362,
+    "black": 1908001,
+    "brown": 8606770,
+    "red": 11546150,
+    "orange": 16351261,
+    "yellow": 16701501,
+    "lime": 8439583,
+    "green": 6192150,
+    "cyan": 1481884,
+    "light_blue": 3847130,
+    "blue": 3949738,
+    "purple": 8991416,
+    "magenta": 13061821,
+    "pink": 15961002
+  },
+  "banners": [
+    {
+      "motif": "lion",
+      "colour": "white",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_white_gold",
+      "texture": "realm:item/banner/lion/white_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "white",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_white_brown",
+      "texture": "realm:item/banner/lion/white_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "light_gray",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_light_gray_gold",
+      "texture": "realm:item/banner/lion/light_gray_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "light_gray",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_light_gray_brown",
+      "texture": "realm:item/banner/lion/light_gray_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "gray",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_gray_gold",
+      "texture": "realm:item/banner/lion/gray_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "gray",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_gray_brown",
+      "texture": "realm:item/banner/lion/gray_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "black",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_black_gold",
+      "texture": "realm:item/banner/lion/black_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "black",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_black_brown",
+      "texture": "realm:item/banner/lion/black_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "brown",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_brown_gold",
+      "texture": "realm:item/banner/lion/brown_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "brown",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_brown_brown",
+      "texture": "realm:item/banner/lion/brown_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "red",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_red_gold",
+      "texture": "realm:item/banner/lion/red_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "red",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_red_brown",
+      "texture": "realm:item/banner/lion/red_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "orange",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_orange_gold",
+      "texture": "realm:item/banner/lion/orange_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "orange",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_orange_brown",
+      "texture": "realm:item/banner/lion/orange_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "yellow",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_yellow_gold",
+      "texture": "realm:item/banner/lion/yellow_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "yellow",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_yellow_brown",
+      "texture": "realm:item/banner/lion/yellow_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "lime",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_lime_gold",
+      "texture": "realm:item/banner/lion/lime_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "lime",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_lime_brown",
+      "texture": "realm:item/banner/lion/lime_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "green",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_green_gold",
+      "texture": "realm:item/banner/lion/green_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "green",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_green_brown",
+      "texture": "realm:item/banner/lion/green_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "cyan",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_cyan_gold",
+      "texture": "realm:item/banner/lion/cyan_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "cyan",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_cyan_brown",
+      "texture": "realm:item/banner/lion/cyan_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "light_blue",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_light_blue_gold",
+      "texture": "realm:item/banner/lion/light_blue_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "light_blue",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_light_blue_brown",
+      "texture": "realm:item/banner/lion/light_blue_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "blue",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_blue_gold",
+      "texture": "realm:item/banner/lion/blue_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "blue",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_blue_brown",
+      "texture": "realm:item/banner/lion/blue_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "purple",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_purple_gold",
+      "texture": "realm:item/banner/lion/purple_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "purple",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_purple_brown",
+      "texture": "realm:item/banner/lion/purple_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "magenta",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_magenta_gold",
+      "texture": "realm:item/banner/lion/magenta_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "magenta",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_magenta_brown",
+      "texture": "realm:item/banner/lion/magenta_brown"
+    },
+    {
+      "motif": "lion",
+      "colour": "pink",
+      "finish": "gold",
+      "item_model": "realm:banner_lion_pink_gold",
+      "texture": "realm:item/banner/lion/pink_gold"
+    },
+    {
+      "motif": "lion",
+      "colour": "pink",
+      "finish": "brown",
+      "item_model": "realm:banner_lion_pink_brown",
+      "texture": "realm:item/banner/lion/pink_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "white",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_white_gold",
+      "texture": "realm:item/banner/dragon/white_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "white",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_white_brown",
+      "texture": "realm:item/banner/dragon/white_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "light_gray",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_light_gray_gold",
+      "texture": "realm:item/banner/dragon/light_gray_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "light_gray",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_light_gray_brown",
+      "texture": "realm:item/banner/dragon/light_gray_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "gray",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_gray_gold",
+      "texture": "realm:item/banner/dragon/gray_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "gray",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_gray_brown",
+      "texture": "realm:item/banner/dragon/gray_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "black",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_black_gold",
+      "texture": "realm:item/banner/dragon/black_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "black",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_black_brown",
+      "texture": "realm:item/banner/dragon/black_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "brown",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_brown_gold",
+      "texture": "realm:item/banner/dragon/brown_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "brown",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_brown_brown",
+      "texture": "realm:item/banner/dragon/brown_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "red",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_red_gold",
+      "texture": "realm:item/banner/dragon/red_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "red",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_red_brown",
+      "texture": "realm:item/banner/dragon/red_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "orange",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_orange_gold",
+      "texture": "realm:item/banner/dragon/orange_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "orange",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_orange_brown",
+      "texture": "realm:item/banner/dragon/orange_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "yellow",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_yellow_gold",
+      "texture": "realm:item/banner/dragon/yellow_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "yellow",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_yellow_brown",
+      "texture": "realm:item/banner/dragon/yellow_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "lime",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_lime_gold",
+      "texture": "realm:item/banner/dragon/lime_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "lime",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_lime_brown",
+      "texture": "realm:item/banner/dragon/lime_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "green",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_green_gold",
+      "texture": "realm:item/banner/dragon/green_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "green",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_green_brown",
+      "texture": "realm:item/banner/dragon/green_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "cyan",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_cyan_gold",
+      "texture": "realm:item/banner/dragon/cyan_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "cyan",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_cyan_brown",
+      "texture": "realm:item/banner/dragon/cyan_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "light_blue",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_light_blue_gold",
+      "texture": "realm:item/banner/dragon/light_blue_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "light_blue",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_light_blue_brown",
+      "texture": "realm:item/banner/dragon/light_blue_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "blue",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_blue_gold",
+      "texture": "realm:item/banner/dragon/blue_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "blue",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_blue_brown",
+      "texture": "realm:item/banner/dragon/blue_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "purple",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_purple_gold",
+      "texture": "realm:item/banner/dragon/purple_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "purple",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_purple_brown",
+      "texture": "realm:item/banner/dragon/purple_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "magenta",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_magenta_gold",
+      "texture": "realm:item/banner/dragon/magenta_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "magenta",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_magenta_brown",
+      "texture": "realm:item/banner/dragon/magenta_brown"
+    },
+    {
+      "motif": "dragon",
+      "colour": "pink",
+      "finish": "gold",
+      "item_model": "realm:banner_dragon_pink_gold",
+      "texture": "realm:item/banner/dragon/pink_gold"
+    },
+    {
+      "motif": "dragon",
+      "colour": "pink",
+      "finish": "brown",
+      "item_model": "realm:banner_dragon_pink_brown",
+      "texture": "realm:item/banner/dragon/pink_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "white",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_white_gold",
+      "texture": "realm:item/banner/stag/white_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "white",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_white_brown",
+      "texture": "realm:item/banner/stag/white_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "light_gray",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_light_gray_gold",
+      "texture": "realm:item/banner/stag/light_gray_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "light_gray",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_light_gray_brown",
+      "texture": "realm:item/banner/stag/light_gray_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "gray",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_gray_gold",
+      "texture": "realm:item/banner/stag/gray_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "gray",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_gray_brown",
+      "texture": "realm:item/banner/stag/gray_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "black",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_black_gold",
+      "texture": "realm:item/banner/stag/black_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "black",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_black_brown",
+      "texture": "realm:item/banner/stag/black_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "brown",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_brown_gold",
+      "texture": "realm:item/banner/stag/brown_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "brown",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_brown_brown",
+      "texture": "realm:item/banner/stag/brown_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "red",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_red_gold",
+      "texture": "realm:item/banner/stag/red_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "red",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_red_brown",
+      "texture": "realm:item/banner/stag/red_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "orange",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_orange_gold",
+      "texture": "realm:item/banner/stag/orange_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "orange",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_orange_brown",
+      "texture": "realm:item/banner/stag/orange_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "yellow",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_yellow_gold",
+      "texture": "realm:item/banner/stag/yellow_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "yellow",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_yellow_brown",
+      "texture": "realm:item/banner/stag/yellow_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "lime",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_lime_gold",
+      "texture": "realm:item/banner/stag/lime_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "lime",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_lime_brown",
+      "texture": "realm:item/banner/stag/lime_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "green",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_green_gold",
+      "texture": "realm:item/banner/stag/green_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "green",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_green_brown",
+      "texture": "realm:item/banner/stag/green_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "cyan",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_cyan_gold",
+      "texture": "realm:item/banner/stag/cyan_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "cyan",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_cyan_brown",
+      "texture": "realm:item/banner/stag/cyan_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "light_blue",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_light_blue_gold",
+      "texture": "realm:item/banner/stag/light_blue_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "light_blue",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_light_blue_brown",
+      "texture": "realm:item/banner/stag/light_blue_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "blue",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_blue_gold",
+      "texture": "realm:item/banner/stag/blue_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "blue",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_blue_brown",
+      "texture": "realm:item/banner/stag/blue_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "purple",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_purple_gold",
+      "texture": "realm:item/banner/stag/purple_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "purple",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_purple_brown",
+      "texture": "realm:item/banner/stag/purple_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "magenta",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_magenta_gold",
+      "texture": "realm:item/banner/stag/magenta_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "magenta",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_magenta_brown",
+      "texture": "realm:item/banner/stag/magenta_brown"
+    },
+    {
+      "motif": "stag",
+      "colour": "pink",
+      "finish": "gold",
+      "item_model": "realm:banner_stag_pink_gold",
+      "texture": "realm:item/banner/stag/pink_gold"
+    },
+    {
+      "motif": "stag",
+      "colour": "pink",
+      "finish": "brown",
+      "item_model": "realm:banner_stag_pink_brown",
+      "texture": "realm:item/banner/stag/pink_brown"
+    }
+  ],
+  "aliases": {
+    "realm:royal_banner_white_lion": "realm:banner_lion_white_gold",
+    "realm:royal_banner_white_lion_brown": "realm:banner_lion_white_brown",
+    "realm:royal_banner_light_gray_lion": "realm:banner_lion_light_gray_gold",
+    "realm:royal_banner_light_gray_lion_brown": "realm:banner_lion_light_gray_brown",
+    "realm:royal_banner_gray_lion": "realm:banner_lion_gray_gold",
+    "realm:royal_banner_gray_lion_brown": "realm:banner_lion_gray_brown",
+    "realm:royal_banner_black_lion": "realm:banner_lion_black_gold",
+    "realm:royal_banner_black_lion_brown": "realm:banner_lion_black_brown",
+    "realm:royal_banner_brown_lion": "realm:banner_lion_brown_gold",
+    "realm:royal_banner_brown_lion_brown": "realm:banner_lion_brown_brown",
+    "realm:royal_banner_red_lion": "realm:banner_lion_red_gold",
+    "realm:royal_banner_red_lion_brown": "realm:banner_lion_red_brown",
+    "realm:royal_banner_orange_lion": "realm:banner_lion_orange_gold",
+    "realm:royal_banner_orange_lion_brown": "realm:banner_lion_orange_brown",
+    "realm:royal_banner_yellow_lion": "realm:banner_lion_yellow_gold",
+    "realm:royal_banner_yellow_lion_brown": "realm:banner_lion_yellow_brown",
+    "realm:royal_banner_lime_lion": "realm:banner_lion_lime_gold",
+    "realm:royal_banner_lime_lion_brown": "realm:banner_lion_lime_brown",
+    "realm:royal_banner_green_lion": "realm:banner_lion_green_gold",
+    "realm:royal_banner_green_lion_brown": "realm:banner_lion_green_brown",
+    "realm:royal_banner_cyan_lion": "realm:banner_lion_cyan_gold",
+    "realm:royal_banner_cyan_lion_brown": "realm:banner_lion_cyan_brown",
+    "realm:royal_banner_light_blue_lion": "realm:banner_lion_light_blue_gold",
+    "realm:royal_banner_light_blue_lion_brown": "realm:banner_lion_light_blue_brown",
+    "realm:royal_banner_blue_lion": "realm:banner_lion_blue_gold",
+    "realm:royal_banner_blue_lion_brown": "realm:banner_lion_blue_brown",
+    "realm:royal_banner_purple_lion": "realm:banner_lion_purple_gold",
+    "realm:royal_banner_purple_lion_brown": "realm:banner_lion_purple_brown",
+    "realm:royal_banner_magenta_lion": "realm:banner_lion_magenta_gold",
+    "realm:royal_banner_magenta_lion_brown": "realm:banner_lion_magenta_brown",
+    "realm:royal_banner_pink_lion": "realm:banner_lion_pink_gold",
+    "realm:royal_banner_pink_lion_brown": "realm:banner_lion_pink_brown",
+    "realm:royal_banner_white_dragon": "realm:banner_dragon_white_gold",
+    "realm:royal_banner_white_dragon_brown": "realm:banner_dragon_white_brown",
+    "realm:royal_banner_light_gray_dragon": "realm:banner_dragon_light_gray_gold",
+    "realm:royal_banner_light_gray_dragon_brown": "realm:banner_dragon_light_gray_brown",
+    "realm:royal_banner_gray_dragon": "realm:banner_dragon_gray_gold",
+    "realm:royal_banner_gray_dragon_brown": "realm:banner_dragon_gray_brown",
+    "realm:royal_banner_black_dragon": "realm:banner_dragon_black_gold",
+    "realm:royal_banner_black_dragon_brown": "realm:banner_dragon_black_brown",
+    "realm:royal_banner_brown_dragon": "realm:banner_dragon_brown_gold",
+    "realm:royal_banner_brown_dragon_brown": "realm:banner_dragon_brown_brown",
+    "realm:royal_banner_red_dragon": "realm:banner_dragon_red_gold",
+    "realm:royal_banner_red_dragon_brown": "realm:banner_dragon_red_brown",
+    "realm:royal_banner_orange_dragon": "realm:banner_dragon_orange_gold",
+    "realm:royal_banner_orange_dragon_brown": "realm:banner_dragon_orange_brown",
+    "realm:royal_banner_yellow_dragon": "realm:banner_dragon_yellow_gold",
+    "realm:royal_banner_yellow_dragon_brown": "realm:banner_dragon_yellow_brown",
+    "realm:royal_banner_lime_dragon": "realm:banner_dragon_lime_gold",
+    "realm:royal_banner_lime_dragon_brown": "realm:banner_dragon_lime_brown",
+    "realm:royal_banner_green_dragon": "realm:banner_dragon_green_gold",
+    "realm:royal_banner_green_dragon_brown": "realm:banner_dragon_green_brown",
+    "realm:royal_banner_cyan_dragon": "realm:banner_dragon_cyan_gold",
+    "realm:royal_banner_cyan_dragon_brown": "realm:banner_dragon_cyan_brown",
+    "realm:royal_banner_light_blue_dragon": "realm:banner_dragon_light_blue_gold",
+    "realm:royal_banner_light_blue_dragon_brown": "realm:banner_dragon_light_blue_brown",
+    "realm:royal_banner_blue_dragon": "realm:banner_dragon_blue_gold",
+    "realm:royal_banner_blue_dragon_brown": "realm:banner_dragon_blue_brown",
+    "realm:royal_banner_purple_dragon": "realm:banner_dragon_purple_gold",
+    "realm:royal_banner_purple_dragon_brown": "realm:banner_dragon_purple_brown",
+    "realm:royal_banner_magenta_dragon": "realm:banner_dragon_magenta_gold",
+    "realm:royal_banner_magenta_dragon_brown": "realm:banner_dragon_magenta_brown",
+    "realm:royal_banner_pink_dragon": "realm:banner_dragon_pink_gold",
+    "realm:royal_banner_pink_dragon_brown": "realm:banner_dragon_pink_brown",
+    "realm:royal_banner_white_stag": "realm:banner_stag_white_gold",
+    "realm:royal_banner_white_stag_brown": "realm:banner_stag_white_brown",
+    "realm:royal_banner_light_gray_stag": "realm:banner_stag_light_gray_gold",
+    "realm:royal_banner_light_gray_stag_brown": "realm:banner_stag_light_gray_brown",
+    "realm:royal_banner_gray_stag": "realm:banner_stag_gray_gold",
+    "realm:royal_banner_gray_stag_brown": "realm:banner_stag_gray_brown",
+    "realm:royal_banner_black_stag": "realm:banner_stag_black_gold",
+    "realm:royal_banner_black_stag_brown": "realm:banner_stag_black_brown",
+    "realm:royal_banner_brown_stag": "realm:banner_stag_brown_gold",
+    "realm:royal_banner_brown_stag_brown": "realm:banner_stag_brown_brown",
+    "realm:royal_banner_red_stag": "realm:banner_stag_red_gold",
+    "realm:royal_banner_red_stag_brown": "realm:banner_stag_red_brown",
+    "realm:royal_banner_orange_stag": "realm:banner_stag_orange_gold",
+    "realm:royal_banner_orange_stag_brown": "realm:banner_stag_orange_brown",
+    "realm:royal_banner_yellow_stag": "realm:banner_stag_yellow_gold",
+    "realm:royal_banner_yellow_stag_brown": "realm:banner_stag_yellow_brown",
+    "realm:royal_banner_lime_stag": "realm:banner_stag_lime_gold",
+    "realm:royal_banner_lime_stag_brown": "realm:banner_stag_lime_brown",
+    "realm:royal_banner_green_stag": "realm:banner_stag_green_gold",
+    "realm:royal_banner_green_stag_brown": "realm:banner_stag_green_brown",
+    "realm:royal_banner_cyan_stag": "realm:banner_stag_cyan_gold",
+    "realm:royal_banner_cyan_stag_brown": "realm:banner_stag_cyan_brown",
+    "realm:royal_banner_light_blue_stag": "realm:banner_stag_light_blue_gold",
+    "realm:royal_banner_light_blue_stag_brown": "realm:banner_stag_light_blue_brown",
+    "realm:royal_banner_blue_stag": "realm:banner_stag_blue_gold",
+    "realm:royal_banner_blue_stag_brown": "realm:banner_stag_blue_brown",
+    "realm:royal_banner_purple_stag": "realm:banner_stag_purple_gold",
+    "realm:royal_banner_purple_stag_brown": "realm:banner_stag_purple_brown",
+    "realm:royal_banner_magenta_stag": "realm:banner_stag_magenta_gold",
+    "realm:royal_banner_magenta_stag_brown": "realm:banner_stag_magenta_brown",
+    "realm:royal_banner_pink_stag": "realm:banner_stag_pink_gold",
+    "realm:royal_banner_pink_stag_brown": "realm:banner_stag_pink_brown"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "realm:item/royal_banner_red_lion",
+    "model": "realm:item/banner_lion_red_gold",
     "tints": [
       {
         "type": "minecraft:constant",

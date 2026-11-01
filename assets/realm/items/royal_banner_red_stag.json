@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "realm:item/banner_stag_red_gold",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 11546150
+      }
+    ]
+  }
+}

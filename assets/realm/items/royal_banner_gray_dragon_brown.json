@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "realm:item/banner_dragon_gray_brown",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": 4673362
+      }
+    ]
+  }
+}

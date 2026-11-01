@@ -1,0 +1,6 @@
+{
+  "parent": "realm:banner/base",
+  "textures": {
+    "0": "realm:item/banner/stag/light_blue_gold"
+  }
+}

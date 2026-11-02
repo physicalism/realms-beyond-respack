@@ -53,3 +53,69 @@ Ivy artwork created from the supplied photographs; painting frame model and text
 ## Pack menu formatting
 
 The description displays two large dark-purple square bullets, an aqua version, and a gold author line with only `(emotivist)` italicised. Building synchronises the description with `tools/VERSION`. The optional `dist/Realms Beyond.zip` copy uses a plain white menu title. Install either ZIP, not both. Live-linked folder titles come from the link name.
+
+## Balcony flowers
+
+Pink flowers with green trailing leaves, a wooden basket, and a yellow ribbon, adapted from Origin Realms. Uses Henry's corrected item-frame display settings: rotation `[-90, 0, 0]`, translation `[5, -12.25, -14]`, scale `[2, 2, 2]`.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:balcony_flowers"]
+```
+
+The old `realm:wall_flowers` item ID remains supported. This placement is tailored to the balcony corner; future centred variants can use their own display settings.
+
+To adjust placement in Blockbench, open `assets/realm/models/item/balcony_flowers.json` and edit Display → Fixed. Its texture is `assets/realm/textures/item/decorations/balcony_flowers.png`.
+
+### Corner variant
+
+`realm:balcony_flowers_corner` duplicates the current balcony flower geometry and display settings, with light blue flowers and a yellow ribbon. It has its own model and texture so placement can be edited independently in Blockbench.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:balcony_flowers_corner"]
+```
+
+## Lotus lily pads
+
+Ordinary placed lily pads show six equally likely variants: plain leaf, pink, purple, white, pale tropical aqua, and yellow (1/6 each, approximately 16.7%). Aqua and yellow are recoloured from the white Origin Realms lotus. Each also has four equally likely rotations. The plain leaf uses the same lotus pad texture without the flower.
+
+Place normal lily pads on water; no commands, frames, mods, or datapacks are needed. Existing pads also change appearance. Variants depend on block position, so breaking and replacing a pad at the same position does not reroll its appearance. These are probabilities, not a guaranteed equal count in each pond. Lily pad behaviour and collision remain vanilla. Pond models and textures adapted from Origin Realms.
+
+To switch the two experimental colours off without affecting anything else:
+
+```sh
+python3 tools/lily_pad_mix.py four
+python3 tools/build.py
+```
+
+Use `python3 tools/lily_pad_mix.py six` and rebuild to re-enable them. Four-colour mode restores the original 25% probabilities and exact model/rotation ordering. Reload resources after switching.
+
+### First-person lanterns
+
+All ten hanging lantern items use their matching block models in first person, inheriting geometry and textures from the active packs for parity with Not Enough Animations in F5. Both first- and third-person hand contexts use the 3D model because Punchy uses third-person contexts for its first-person hands. Inventory icons and non-hand contexts retain their original item models. First-person positioning is static; NEA swinging physics remain a third-person feature.
+
+### Saint Ivy
+
+A separate 16 × 32 devotional portrait with a gold halo, cream robe, crimson mantle, and sacred-heart motif. Shares the existing wooden painting frame.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_saint"]
+```
+
+## Decorative books
+
+A magic book stack with blue and purple covers and parchment pages, plus the closed ancient spellbook. Both are decorative item models for floor-mounted invisible item frames.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:magic_book_stack"]
+/give @s minecraft:paper[minecraft:item_model="realm:ancient_spellbook"]
+```
+
+Models and textures adapted from Origin Realms.
+
+### Dreamcatcher
+
+Multicoloured-feathered dreamcatcher for ceiling-mounted invisible item frames.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:dreamcatcher"]
+```

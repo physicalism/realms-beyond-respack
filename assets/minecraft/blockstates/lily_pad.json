@@ -1,0 +1,126 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "realm:block/pond/lily_pad_plain",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lily_pad_plain",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lily_pad_plain",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lily_pad_plain",
+        "y": 270,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_pink",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_pink",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_pink",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_pink",
+        "y": 270,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_purple",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_purple",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_purple",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_purple",
+        "y": 270,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_white",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_white",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_white",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_white",
+        "y": 270,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_aqua",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_aqua",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_aqua",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_aqua",
+        "y": 270,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_yellow",
+        "y": 0,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_yellow",
+        "y": 90,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_yellow",
+        "y": 180,
+        "weight": 1
+      },
+      {
+        "model": "realm:block/pond/lotus_yellow",
+        "y": 270,
+        "weight": 1
+      }
+    ]
+  }
+}

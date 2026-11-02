@@ -39,7 +39,7 @@ def png(path, dimensions=(64, 64)):
         if kind == b'IEND':
             ended = True
         offset += size+12
-    require(ended and header[:2] == dimensions and header[2:] in ((8, 6, 0, 0, 0), (8, 2, 0, 0, 0), (4, 3, 0, 0, 0)), f'Unexpected PNG dimensions or format: {path}')
+    require(ended and header[:2] == dimensions and header[2:] in ((8, 6, 0, 0, 0), (8, 2, 0, 0, 0), (4, 3, 0, 0, 0), (8, 3, 0, 0, 0)), f'Unexpected PNG dimensions or format: {path}')
     raw = zlib.decompress(packed)
     width, height = dimensions
     channels = {6: 4, 2: 3, 3: 1}[header[3]]
@@ -51,7 +51,7 @@ def resource(kind, identifier):
     require(isinstance(identifier, str) and re.fullmatch(r'[a-z0-9_.-]+:[a-z0-9_./-]+', identifier), f'Invalid resource ID: {identifier}')
     namespace, name = identifier.split(':')
     if kind == 'textures':
-        require(name.startswith('item/'), f'Banner texture is outside the item atlas directory: {identifier}')
+        require(name.startswith(('item/', 'block/')), f'Texture is outside the supported atlas directories: {identifier}')
     require('..' not in name.split('/'), 'Resource path cannot escape its namespace.')
     return ROOT / 'assets' / namespace / kind / (name + ('.png' if kind == 'textures' else '.json'))
 
@@ -118,11 +118,78 @@ def validate():
         for element in resolved['elements']:
             for face in element.get('faces', {}).values():
                 require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved painting texture slot.')
+    # Balcony flowers use a recoloured item-atlas texture; keep the old item ID working.
+    for decoration_id in ('realm:balcony_flowers', 'realm:balcony_flowers_corner'):
+        decoration = read(resource('items', decoration_id))['model']
+        require(decoration['type'] == 'minecraft:model', 'Expected a model decoration item.')
+        require(decoration.get('tints') == [{'type': 'minecraft:constant', 'value': 16777215}], 'Incorrect balcony flower tint.')
+        resolved = model(decoration['model'])
+        require(resolved.get('elements') and resolved.get('display', {}).get('fixed'), 'Missing balcony flower geometry or frame display.')
+        slots = resolved['textures']
+        for identifier in slots.values():
+            path = resource('textures', identifier)
+            png(path)
+            used.add(path)
+        for element in resolved['elements']:
+            for face in element.get('faces', {}).values():
+                require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved decoration texture slot.')
+    require(read(resource('items', 'realm:wall_flowers')) == read(resource('items', 'realm:balcony_flowers')), 'Legacy flower item differs from balcony flowers.')
+    # Equal-probability lotus lily pads; support the original four or expanded six.
+    lily_variants = read(ROOT/'assets/minecraft/blockstates/lily_pad.json')['variants']['']
+    expected_lilies = {'realm:block/pond/'+name for name in ('lily_pad_plain', 'lotus_pink', 'lotus_purple', 'lotus_white', 'lotus_aqua', 'lotus_yellow')}
+    active_lilies = {v['model'] for v in lily_variants}
+    original_lilies = expected_lilies - {'realm:block/pond/lotus_aqua', 'realm:block/pond/lotus_yellow'}
+    require(active_lilies in (original_lilies, expected_lilies), 'Expected the original four or expanded six lily pad types.')
+    require(len(lily_variants) == len(active_lilies)*4, 'Expected four rotations per lily pad type.')
+    require({(v['model'], v.get('y', 0)) for v in lily_variants} == {(name, angle) for name in active_lilies for angle in (0,90,180,270)}, 'Missing lily pad colour or rotation.')
+    require(all(v.get('weight', 1) == 1 for v in lily_variants), 'Lily pad probabilities must be equal.')
+    for identifier in expected_lilies:
+        resolved = model(identifier)
+        require(resolved.get('elements'), 'Missing lily pad geometry.')
+        slots = resolved['textures']
+        for texture_id in slots.values():
+            path = resource('textures', texture_id)
+            png(path, (16,16))
+            used.add(path)
+        for element in resolved['elements']:
+            for face in element.get('faces', {}).values():
+                require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved lily pad texture slot.')
     # Compatibility IDs share the canonical item's model and tint.
     canonical = {entry['item_model'] for entry in banners}
     for old_id, target_id in catalogue.get('aliases', {}).items():
         require(old_id not in canonical and target_id in canonical, 'Invalid compatibility alias.')
         require(read(resource('items', old_id)) == read(resource('items', target_id)), 'Compatibility alias differs from its target.')
+    # First-person lanterns inherit the same block geometry used by NEA in F5.
+    lanterns = ('lantern', 'soul_lantern', 'copper_lantern', 'exposed_copper_lantern',
+                'weathered_copper_lantern', 'oxidized_copper_lantern', 'waxed_copper_lantern',
+                'waxed_exposed_copper_lantern', 'waxed_weathered_copper_lantern', 'waxed_oxidized_copper_lantern')
+    for name in lanterns:
+        item = read(resource('items', 'minecraft:'+name))['model']
+        require(item['type'] == 'minecraft:select' and item['property'] == 'minecraft:display_context', 'Invalid lantern context selection.')
+        require(item['fallback'] == {'type': 'minecraft:model', 'model': 'minecraft:item/'+name.removeprefix('waxed_')}, 'Lantern fallback must retain vanilla item model.')
+        case, = item['cases']
+        require(set(case['when']) == {'firstperson_righthand', 'firstperson_lefthand', 'thirdperson_righthand', 'thirdperson_lefthand'}, 'Lantern override must cover vanilla and Punchy hand contexts.')
+        wrapper = read(resource('models', case['model']['model']))
+        require(wrapper['parent'] == 'minecraft:block/'+name.removeprefix('waxed_'), 'Lantern must inherit its matching block model.')
+        require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
+    # Imported furniture uses item-atlas textures and optional animated atlases.
+    for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher'):
+        entry = read(resource('items', 'realm:'+name))['model']
+        require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
+        resolved = model(entry['model'])
+        require(resolved.get('elements') and resolved.get('display', {}).get('fixed'), 'Missing decoration geometry or frame display.')
+        slots = resolved['textures']
+        for identifier in slots.values():
+            path = resource('textures', identifier)
+            dimensions = struct.unpack('>II', path.read_bytes()[16:24])
+            png(path, dimensions)
+            used.add(path)
+            animation = path.with_suffix('.png.mcmeta')
+            if animation.exists():
+                require('animation' in read(animation), 'Invalid texture animation metadata.')
+        for element in resolved['elements']:
+            for face in element.get('faces', {}).values():
+                require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved decoration texture slot.')
     actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())
@@ -134,7 +201,7 @@ def validate():
 def build():
     metadata_path = ROOT/'pack.mcmeta'
     metadata = json.loads(metadata_path.read_text())
-    metadata['pack']['description'] = f'§5■ §bv{version()}\n§5■ §6By Henry §o(emotivist)§r'
+    metadata['pack']['description'] = f'§5■ §bv{version()}\n§5■ §6By Henry§r'
     metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2)+'\n')
     files = validate() | {ROOT/'pack.mcmeta'}
     if (ROOT/'pack.png').exists():
@@ -152,7 +219,7 @@ def build():
         require(archive.testzip() is None, 'ZIP integrity failure.')
     digest = hashlib.sha256(output.read_bytes()).hexdigest()
     output.with_suffix('.zip.sha256').write_text(f'{digest}  {output.name}\n')
-    print(f'Built {output.name}: 96 banners and Ivy paintings, {len(files)} files; SHA-256 {digest}')
+    print(f'Built {output.name}: 96 banners, Ivy paintings, balcony flowers, and lotus lily pads, {len(files)} files; SHA-256 {digest}')
     # Stable display-name copy for a plain white menu title.
     display_copy = destination/'Realms Beyond.zip'
     display_copy.write_bytes(output.read_bytes())
@@ -166,7 +233,7 @@ if __name__ == '__main__':
     try:
         if args.check:
             validate()
-            print('Validated all 96 banners and resource references.')
+            print('Validated all 96 banners, Ivy paintings, balcony flowers, and resource references.')
         else:
             build()
     except (ValueError, OSError, KeyError, struct.error, zlib.error) as error:

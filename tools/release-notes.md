@@ -1,9 +1,36 @@
 Custom decorations for Minecraft Java 26.3.
 
 - 96 banners: lion, dragon, and stag designs in all 16 dye colours, with gold or brown finishes.
+- Balcony flowers: pink petals, a yellow ribbon, and trailing green leaves, with corrected corner placement.
 - Four Ivy portraits: original, crown, detailed crown, and Tudor library.
 - Solid wooden painting frames with full canvas coverage.
 - Custom pack icon and formatted version and author information.
 - Vanilla item models for invisible wall-mounted item frames; no CIT mod required.
 
 Painting commands are listed in the README.
+
+- Independent balcony flower corner variant with light blue petals and a yellow ribbon.
+
+- Normal lily pads use plain, pink, purple, or white lotus models with equal 25% probabilities and varied rotations.
+
+- Added pale tropical aqua and yellow lotuses; six equally likely pad types, with an original-four switch available.
+
+- v0.1.20: Added blue/purple magic book stack, ancient spellbook, open ancient book, cream dreamcatcher, amethyst runic statue, and hay wagon.
+
+- v0.1.21: Corrected floor-frame orientation of the magic book stack and runic statue; adjusted statue height for its base to rest at floor level.
+
+- v0.1.22: Corrected hay wagon floor-frame orientation and height; dreamcatcher now hangs vertically from ceiling-mounted frames.
+
+- v0.1.23: Removed the runic statue and closed ancient spellbook. Retained the open ancient book and its shared texture.
+
+- v0.1.24: Retained only the coloured magic book stack and closed ancient spellbook from the new decoration set; removed the open book, hay wagon, and dreamcatcher.
+
+- v0.1.25: Restored the cream dreamcatcher with ceiling-frame placement.
+
+- v0.1.26: Lowered the dreamcatcher using its rotated frame bounds and added a short hanging cord to prevent ceiling clipping.
+
+- v0.1.27: Reversed the floor-frame height offsets for the upright magic book stack and closed spellbook to bring them above their supporting blocks.
+
+- v0.1.28: Undid the incorrect positive floor-frame offsets on both books. Added independently coloured aqua, blue, purple, pink, and gold dreamcatcher feathers, preserving the hanging cord and ceiling position.
+
+- v0.1.29: Each dreamcatcher feather now has two contrasting colour bands, a darker shaft, and pixel highlights/barb detail. Geometry and placement are unchanged.

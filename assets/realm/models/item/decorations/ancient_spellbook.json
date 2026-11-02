@@ -1,0 +1,276 @@
+{
+  "credit": "Made with Blockbench",
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        66,
+        -180,
+        180
+      ],
+      "translation": [
+        16.75,
+        -7,
+        -17.25
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        66,
+        -180,
+        180
+      ],
+      "translation": [
+        16.75,
+        -7,
+        -17.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "translation": [
+        0,
+        0,
+        -16
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.45,
+        0.45,
+        0.45
+      ],
+      "translation": [
+        0,
+        6.5,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        -136,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "translation": [
+        0,
+        3.75,
+        0
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        116,
+        180,
+        98
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "translation": [
+        3.5,
+        -0.25,
+        -0.75
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        116,
+        180,
+        98
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "translation": [
+        3.5,
+        -0.25,
+        -0.75
+      ]
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            5.75,
+            7.25,
+            8.5,
+            3.75
+          ]
+        },
+        "east": {
+          "rotation": 90,
+          "texture": "#0",
+          "uv": [
+            5.5,
+            3.5,
+            4.5,
+            0
+          ]
+        },
+        "up": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            5.75,
+            0,
+            8.5,
+            3.5
+          ]
+        }
+      },
+      "from": [
+        2.35,
+        0.2,
+        1
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          7.25,
+          14.5,
+          8
+        ]
+      },
+      "to": [
+        13.35,
+        4.2,
+        15
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            8.5,
+            0,
+            5.75,
+            3.5
+          ]
+        },
+        "up": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            8.5,
+            0,
+            5.75,
+            3.5
+          ]
+        },
+        "west": {
+          "rotation": 90,
+          "texture": "#0",
+          "uv": [
+            5.5,
+            0,
+            4.5,
+            3.5
+          ]
+        }
+      },
+      "from": [
+        13.35,
+        4.2,
+        15
+      ],
+      "name": "cube inverted",
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          7.25,
+          14.5,
+          8
+        ]
+      },
+      "to": [
+        2.35,
+        0.2,
+        1
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0,
+            3.5,
+            2.5,
+            4.5
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            2.5,
+            3.5,
+            0,
+            4.5
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            5.75,
+            3.5,
+            2.75,
+            4.5
+          ]
+        }
+      },
+      "from": [
+        3.35,
+        0.2,
+        2
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          7.25,
+          14.5,
+          8
+        ]
+      },
+      "to": [
+        13.35,
+        4.2,
+        14
+      ]
+    }
+  ],
+  "texture_size": [
+    64,
+    64
+  ],
+  "textures": {
+    "0": "realm:item/decorations/archaeology/general/ancient_books",
+    "particle": "realm:item/decorations/archaeology/general/ancient_books"
+  }
+}

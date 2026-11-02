@@ -1,0 +1,139 @@
+{
+  "ambientocclusion": false,
+  "display": {
+    "firstperson_lefthand": {
+      "translation": [
+        3.25,
+        24,
+        -0.25
+      ]
+    },
+    "firstperson_righthand": {
+      "translation": [
+        3.25,
+        24,
+        -0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "translation": [
+        0,
+        0,
+        -48
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "translation": [
+        0,
+        10.5,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        90,
+        0,
+        0
+      ]
+    },
+    "head": {
+      "rotation": [
+        -64,
+        36,
+        30
+      ],
+      "translation": [
+        -14,
+        21.5,
+        -22.75
+      ]
+    },
+    "thirdperson_lefthand": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "translation": [
+        0,
+        12,
+        0
+      ]
+    },
+    "thirdperson_righthand": {
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "translation": [
+        0,
+        12,
+        0
+      ]
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#1",
+          "uv": [
+            15,
+            0,
+            2,
+            15
+          ]
+        },
+        "up": {
+          "texture": "#1",
+          "uv": [
+            2,
+            15,
+            15,
+            0
+          ]
+        }
+      },
+      "from": [
+        1.5,
+        0.25,
+        0.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          0.25,
+          0
+        ]
+      },
+      "shade": false,
+      "to": [
+        14.5,
+        0.25,
+        15.5
+      ]
+    }
+  ],
+  "textures": {
+    "1": "realm:block/pond/lotus_lily",
+    "particle": "realm:block/pond/lotus_lily"
+  }
+}

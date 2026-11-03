@@ -200,7 +200,7 @@ def validate():
             require(entry.get('property') == 'minecraft:local_time' and entry.get('pattern'), 'Unsupported shrine select.')
             return [m for c in entry['cases'] for m in shrine_models(c['model'])] + shrine_models(entry['fallback'])
         raise ValueError('Invalid shrine item type.')
-    for name in ('ivy_shrine', 'ivy_shrine_stone'):
+    for name in ('ivy_shrine', 'ivy_shrine_stone', 'ivy_shrine_simple'):
       for model_id in dict.fromkeys(shrine_models(read(resource('items', 'realm:'+name))['model'])):
         resolved = model(model_id)
         require(resolved.get('display', {}).get('fixed'), 'Missing shrine frame display.')
@@ -212,7 +212,7 @@ def validate():
             require(all(-16 <= a < b <= 32 for a, b in zip(element['from'], element['to'])), 'Shrine cuboid exceeds Java model limits.')
             require(set(element['faces']) == {'north','south','east','west','up','down'}, 'Shrine cuboid needs all six faces.')
             for face in element['faces'].values():
-                require(face['texture'] == '#atlas' and all(0 <= v <= 16 for v in face['uv']), 'Invalid shrine UVs.')
+                require(face['texture'][1:] in resolved['textures'] and all(0 <= v <= 16 for v in face['uv']), 'Invalid shrine UVs.')
     # Override the vanilla disc 13 recording without changing other music.
     recording = ROOT/'assets/minecraft/sounds/records/13.ogg'
     audio = recording.read_bytes()

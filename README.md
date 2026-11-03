@@ -4,7 +4,7 @@ A custom resource pack for Minecraft Java 26.3.
 
 ## Disc 13 music
 
-Disc 13 plays the approximately 31-second Legend of Korra end-credits recording supplied via https://www.youtube.com/watch?v=6xW83hx4P7M. The item is named Korra Record, with The Legend of Korra - End Credits as its description and the original disc 13 texture. English (UK and US) translations are included. The vanilla jukebox duration remains unchanged. The replacement audio plays once; the jukebox stays active until disc 13's original duration ends. Reload resources with F3 + T, then eject and reinsert the disc to hear the change.
+Disc 13 plays one complete 23.68-second cycle of the Legend of Korra ending from https://www.youtube.com/watch?v=_zOmj9I2zzA. The item is named Korra Record, with The Legend of Korra - End Credits as its description and the original disc 13 texture. English (UK and US) translations are included. The vanilla jukebox duration remains unchanged. The replacement audio plays once; the jukebox stays active until disc 13's original duration ends. Reload resources with F3 + T, then eject and reinsert the disc to hear the change.
 
 Audio override: `assets/minecraft/sounds/records/13.ogg` (Ogg Vorbis). Music is from The Legend of Korra; inclusion does not grant redistribution rights.
 

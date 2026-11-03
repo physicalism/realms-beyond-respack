@@ -40,3 +40,5 @@ Painting commands are listed in the README.
 - v0.1.36: Added the Ivy shrine (black Labrador with emerald collar and brown eyes) and the carved stone Ivy shrine (emerald eyes), each with a wagging tail, plus an incense pot with animated smoke. Also includes the Korra Record (disc 13 music), the Blue Ivy portrait, square Ivy music/laptop/Pepsi portraits, and the dreamcatcher rotation. Removed the earlier Ivy reliquary and four-guardians prototypes.
 
 - Removed all 96 duplicate `realm:royal_banner_*` item IDs to reduce command autocomplete clutter. Use the matching `realm:banner_SYMBOL_COLOUR_TRIM` ID for existing items and commands. All 96 regular banners are retained.
+
+- Replaced the Korra Record audio with one complete 23.68-second loop from the new recording.

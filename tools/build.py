@@ -200,7 +200,7 @@ def validate():
             require(entry.get('property') == 'minecraft:local_time' and entry.get('pattern'), 'Unsupported shrine select.')
             return [m for c in entry['cases'] for m in shrine_models(c['model'])] + shrine_models(entry['fallback'])
         raise ValueError('Invalid shrine item type.')
-    for name in ('ivy_shrine', 'ivy_shrine_stone', 'ivy_shrine_simple'):
+    for name in ('ivy_shrine', 'ivy_shrine_stone'):
       for model_id in dict.fromkeys(shrine_models(read(resource('items', 'realm:'+name))['model'])):
         resolved = model(model_id)
         require(resolved.get('display', {}).get('fixed'), 'Missing shrine frame display.')

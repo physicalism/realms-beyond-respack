@@ -34,3 +34,7 @@ Painting commands are listed in the README.
 - v0.1.28: Undid the incorrect positive floor-frame offsets on both books. Added independently coloured aqua, blue, purple, pink, and gold dreamcatcher feathers, preserving the hanging cord and ceiling position.
 
 - v0.1.29: Each dreamcatcher feather now has two contrasting colour bands, a darker shaft, and pixel highlights/barb detail. Geometry and placement are unchanged.
+
+- v0.1.30: Turned the complete ceiling dreamcatcher by 22.5 degrees around its vertical axis, preserving its hanging height and upright orientation.
+
+- v0.1.36: Added the Ivy shrine (black Labrador with emerald collar and brown eyes) and the carved stone Ivy shrine (emerald eyes), each with a wagging tail, plus an incense pot with animated smoke. Also includes the Korra Record (disc 13 music), the Blue Ivy portrait, square Ivy music/laptop/Pepsi portraits, and the dreamcatcher rotation. Removed the earlier Ivy reliquary and four-guardians prototypes.

@@ -2,6 +2,12 @@
 
 A custom resource pack for Minecraft Java 26.3.
 
+## Disc 13 music
+
+Disc 13 plays the approximately 31-second Legend of Korra end-credits recording supplied via https://www.youtube.com/watch?v=6xW83hx4P7M. The item is named Korra Record, with The Legend of Korra - End Credits as its description and the original disc 13 texture. English (UK and US) translations are included. The vanilla jukebox duration remains unchanged. The replacement audio plays once; the jukebox stays active until disc 13's original duration ends. Reload resources with F3 + T, then eject and reinsert the disc to hear the change.
+
+Audio override: `assets/minecraft/sounds/records/13.ogg` (Ogg Vorbis). Music is from The Legend of Korra; inclusion does not grant redistribution rights.
+
 96 decorative banners: lion, dragon, and stag, each in all 16 dye colours with gold or brown detailing. All banner textures are 64 × 64.
 
 ## Use
@@ -118,4 +124,41 @@ Multicoloured-feathered dreamcatcher for ceiling-mounted invisible item frames.
 
 ```mcfunction
 /give @s minecraft:paper[minecraft:item_model="realm:dreamcatcher"]
+```
+
+### Blue Ivy
+
+A front-facing 16 × 32 portrait with ice-blue eyes, a bright blue backdrop, and a sparkling cobalt high-neck outfit. Uses the shared wooden painting frame.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_blue"]
+```
+
+### Ivy meme portraits
+
+Three square 2 × 2 paintings with 32 × 32 canvases and a shared solid wooden frame: music with wired earbuds, toy laptop, and Pepsi cup. Item IDs are unchanged from the earlier tall versions.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_music"]
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_laptop"]
+/give @s minecraft:paper[minecraft:item_model="realm:painting_ivy_pepsi"]
+```
+
+## Ivy shrines
+
+A seated black Labrador statue of Ivy inside a gold-canopied reliquary: carved dark-stone plinth with a faceted amethyst set into each face, four gold columns, and a stepped gold roof with an amethyst finial. Ivy wears an emerald collar with a gold buckle and has brown eyes. A carved pale-stone version has inset emerald eyes and a plain stone collar. Her tail wags: the item swaps between three tail poses on the game clock (about two wags per second).
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:ivy_shrine"]
+/give @s minecraft:paper[minecraft:item_model="realm:ivy_shrine_stone"]
+```
+
+Place in invisible floor-mounted item frames. Original models; Ivy is sculpted on a half-unit grid (2 texels per unit), the shrine architecture at 1 texel per unit.
+
+### Incense pot
+
+A gold bowl of sandalwood ash holding two incense sticks with glowing tips and two animated, translucent smoke plumes. Sits at a slight diagonal in its frame; place it on the floor in front of a shrine.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:incense_pot"]
 ```

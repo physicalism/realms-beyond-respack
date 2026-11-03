@@ -1,0 +1,7 @@
+{
+  "parent": "realm:item/painting_ivy",
+  "textures": {
+    "canvas": "realm:item/painting/ivy_blue",
+    "particle": "realm:item/painting/ivy_blue"
+  }
+}

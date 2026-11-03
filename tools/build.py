@@ -112,7 +112,7 @@ def validate():
         slots = resolved['textures']
         for slot, identifier in slots.items():
             path = resource('textures', identifier)
-            dimensions = (64, 64) if identifier.endswith('/frame_1x2v') else ((32, 64) if identifier.endswith('/ivy_crown_detailed') else (16, 32))
+            dimensions = (64, 64) if identifier.endswith('/frame_1x2v') else ((32, 64) if identifier.endswith('/ivy_crown_detailed') else ((32, 32) if identifier.endswith(('/ivy_music', '/ivy_laptop', '/ivy_pepsi')) else (16, 32)))
             png(path, dimensions)
             used.add(path)
         for element in resolved['elements']:
@@ -173,7 +173,7 @@ def validate():
         require(wrapper['parent'] == 'minecraft:block/'+name.removeprefix('waxed_'), 'Lantern must inherit its matching block model.')
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
-    for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher'):
+    for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])
@@ -190,6 +190,38 @@ def validate():
         for element in resolved['elements']:
             for face in element.get('faces', {}).values():
                 require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved decoration texture slot.')
+    # Ivy shrines: pixel-atlas models; the tail wags by swapping pose models on the clock.
+    # Composite/select items (the wagging tail) are walked down to their plain model leaves.
+    def shrine_models(entry):
+        kind = entry['type']
+        if kind == 'minecraft:model': return [entry['model']]
+        if kind == 'minecraft:composite': return [m for sub in entry['models'] for m in shrine_models(sub)]
+        if kind == 'minecraft:select':
+            require(entry.get('property') == 'minecraft:local_time' and entry.get('pattern'), 'Unsupported shrine select.')
+            return [m for c in entry['cases'] for m in shrine_models(c['model'])] + shrine_models(entry['fallback'])
+        raise ValueError('Invalid shrine item type.')
+    for name in ('ivy_shrine', 'ivy_shrine_stone'):
+      for model_id in dict.fromkeys(shrine_models(read(resource('items', 'realm:'+name))['model'])):
+        resolved = model(model_id)
+        require(resolved.get('display', {}).get('fixed'), 'Missing shrine frame display.')
+        for identifier in resolved['textures'].values():
+            path = resource('textures', identifier)
+            png(path, struct.unpack('>II', path.read_bytes()[16:24]))
+            used.add(path)
+        for element in resolved['elements']:
+            require(all(-16 <= a < b <= 32 for a, b in zip(element['from'], element['to'])), 'Shrine cuboid exceeds Java model limits.')
+            require(set(element['faces']) == {'north','south','east','west','up','down'}, 'Shrine cuboid needs all six faces.')
+            for face in element['faces'].values():
+                require(face['texture'] == '#atlas' and all(0 <= v <= 16 for v in face['uv']), 'Invalid shrine UVs.')
+    # Override the vanilla disc 13 recording without changing other music.
+    recording = ROOT/'assets/minecraft/sounds/records/13.ogg'
+    audio = recording.read_bytes()
+    require(audio.startswith(b'OggS') and b'\x01vorbis' in audio[:128], 'Disc 13 must use Ogg Vorbis audio.')
+    used.add(recording)
+    for language in ('en_us', 'en_gb'):
+        names = read(ROOT/f'assets/minecraft/lang/{language}.json')
+        require(names.get('item.minecraft.music_disc_13') == 'Korra Record', 'Missing custom disc name.')
+        require(names.get('jukebox_song.minecraft.13') == 'The Legend of Korra - End Credits', 'Missing track description.')
     actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())

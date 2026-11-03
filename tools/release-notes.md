@@ -37,6 +37,8 @@ Painting commands are listed in the README.
 
 - v0.1.30: Turned the complete ceiling dreamcatcher by 22.5 degrees around its vertical axis, preserving its hanging height and upright orientation.
 
+- v0.1.37: Redesigned both Ivy shrines. Ivy is a new rounder, cuter sculpt in a simple flat-shaded style, with an emerald collar and small gold tag, floppy Labrador ears and a thick wagging tail. The shrine has taller gold columns and a Japanese-style stone roof with upturned gold eave tips and a gold spire, replacing the gold roof and amethyst finial. The stone shrine uses the same sculpt in grey stone with emerald eyes. Item IDs are unchanged.
+
 - v0.1.36: Added the Ivy shrine (black Labrador with emerald collar and brown eyes) and the carved stone Ivy shrine (emerald eyes), each with a wagging tail, plus an incense pot with animated smoke. Also includes the Korra Record (disc 13 music), the Blue Ivy portrait, square Ivy music/laptop/Pepsi portraits, and the dreamcatcher rotation. Removed the earlier Ivy reliquary and four-guardians prototypes.
 
 - Removed all 96 duplicate `realm:royal_banner_*` item IDs to reduce command autocomplete clutter. Use the matching `realm:banner_SYMBOL_COLOUR_TRIM` ID for existing items and commands. All 96 regular banners are retained.

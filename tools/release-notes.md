@@ -41,4 +41,4 @@ Painting commands are listed in the README.
 
 - Removed all 96 duplicate `realm:royal_banner_*` item IDs to reduce command autocomplete clutter. Use the matching `realm:banner_SYMBOL_COLOUR_TRIM` ID for existing items and commands. All 96 regular banners are retained.
 
-- Replaced the Korra Record audio with one complete 23.68-second loop from the new recording.
+- Replaced the Korra Record audio with the new recording looped for the full 2 minutes 58 seconds of vanilla disc 13.

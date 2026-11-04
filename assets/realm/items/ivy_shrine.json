@@ -1,56 +1,6 @@
 {
   "model": {
-    "type": "minecraft:composite",
-    "models": [
-      {
-        "type": "minecraft:model",
-        "model": "realm:item/decorations/ivy_shrine"
-      },
-      {
-        "type": "minecraft:select",
-        "property": "minecraft:local_time",
-        "pattern": "S",
-        "cases": [
-          {
-            "when": [
-              "4",
-              "5",
-              "9"
-            ],
-            "model": {
-              "type": "minecraft:model",
-              "model": "realm:item/decorations/ivy_shrine_tail_0"
-            }
-          },
-          {
-            "when": [
-              "0",
-              "3",
-              "6",
-              "8"
-            ],
-            "model": {
-              "type": "minecraft:model",
-              "model": "realm:item/decorations/ivy_shrine_tail_1"
-            }
-          },
-          {
-            "when": [
-              "1",
-              "2",
-              "7"
-            ],
-            "model": {
-              "type": "minecraft:model",
-              "model": "realm:item/decorations/ivy_shrine_tail_2"
-            }
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "realm:item/decorations/ivy_shrine_tail_1"
-        }
-      }
-    ]
+    "type": "minecraft:model",
+    "model": "realm:item/decorations/ivy_shrine"
   }
 }

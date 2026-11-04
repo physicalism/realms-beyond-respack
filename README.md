@@ -146,7 +146,7 @@ Three square 2 × 2 paintings with 32 × 32 canvases and a shared solid wooden f
 
 ## Ivy shrines
 
-A seated black Labrador statue of Ivy inside a gold-columned shrine: carved dark-stone plinth with a faceted amethyst set into each face, four gold columns with corbels, and a Japanese-style stepped stone roof with upturned gold eave tips and a gold spire. Ivy wears an emerald collar with a small gold tag and has brown eyes. A carved grey-stone version has emerald eyes and a plain stone collar. Her tail wags: the item swaps between three tail poses on the game clock (about two wags per second).
+A seated black Labrador statue of Ivy inside a gold-columned shrine: carved dark-stone plinth with a faceted amethyst set into each face, four gold columns with corbels, and a Japanese-style stepped stone roof with upturned gold eave tips and a gold spire. Ivy wears an emerald collar with a small gold tag and has brown eyes. A carved grey-stone version has emerald eyes and a plain stone collar. Her thick tail drapes over the back of the plinth.
 
 ```mcfunction
 /give @s minecraft:paper[minecraft:item_model="realm:ivy_shrine"]

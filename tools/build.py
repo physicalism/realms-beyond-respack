@@ -190,7 +190,7 @@ def validate():
         for element in resolved['elements']:
             for face in element.get('faces', {}).values():
                 require(face['texture'].startswith('#') and face['texture'][1:] in slots, 'Unresolved decoration texture slot.')
-    # Ivy shrines: pixel-atlas models; the tail wags by swapping pose models on the clock.
+    # Ivy shrines: pixel-atlas models.
     # Composite/select items (the wagging tail) are walked down to their plain model leaves.
     def shrine_models(entry):
         kind = entry['type']
@@ -208,6 +208,10 @@ def validate():
             path = resource('textures', identifier)
             png(path, struct.unpack('>II', path.read_bytes()[16:24]))
             used.add(path)
+            animation = path.with_suffix('.png.mcmeta')
+            if animation.exists():
+                require('animation' in read(animation), 'Invalid texture animation metadata.')
+                used.add(animation)
         for element in resolved['elements']:
             require(all(-16 <= a < b <= 32 for a, b in zip(element['from'], element['to'])), 'Shrine cuboid exceeds Java model limits.')
             require(set(element['faces']) == {'north','south','east','west','up','down'}, 'Shrine cuboid needs all six faces.')

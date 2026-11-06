@@ -37,6 +37,8 @@ Painting commands are listed in the README.
 
 - v0.1.30: Turned the complete ceiling dreamcatcher by 22.5 degrees around its vertical axis, preserving its hanging height and upright orientation.
 
+- v0.1.40: Added a farm scarecrow with a tilted pumpkin head, a straw hat, and a faded rust-red hat band. Use `realm:scarecrow` in a floor-mounted invisible item frame or an item display. Existing placements using `realm:scarecrow_farm_1` still work.
+
 - v0.1.39: Ivy's back now slopes down from her shoulders in two steps instead of meeting her body at a sharp right angle, on both the Ivy shrine and the stone Ivy shrine. Item IDs are unchanged.
 
 - v0.1.38: Ivy shrine revision. Slimmer hind legs with rounded haunches and a rounded rump, a fuller chest that comes forward to the collar tag, a thicker tail that drapes over the back of the plinth (no longer animated), toe lines on the hind paws to match the front paws, and a plain emerald collar. Fixed z-fighting on the tail. Applies to both the Ivy shrine and the stone Ivy shrine; item IDs are unchanged.

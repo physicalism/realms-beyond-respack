@@ -173,7 +173,8 @@ def validate():
         require(wrapper['parent'] == 'minecraft:block/'+name.removeprefix('waxed_'), 'Lantern must inherit its matching block model.')
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
-    for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot'):
+    for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot',
+                 'scarecrow', 'scarecrow_farm_1'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])

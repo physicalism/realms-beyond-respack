@@ -162,3 +162,13 @@ A gold bowl of sandalwood ash holding two incense sticks with glowing tips and t
 ```mcfunction
 /give @s minecraft:paper[minecraft:item_model="realm:incense_pot"]
 ```
+
+## Scarecrow
+
+An Origin Realms scarecrow with a tilted pumpkin head, a straw hat, and a faded rust-red hat band. Place it in an invisible floor-mounted item frame.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:scarecrow",minecraft:item_name="Scarecrow"]
+```
+
+Model and textures adapted from Origin Realms.

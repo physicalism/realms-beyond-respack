@@ -172,3 +172,29 @@ An Origin Realms scarecrow with a tilted pumpkin head, a straw hat, and a faded 
 ```
 
 Model and textures adapted from Origin Realms.
+
+## Stag fountain
+
+A verdigris bronze stag on a two-tier mossy stone pedestal inside an octagonal stone basin, with four animated water spouts and splash foam. The pool itself is real water, so shaders such as Complementary render it natively. Built from six item display entities. The bronze stag uses the Origin Realms Reindeer Rocker body and Deer Mount antlers.
+
+Build the pool first. Stand on the centre block:
+
+```mcfunction
+/fill ~-2 ~-2 ~-2 ~2 ~-2 ~2 minecraft:mossy_stone_bricks
+/fill ~-2 ~-1 ~-1 ~2 ~-1 ~1 minecraft:water
+/fill ~-1 ~-1 ~-2 ~1 ~-1 ~2 minecraft:water
+/setblock ~ ~-1 ~ minecraft:stone_bricks
+```
+
+Then summon the pieces from the same block:
+
+```mcfunction
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~ ~ ~ {Tags:["rb_fountain"],item:{id:"paper",components:{"item_model":"realm:stag_fountain_pedestal"}}}
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~ ~2.5 ~ {Tags:["rb_fountain","rb_fountain_stag"],billboard:"fixed",item_display:"none",Rotation:[-45f,0f],item:{id:"paper",components:{"item_model":"realm:stag_fountain_stag"}}}
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~1.46875 ~ ~1.46875 {Tags:["rb_fountain"],item:{id:"paper",components:{"item_model":"realm:stag_fountain_basin_se"}}}
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~-1.46875 ~ ~1.46875 {Tags:["rb_fountain"],item:{id:"paper",components:{"item_model":"realm:stag_fountain_basin_sw"}}}
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~1.46875 ~ ~-1.46875 {Tags:["rb_fountain"],item:{id:"paper",components:{"item_model":"realm:stag_fountain_basin_ne"}}}
+/execute align xyz positioned ~.5 ~ ~.5 run summon item_display ~-1.46875 ~ ~-1.46875 {Tags:["rb_fountain"],item:{id:"paper",components:{"item_model":"realm:stag_fountain_basin_nw"}}}
+```
+
+The stag command uses `Rotation:[-45f,0f]` to face south-west. Use a yaw of `180f` for east, `-90f` for south, `0f` for west, or `90f` for north. Stand directly on the centre block at ground level when summoning. If replacing an older stag, remove its display before running the updated command. Remove the whole fountain with `/kill @e[type=item_display,tag=rb_fountain,distance=..5]`. The spout colour is the `value` in `assets/realm/items/stag_fountain_pedestal.json` (default 8368864, #7FB2E0).

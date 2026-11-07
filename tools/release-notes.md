@@ -1,5 +1,7 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.41: Added a mossy stone fountain with a bronze stag, four water spouts, and animated splash foam. The README includes placement commands. Adjusted the ceiling-mounted dreamcatcher offset to clear the chest.
+
 - 96 banners: lion, dragon, and stag designs in all 16 dye colours, with gold or brown finishes.
 - Balcony flowers: pink petals, a yellow ribbon, and trailing green leaves, with corrected corner placement.
 - Four Ivy portraits: original, crown, detailed crown, and Tudor library.

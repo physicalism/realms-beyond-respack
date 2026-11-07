@@ -218,6 +218,28 @@ def validate():
             require(set(element['faces']) == {'north','south','east','west','up','down'}, 'Shrine cuboid needs all six faces.')
             for face in element['faces'].values():
                 require(face['texture'][1:] in resolved['textures'] and all(0 <= v <= 16 for v in face['uv']), 'Invalid shrine UVs.')
+    # Stag fountain: item_display pieces; stone and water use vanilla block textures.
+    for name in ('pedestal', 'stag', 'basin_ne', 'basin_nw', 'basin_se', 'basin_sw'):
+        entry = read(resource('items', 'realm:stag_fountain_'+name))['model']
+        require(entry['type'] == 'minecraft:model', 'Expected a fountain model item.')
+        resolved = model(entry['model'])
+        require(resolved.get('elements'), 'Missing fountain geometry.')
+        slots = resolved['textures']
+        atlas_paths = {identifier.split(':', 1)[1].split('/', 1)[0] for identifier in slots.values()}
+        require(len(atlas_paths) == 1, f'Fountain model {name} mixes block and item texture atlases.')
+        for identifier in slots.values():
+            if identifier.startswith('minecraft:block/'):
+                continue
+            path = resource('textures', identifier)
+            png(path, struct.unpack('>II', path.read_bytes()[16:24]))
+            used.add(path)
+            animation = path.with_suffix('.png.mcmeta')
+            if animation.exists():
+                require('animation' in read(animation), 'Invalid texture animation metadata.')
+        for element in resolved['elements']:
+            require(all(-16 <= a <= b <= 32 for a, b in zip(element['from'], element['to'])), 'Fountain cuboid exceeds Java model limits.')
+            for face in element['faces'].values():
+                require(face['texture'][1:] in slots and all(0 <= v <= 16 for v in face['uv']), 'Invalid fountain face.')
     # Override the vanilla disc 13 recording without changing other music.
     recording = ROOT/'assets/minecraft/sounds/records/13.ogg'
     audio = recording.read_bytes()

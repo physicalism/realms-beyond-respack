@@ -74,7 +74,7 @@ To adjust placement in Blockbench, open `assets/realm/models/item/balcony_flower
 
 ### Corner variant
 
-`realm:balcony_flowers_corner` duplicates the current balcony flower geometry and display settings, with light blue flowers and a yellow ribbon. It has its own model and texture so placement can be edited independently in Blockbench.
+`realm:balcony_flowers_corner` duplicates the current balcony flower geometry and display settings, with orange flowers and a yellow ribbon. It has its own model and texture so placement can be edited independently in Blockbench.
 
 ```mcfunction
 /give @s minecraft:paper[minecraft:item_model="realm:balcony_flowers_corner"]
@@ -209,3 +209,15 @@ Then summon the pieces from the same block:
 ```
 
 The stag command uses `Rotation:[-45f,0f]` to face south-west. Use a yaw of `180f` for east, `-90f` for south, `0f` for west, or `90f` for north. Stand directly on the centre block at ground level when summoning. If replacing an older stag, remove its display before running the updated command. Remove the whole fountain with `/kill @e[type=item_display,tag=rb_fountain,distance=..5]`. The spout colour is the `value` in `assets/realm/items/stag_fountain_pedestal.json` (default 8368864, #7FB2E0).
+
+## Connected paths
+
+Requires [Fusion](https://modrinth.com/mod/fusion-connected-textures); without it, paths and grass look vanilla. Dirt paths sit one pixel below the surrounding lawn with organic, rounded pixel-art edges, including under fences, gates and torches and at wooden step landings. Edge shapes vary with what grows on each grass block. Collision is unchanged. Generator and checks: `tools/path-edges/` (see its README).
+
+## Grass stones
+
+About 1 in 30 plain grass blocks shows a small stone (stone, andesite or cobblestone), chosen at random by vanilla blockstate variants, so no mod is needed. Grass next to paths has none. Regenerate or change the frequency with `tools/lawn-decor/gen_decor.py` (`GRASS_CHANCE`).
+
+## Cosmetics
+
+`assets/realms_beyond_cosmetics/` holds the petal chainsaw (four frames) and lightning bolt cosmetics. `wardrobe.properties` lists per-player toggles.

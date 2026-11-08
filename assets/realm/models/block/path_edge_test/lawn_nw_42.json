@@ -1,0 +1,403 @@
+{
+ "loader": "fusion:model",
+ "type": "base",
+ "textures": {
+  "particle": "minecraft:block/dirt",
+  "top": "minecraft:block/grass_block_top",
+  "side": "minecraft:block/grass_block_side",
+  "overlay": "minecraft:block/grass_block_side_overlay",
+  "side_top": "minecraft:block/grass_block_top",
+  "path": "minecraft:block/dirt_path_top",
+  "path_side": "minecraft:block/dirt_path_side",
+  "bottom": "minecraft:block/dirt"
+ },
+ "elements": [
+  {
+   "from": [
+    0,
+    15,
+    0
+   ],
+   "to": [
+    6,
+    16,
+    8
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      0,
+      0,
+      6,
+      8
+     ],
+     "texture": "#top",
+     "tintindex": 0,
+     "cullface": "up"
+    }
+   }
+  },
+  {
+   "from": [
+    6,
+    15,
+    1
+   ],
+   "to": [
+    7,
+    16,
+    8
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      6,
+      1,
+      7,
+      8
+     ],
+     "texture": "#top",
+     "tintindex": 0,
+     "cullface": "up"
+    }
+   }
+  },
+  {
+   "from": [
+    7,
+    15,
+    4
+   ],
+   "to": [
+    8,
+    16,
+    8
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      7,
+      4,
+      8,
+      8
+     ],
+     "texture": "#top",
+     "tintindex": 0,
+     "cullface": "up"
+    }
+   }
+  },
+  {
+   "from": [
+    6,
+    15,
+    0
+   ],
+   "to": [
+    8,
+    15,
+    1
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      6,
+      0,
+      8,
+      1
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    7,
+    15,
+    1
+   ],
+   "to": [
+    8,
+    15,
+    4
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      7,
+      1,
+      8,
+      4
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    15,
+    0
+   ],
+   "to": [
+    6,
+    16,
+    0
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      1,
+      0,
+      6,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    6,
+    15,
+    1
+   ],
+   "to": [
+    7,
+    16,
+    1
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      6,
+      0,
+      7,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    7,
+    15,
+    4
+   ],
+   "to": [
+    8,
+    16,
+    4
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      7,
+      0,
+      8,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    15,
+    0
+   ],
+   "to": [
+    0,
+    16,
+    8
+   ],
+   "faces": {
+    "west": {
+     "uv": [
+      0,
+      0,
+      8,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    6,
+    15,
+    0
+   ],
+   "to": [
+    6,
+    16,
+    1
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      0,
+      0,
+      1,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    7,
+    15,
+    1
+   ],
+   "to": [
+    7,
+    16,
+    4
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      1,
+      0,
+      4,
+      1
+     ],
+     "texture": "#side_top",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    6,
+    15,
+    0
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      10,
+      1,
+      16,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "north"
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    6,
+    15,
+    0
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      10,
+      1,
+      16,
+      16
+     ],
+     "texture": "#overlay",
+     "tintindex": 0,
+     "cullface": "north"
+    }
+   }
+  },
+  {
+   "from": [
+    6,
+    0,
+    0
+   ],
+   "to": [
+    8,
+    15,
+    0
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      8,
+      1,
+      10,
+      16
+     ],
+     "texture": "#path_side",
+     "cullface": "north"
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    0,
+    15,
+    8
+   ],
+   "faces": {
+    "west": {
+     "uv": [
+      0,
+      1,
+      8,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "west"
+    }
+   }
+  },
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    0,
+    15,
+    8
+   ],
+   "faces": {
+    "west": {
+     "uv": [
+      0,
+      1,
+      8,
+      16
+     ],
+     "texture": "#overlay",
+     "tintindex": 0,
+     "cullface": "west"
+    }
+   }
+  }
+ ]
+}

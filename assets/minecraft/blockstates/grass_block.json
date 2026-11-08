@@ -1,0 +1,86 @@
+{
+ "variants": {
+  "snowy=false": [
+   {
+    "model": "minecraft:block/grass_block",
+    "weight": 83
+   },
+   {
+    "model": "minecraft:block/grass_block",
+    "weight": 83,
+    "y": 90
+   },
+   {
+    "model": "minecraft:block/grass_block",
+    "weight": 83,
+    "y": 180
+   },
+   {
+    "model": "minecraft:block/grass_block",
+    "weight": 83,
+    "y": 270
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_00",
+    "weight": 1,
+    "y": 90
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_01",
+    "weight": 1,
+    "y": 180
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_02",
+    "weight": 1,
+    "y": 90
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_03",
+    "weight": 1,
+    "y": 270
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_04",
+    "weight": 1,
+    "y": 180
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_05",
+    "weight": 1,
+    "y": 180
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_06",
+    "weight": 1,
+    "y": 270
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_07",
+    "weight": 1,
+    "y": 270
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_08",
+    "weight": 1
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_09",
+    "weight": 1
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_10",
+    "weight": 1,
+    "y": 270
+   },
+   {
+    "model": "realm:block/lawn_decor/rock/rock_11",
+    "weight": 1,
+    "y": 180
+   }
+  ],
+  "snowy=true": {
+   "model": "minecraft:block/grass_block_snow"
+  }
+ }
+}

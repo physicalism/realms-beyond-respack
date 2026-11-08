@@ -1,0 +1,1 @@
+Combined v5 (speckled fur, bluer stone roof). Model jsons unchanged from v4; copy the png to assets/realm/textures/item/decorations/ to revert.

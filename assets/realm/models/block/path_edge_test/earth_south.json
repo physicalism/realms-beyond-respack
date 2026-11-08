@@ -1,0 +1,28 @@
+{
+  "loader": "fusion:model",
+  "type": "base",
+  "textures": {
+    "edge": "realm:block/path_edge_test/earth",
+    "particle": "#edge"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        15.03,
+        0
+      ],
+      "to": [
+        16,
+        15.03,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#edge",
+          "rotation": 180
+        }
+      }
+    }
+  ]
+}

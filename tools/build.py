@@ -249,6 +249,56 @@ def validate():
         names = read(ROOT/f'assets/minecraft/lang/{language}.json')
         require(names.get('item.minecraft.music_disc_13') == 'Korra Record', 'Missing custom disc name.')
         require(names.get('jukebox_song.minecraft.13') == 'The Legend of Korra - End Credits', 'Missing track description.')
+    # The live flat path test and the archived 3D test use the same asset locations.
+    modifier_dir = ROOT/'assets/realm/fusion/model_modifiers/blocks'
+    for modifier_path in sorted(modifier_dir.glob('*path_edge_test.json')):
+        modifier = read(modifier_path)
+        entries = modifier.get('default_model_overrides', []) + modifier.get('append_models', [])
+        for entry in entries:
+            edge_model = read(resource('models', entry if isinstance(entry, str) else entry['model']))
+            for sprite in edge_model['textures'].values():
+                if not sprite.startswith('realm:block/path_edge_test/'):
+                    continue
+                path_sprite = resource('textures', sprite)
+                if path_sprite not in used:
+                    png(path_sprite, (32, 32) if path_sprite.stem.startswith('flat_') else (16, 16))
+                    used.add(path_sprite)
+                    metadata = read(path_sprite.with_suffix('.png.mcmeta'))['fusion']
+                    require(metadata['render_type'] == 'cutout', 'Path edges must use cutout textures.')
+    # Pack-owned textures referenced by block/item models (sizes come from the PNG header).
+    def own_sprite(identifier):
+        path = resource('textures', identifier)
+        if path in used: return
+        data = path.read_bytes()
+        require(data[12:16] == b'IHDR', f'Invalid PNG: {path}')
+        png(path, struct.unpack('>II', data[16:24]))
+        used.add(path)
+        meta = path.with_suffix('.png.mcmeta')
+        if meta.exists(): read(meta)
+    def own_model(identifier):
+        model = read(resource('models', identifier))
+        for sprite in model.get('textures', {}).values():
+            if not sprite.startswith('#') and not sprite.startswith('minecraft:'): own_sprite(sprite)
+    # Lawn stones: random variants of the vanilla grass blockstate (tools/lawn-decor/gen_decor.py).
+    grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
+    for variant in grass['variants']['snowy=false']:
+        if variant['model'].startswith('realm:'): own_model(variant['model'])
+    # Path edges and lawn tiles (tools/path-edges/gen.py): every model a Fusion modifier references.
+    for modifier_path in sorted((ROOT/'assets/realm/fusion/model_modifiers/blocks').glob('*.json')):
+        modifier = read(modifier_path)
+        for entry in modifier.get('default_model_overrides', []) + modifier.get('append_models', []):
+            own_model(entry if isinstance(entry, str) else entry['model'])
+    # Wearable cosmetics (realms_beyond_cosmetics namespace).
+    cosmetics = ROOT/'assets/realms_beyond_cosmetics'
+    if cosmetics.exists():
+        for item_path in sorted((cosmetics/'items').glob('*.json')):
+            own_model(read(item_path)['model']['model'])
+        for model_path in sorted((cosmetics/'models/item').glob('*.json')):
+            own_model('realms_beyond_cosmetics:item/'+model_path.stem)
+        wardrobe = cosmetics/'wardrobe.properties'
+        if wardrobe.exists():
+            require(wardrobe.read_text().strip() != '', 'Empty wardrobe.properties.')
+            used.add(wardrobe)
     actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())

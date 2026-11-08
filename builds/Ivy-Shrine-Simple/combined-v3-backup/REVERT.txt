@@ -1,0 +1,1 @@
+Combined v3 (old gold roof + amethyst finial, previous fur). To revert, copy the model/tail jsons to assets/realm/models/item/decorations/, the png to assets/realm/textures/item/decorations/, item_ivy_shrine_simple.json to assets/realm/items/ivy_shrine_simple.json

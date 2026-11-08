@@ -155,6 +155,17 @@ A seated black Labrador statue of Ivy inside a gold-columned shrine: carved dark
 
 Place in invisible floor-mounted item frames. Original models; Ivy is sculpted on a quarter-unit grid with simple flat shading, the shrine architecture at 1 texel per unit.
 
+### Lucky Ivy
+
+A lucky-cat figurine of Ivy, just under a block tall, sitting on a red velvet cushion with gold piping and gold corner tassels. She wears her emerald collar and gold tag, carries her head high on a long neck like the shrine's Ivy, smiles, and beckons with her left paw: it rests up for a second, swings smoothly down to her side and back up. Her eyes are square and black with a sparkle in the same corner of each, and her tail hangs over the back of the cushion, curving round to one side. Two finishes: a gold figurine, and coloured, with her black coat.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:lucky_ivy"]
+/give @s minecraft:paper[minecraft:item_model="realm:lucky_ivy_coloured"]
+```
+
+Place in invisible floor-mounted item frames. Original model, sculpted on a quarter-unit grid in the shrine's flat shading and slimmer, taller proportions. The wave is a texture animation (`lucky_ivy_paw.png`, `lucky_ivy_coloured_paw.png`): each frame is opaque only on one of seven arm poses. Regenerate with `python3 builds/Lucky-Ivy/Source/lucky_ivy.py <outdir> gold` and `... <outdir> coloured`.
+
 ### Incense pot
 
 A gold bowl of sandalwood ash holding two incense sticks with glowing tips and two animated, translucent smoke plumes. Sits at a slight diagonal in its frame; place it on the floor in front of a shrine.

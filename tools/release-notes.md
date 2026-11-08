@@ -1,5 +1,7 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.42: Added two Lucky Ivy figurines with an animated beckoning paw, in gold and in Ivy’s black coat. Use `realm:lucky_ivy` or `realm:lucky_ivy_coloured` in an invisible floor-mounted item frame.
+
 - v0.1.41: Added a mossy stone fountain with a bronze stag, four water spouts, and animated splash foam. The README includes placement commands. Adjusted the ceiling-mounted dreamcatcher offset to clear the chest.
 
 - 96 banners: lion, dragon, and stag designs in all 16 dye colours, with gold or brown finishes.

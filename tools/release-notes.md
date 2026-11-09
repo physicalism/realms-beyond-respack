@@ -1,5 +1,7 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.45: Existing Large Forge displays now show the red-brick Smouldering Forge with an animated fire grate and smoking chimneys. Use `realm:large_forge_animated` for the previous molten forge.
+
 - Added Claude’s revised hanging Blacksmith sign, with full-bright lettering and an anvil emblem, a recessed timber frame, and crossed chains.
 - Added the Origin Realms Large Forge decoration, with animated molten channels, glowing piston shafts, and a heated sword tip.
 

@@ -174,7 +174,7 @@ def validate():
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
     for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot',
-                 'scarecrow', 'scarecrow_farm_1', 'large_forge'):
+                 'scarecrow', 'scarecrow_farm_1', 'large_forge', 'large_forge_animated'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])

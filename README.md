@@ -231,4 +231,4 @@ Summon the hanging Blacksmith sign at its wall anchor. Set its yaw for the wall 
 /summon item_display ~ ~0.5 ~ {Tags:["rb_large_forge"],item_display:"none",item:{id:"paper",count:1,components:{"item_model":"realm:large_forge"}}}
 ```
 
-Large Forge model and base textures adapted from Origin Realms.
+The Large Forge item shows a red-brick Smouldering Forge with an animated fire grate and chimney smoke. The previous molten design is available as `realm:large_forge_animated`. Both models are adapted from Origin Realms.

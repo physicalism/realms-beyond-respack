@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "realm:item/decorations/large_forge"
+    "model": "realm:item/decorations/smoldering_forge_bricks"
   }
 }

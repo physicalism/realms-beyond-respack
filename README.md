@@ -221,3 +221,14 @@ About 1 in 30 plain grass blocks shows a small stone (stone, andesite or cobbles
 ## Cosmetics
 
 `assets/realms_beyond_cosmetics/` holds the petal chainsaw (four frames) and lightning bolt cosmetics. `wardrobe.properties` lists per-player toggles.
+
+## Blacksmith decorations
+
+Summon the hanging Blacksmith sign at its wall anchor. Set its yaw for the wall orientation. Summon the Large Forge from the floor where you want it centred.
+
+```mcfunction
+/summon item_display ~ ~ ~ {Tags:["rb_blacksmith_sign"],item_display:"none",item:{id:"paper",count:1,components:{"item_model":"realm:blacksmith_sign"}}}
+/summon item_display ~ ~0.5 ~ {Tags:["rb_large_forge"],item_display:"none",item:{id:"paper",count:1,components:{"item_model":"realm:large_forge"}}}
+```
+
+Large Forge model and base textures adapted from Origin Realms.

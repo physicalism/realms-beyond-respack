@@ -1,5 +1,8 @@
 Custom decorations for Minecraft Java 26.3.
 
+- Added Claude’s revised hanging Blacksmith sign, with full-bright lettering and an anvil emblem, a recessed timber frame, and crossed chains.
+- Added the Origin Realms Large Forge decoration, with animated molten channels, glowing piston shafts, and a heated sword tip.
+
 - v0.1.43: Connected 3D dirt paths (needs Fusion): paths sit 1px below the lawn with organic, rounded, pixel-art edges; lawn sides show path edging only under path surface; no gaps or floating edges next to slabs, stairs and crops. Sparse simple stones dotted randomly across grass (vanilla, no mod). Petal chainsaw and lightning bolt cosmetics. Corner balcony flowers are now orange; refined stag fountain stag.
 
 - v0.1.42: Added two Lucky Ivy figurines with an animated beckoning paw, in gold and in Ivy’s black coat. Use `realm:lucky_ivy` or `realm:lucky_ivy_coloured` in an invisible floor-mounted item frame.

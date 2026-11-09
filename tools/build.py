@@ -174,7 +174,7 @@ def validate():
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
     for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot',
-                 'scarecrow', 'scarecrow_farm_1'):
+                 'scarecrow', 'scarecrow_farm_1', 'large_forge'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])
@@ -279,6 +279,7 @@ def validate():
         model = read(resource('models', identifier))
         for sprite in model.get('textures', {}).values():
             if not sprite.startswith('#') and not sprite.startswith('minecraft:'): own_sprite(sprite)
+    own_model(read(resource('items', 'realm:blacksmith_sign'))['model']['model'])
     # Lawn stones: random variants of the vanilla grass blockstate (tools/lawn-decor/gen_decor.py).
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:

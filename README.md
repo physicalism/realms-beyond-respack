@@ -44,7 +44,7 @@ Generator: `tools/war-banner/rb_war_banner_dyes.py <pack_root> [preview_dir]` (r
 
 ## Hanging stag banner
 
-A small animated stag banner (about 1 block wide, 2.2 tall) in all 16 dye colours: `realm:banner_stag_hanging_<dye>`. Its pole runs straight out from the end of a bottom-half trapdoor, flush with the trapdoor, and ends in a black iron spike like the Blacksmith sign's bracket; the banner hangs in the next block along, visible from both sides. Same stag, golds and sway as the war banner.
+A small animated stag banner (about 1 block wide, 2.2 tall) in all 16 dye colours: `realm:banner_stag_hanging_<dye>`. Its pole runs straight out from the end of a bottom-half trapdoor, flush with the trapdoor, and ends in a gold spike shaped like the Blacksmith sign's bracket; the banner hangs in the next block along, visible from both sides. Same stag, golds and sway as the war banner.
 
 Stand on the trapdoor and run the command for the direction the pole should point (swap `orange` for any dye):
 

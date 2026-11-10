@@ -1,7 +1,7 @@
 Custom decorations for Minecraft Java 26.3.
 
 - v0.1.48:
-  - Added the hanging stag banner (`realm:banner_stag_hanging_<dye>`) in all 16 dye colours: a small animated banner whose pole runs straight out from the end of a trapdoor and ends in a black iron spike like the Blacksmith sign's bracket. Summon commands are in the README.
+  - Added the hanging stag banner (`realm:banner_stag_hanging_<dye>`) in all 16 dye colours: a small animated banner whose pole runs straight out from the end of a trapdoor and ends in a gold spike shaped like the Blacksmith sign's bracket. Summon commands are in the README.
   - The Royal Stag war banner now comes in all 16 dye colours (`realm:banner_stag_war_<dye>`) as well as azure, with a pixel-matched pole and finials.
   - The Blacksmith and Clocktower signs now use capitals (`BLACKSMITH`, `CLOCKTOWER`), and their full-bright lettering no longer turns dark or flickers when seen from a distance.
 

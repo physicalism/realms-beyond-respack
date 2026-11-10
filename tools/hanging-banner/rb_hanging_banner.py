@@ -202,15 +202,10 @@ def frame(layers, t):
     return img
 
 
-# Pole end: dark iron, the same stepped spike as the Blacksmith sign's bracket.
-IRON = [(50, 50, 56), (66, 66, 73), (38, 38, 43), (28, 28, 32)]   # base, light, dark, edge
-IRON_SIDE = [(66, 66, 73), (50, 50, 56), (44, 44, 50), (34, 34, 39)]  # lit top -> shaded bottom
-
-
 def hardware(px, field, golds):
     """Pole, loops and finial at block-pixel density (1 texel = 1 model unit), so they
     match the trapdoor's own pixels: pole 17x3 at (44,0), loop face 2x4 at (44,8), loop
-    side 4x4 at (48,8), iron spike side 1x4 at (54,8), iron spike end 4x4 at (58,8)."""
+    side 4x4 at (48,8), gold spike side 1x4 at (54,8), gold spike end 4x4 at (58,8)."""
     rows = [(128, 98, 60), (113, 85, 52), (92, 68, 41)]
     for y, c in enumerate(rows):
         for x in range(17):
@@ -220,11 +215,11 @@ def hardware(px, field, golds):
     for y in range(4):
         for x in range(2):
             px[HX + x, 8 + y] = mul(field, shades[y]) + (255,)
-            px[HX + 10 + x, 8 + y] = IRON_SIDE[y] + (255,)
+            px[HX + 10 + x, 8 + y] = (GOLDS[1], GOLDS[0], GOLDS[0], GOLDS[2])[y] + (255,)
         for x in range(4):
             px[HX + 4 + x, 8 + y] = mul(field, shades[y] * (0.9 if x in (0, 3) else 1)) + (255,)
             edge = x in (0, 3) or y in (0, 3)
-            px[HX + 14 + x, 8 + y] = (IRON[3] if edge else IRON[1] if (x, y) == (1, 1) else IRON[0]) + (255,)
+            px[HX + 14 + x, 8 + y] = (GOLDS[2] if edge else GOLDS[1] if (x, y) == (1, 1) else GOLDS[0]) + (255,)
 
 
 def uv(x0, y0, x1, y1):
@@ -258,7 +253,7 @@ def model(name):
         els.append({'name': f'loop_{i}', 'from': [lx, Y0 - 0.5, 6], 'to': [lx + 2, Y0 + 3.5, 10],
                     'faces': {**{d: face(loop) for d in ('north', 'south', 'up', 'down')},
                               **{d: face(loop_side) for d in ('east', 'west')}}})
-    # Pole end: the Blacksmith bracket's stepped iron spike, scaled to the 3-unit pole:
+    # Pole end: gold, in the shape of the Blacksmith bracket's stepped spike, scaled to the 3-unit pole:
     # a 4x4 collar, then 3x3, 2x2 and a 1x1 tip, one unit each, centred on the pole.
     for i, (size, name_) in enumerate(((4, 'spike_collar'), (3, 'spike_body'), (2, 'spike_taper'), (1, 'spike_tip'))):
         lo = (3 - size) / 2

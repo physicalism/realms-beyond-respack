@@ -1,5 +1,10 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.47:
+  - Added the Clocktower sign (`realm:town_clocktower_sign`), a wider version of the Blacksmith sign with a clock emblem. Summon it like the Blacksmith sign, tagged `rb_clocktower_sign`.
+  - Added the Royal Stag war banner (`realm:banner_stag_war_azure`), a long azure banner with a gold border, crown, outlined stag, fleur-de-lis, dagged hem with tassels, a gently swaying animation and a spruce pole. Place it in an invisible item frame on the wall block under a beam.
+  - Cosmetics clean-up: the pack now only carries the cosmetics player list (`wardrobe.properties`: Henry's chainsaw, face drip, footprints and hand drips, and maxsmell's wizard hat). All cosmetic art now comes from the Realms Beyond Cosmetics mod (v0.1.32+), so the pack can no longer override it with older chainsaw or lightning textures. The old footprint-datapack models are removed.
+
 - v0.1.46: Removed the Large Forge, Smouldering Forge and Claude's Forge decorations. Neighbouring banners no longer flicker where their poles overlap.
 
 - Added Claude’s revised hanging Blacksmith sign, with full-bright lettering and an anvil emblem, a recessed timber frame, and crossed chains.

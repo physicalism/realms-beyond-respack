@@ -2,3 +2,8 @@ dist/
 .DS_Store
 __pycache__/
 *.py[cod]
+
+# Local backups and build outputs
+_backup/
+builds/*.jar
+builds/petal-footprints/

@@ -283,7 +283,9 @@ def validate():
         model = read(resource('models', identifier))
         for sprite in model.get('textures', {}).values():
             if not sprite.startswith('#') and not sprite.startswith('minecraft:'): own_sprite(sprite)
-    own_model(read(resource('items', 'realm:blacksmith_sign'))['model']['model'])
+    # Signs and the animated war banner: pack-owned models with their own textures.
+    for sign in ('realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:banner_stag_war_azure'):
+        own_model(read(resource('items', sign))['model']['model'])
     # Lawn stones: random variants of the vanilla grass blockstate (tools/lawn-decor/gen_decor.py).
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:

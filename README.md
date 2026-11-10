@@ -22,6 +22,16 @@ Enable the pack and place the custom items in invisible wall-mounted item frames
 
 Item IDs use `realm:banner_SYMBOL_COLOUR_TRIM`, where trim is `gold` or `brown`. Colours with two words use underscores, such as `light_blue`. Older item IDs remain supported for existing banners.
 
+## Stag war banner
+
+A long, animated deep-azure war banner with the town's original stag (at 2×, outlined), a crown and a fleur-de-lis: about 1.9 blocks wide and 5 tall, hanging from a dark-oak pole with gold finials. The cloth ripples and gently sways, and the fringed tails trail behind (32 frames, 3.2 s loop). Place it in an invisible item frame on the wall block directly under the beam you want it to hang from: the pole (stripped-spruce coloured) tucks in along the top of the frame's block, just under the beam and flat against the wall, and the banner lies flat on the wall below it.
+
+```mcfunction
+/give @s minecraft:paper[minecraft:item_model="realm:banner_stag_war_azure"]
+```
+
+Generator: `tools/war-banner/rb_war_banner.py <out_dir>` (stag sprite in `stag.txt`, preview in `preview.gif`).
+
 ## Build
 
 ```sh
@@ -229,3 +239,13 @@ Summon the hanging Blacksmith sign at its wall anchor. Set its yaw for the wall 
 ```mcfunction
 /summon item_display ~ ~ ~ {Tags:["rb_blacksmith_sign"],item_display:"none",item:{id:"paper",count:1,components:{"item_model":"realm:blacksmith_sign"}}}
 ```
+
+## Clocktower sign
+
+Same bracket, anchor and font as the Blacksmith sign, with a clock emblem and "Clocktower" on a board the same height, 2 units wider. Summon it the same way. Generator: `tools/clocktower-sign/rb_clocktower_sign.py`.
+
+```mcfunction
+/summon item_display ~ ~ ~ {Tags:["rb_clocktower_sign"],item_display:"none",item:{id:"paper",count:1,components:{"item_model":"realm:town_clocktower_sign"}}}
+```
+
+The back of the wall post is the entity's position. Keep the entity a hair (0.002 blocks) outside the wall: an item display takes its lighting from the block it stands in, so one placed exactly on the wall face is lit as solid stone and renders black. To snap it to a wall to its east, for example: `/execute as @e[type=item_display,tag=rb_clocktower_sign,limit=1,sort=nearest] at @s align xz positioned ~0.998 ~ ~0.5 run tp @s ~ ~ ~`.

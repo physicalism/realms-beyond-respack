@@ -284,8 +284,13 @@ def validate():
         for sprite in model.get('textures', {}).values():
             if not sprite.startswith('#') and not sprite.startswith('minecraft:'): own_sprite(sprite)
     # Signs and the animated war banner: pack-owned models with their own textures.
-    for sign in ('realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:banner_stag_war_azure'):
-        own_model(read(resource('items', sign))['model']['model'])
+    dyed = [f'realm:banner_stag_{kind}_{dye}' for kind in ('war', 'hanging') for dye in catalogue['dyes']]
+    require(len(dyed) == 32, 'Expected 16 dyed war banners and 16 hanging banners.')
+    for sign in ['realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:banner_stag_war_azure'] + dyed:
+        entry = read(resource('items', sign))['model']['model']
+        own_model(entry)
+        for element in read(resource('models', entry))['elements']:
+            require(all(-16 <= a <= b <= 32 for a, b in zip(element['from'], element['to'])) or 'rotation' in element or 'sign' in sign, f'Cuboid exceeds Java model limits: {sign}')
     # Lawn stones: random variants of the vanilla grass blockstate (tools/lawn-decor/gen_decor.py).
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:

@@ -251,22 +251,22 @@ def frame(layers, t):
     return img
 
 
+PY = 100                      # hardware textures: rows 100+ (below the cloth region)
+
+
 def hardware(px):
-    """Static pole and finial textures at x HX-63 of each frame."""
-    # Stripped spruce: warm mid-brown with long grain streaks along the pole.
-    base = [(115, 87, 53), (122, 93, 57), (108, 81, 49), (128, 98, 60)]
-    for y in range(8):
-        for x in range(HX, 64):
-            c = base[(y * 7 + ((x - HX) // 5) * 3 + (x * y) % 3) % 4] if 0 < y < 7 else (86, 64, 38)
-            if y in (2, 5) and (x - HX + y) % 7 < 4:
-                c = (97, 72, 43)                      # grain line
-            px[x, y] = c + (255,)
-    for y in range(8, 16):
-        for x in range(HX, HX + 8):
-            c = GOLD_HI if y < 10 else GOLD_LO if y > 13 else GOLD
-            if x in (HX, HX + 7):
-                c = GOLD_LO
-            px[x, y] = c + (255,)
+    """Static pole and finial textures at the cloth's own texel size (1 texel = 0.5 unit):
+    pole 42x3 at (0, PY), finial 4x4 at (44, PY)."""
+    # Stripped-spruce colours: light top row, mid, dark underside, with a little grain.
+    rows = [(128, 98, 60), (113, 85, 52), (92, 68, 41)]
+    for y, c in enumerate(rows):
+        for x in range(42):
+            k = 0.94 if (x * 5 + y * 3) % 7 == 0 else 1.05 if (x * 3 + y) % 11 == 0 else 1
+            px[x, PY + y] = tuple(round(v * k) for v in c) + (255,)
+    for y in range(4):
+        for x in range(4):
+            c = GOLD_HI if y == 0 else GOLD_LO if y == 3 or x in (0, 3) else GOLD
+            px[44 + x, PY + y] = c + (255,)
 
 
 def u(px_x):
@@ -286,21 +286,23 @@ def model():
     everything 1/16 block off the wall so the cloth can't z-fight the stone."""
     t = '#0'
     cloth = [u(0), v(0), u(CW), v(H)]
-    wood = lambda w: [u(HX), v(0), u(HX + w), v(8)]
-    gold = [u(HX), v(8), u(HX + 8), v(16)]
+    wood = [u(0), v(PY), u(42), v(PY + 3)]
+    gold = [u(44), v(PY), u(47), v(PY + 4)]
+    gold_end = [u(44), v(PY), u(48), v(PY + 4)]
     half = M / 2                         # 1 texel = 0.5 units
     els = [
         {'name': 'cloth', 'from': [8 - W / 4 - half, -16, 8], 'to': [8 + W / 4 + half, -16 + H / 2, 8],
          'faces': {'north': {'uv': cloth, 'texture': t}, 'south': {'uv': cloth, 'texture': t}}},
     ]
-    # Pole (centre y 28): back face sits exactly on the wall (model z WALL_Z). Textured
-    # from this banner's own atlas (stripped-spruce colours): a model can't mix the
-    # banner's item-atlas texture with a vanilla block texture.
+    # Pole (centre y 28): back face sits exactly on the wall (model z WALL_Z). 21 x 1.5 x 1.5
+    # units = 42 x 3 x 3 texels, textured 1:1 from this banner's own atlas (a model can't mix
+    # the banner's item-atlas texture with a vanilla block texture).
     els.append({'name': 'pole', 'from': [8 - W / 4 - 2, 27.25, WALL_Z - 1.5], 'to': [8 + W / 4 + 2, 28.75, WALL_Z],
-                'faces': {d: {'uv': wood(20), 'texture': t} for d in ('north', 'south', 'up', 'down')}})
+                'faces': {d: {'uv': wood, 'texture': t} for d in ('north', 'south', 'up', 'down')}})
     for name, x0 in (('finial_left', 8 - W / 4 - 3.5), ('finial_right', 8 + W / 4 + 2)):
-        els.append({'name': name, 'from': [x0, 27, WALL_Z - 1.9], 'to': [x0 + 1.5, 29, WALL_Z],
-                    'faces': {d: {'uv': gold, 'texture': t} for d in ('north', 'south', 'up', 'down', 'east', 'west')}})
+        els.append({'name': name, 'from': [x0, 27, WALL_Z - 2], 'to': [x0 + 1.5, 29, WALL_Z],
+                    'faces': {**{d: {'uv': gold, 'texture': t} for d in ('north', 'south', 'up', 'down')},
+                              **{d: {'uv': gold_end, 'texture': t} for d in ('east', 'west')}}})
     return {
         'credit': 'Realms Beyond',
         'texture_size': [FW, FH],

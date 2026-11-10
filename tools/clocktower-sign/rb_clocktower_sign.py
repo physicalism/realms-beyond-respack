@@ -182,6 +182,8 @@ def mirrored(el):
     return out
 
 
+# OVERLAY GAP: the full-bright lettering planes sit 1/8 unit in front of the board
+# (was 1/64), so they don't z-fight it at a distance, especially with shaders.
 def board_elements():
     L, R, B, T = -18, 4, 17 - BH // 4, 17
     face = uv(0, 0, BW, BH)
@@ -209,9 +211,9 @@ def board_elements():
         {'name': 'frame_right', 'from': [R - 1, B + 1, 6.5], 'to': [R, T - 1, 9.5],
          'faces': {'north': {'uv': colband(0, 4), 'texture': t}, 'south': {'uv': colband(BW - 4, BW), 'texture': t},
                    'east': {'uv': fwside, 'texture': t}, 'west': {'uv': fwside, 'texture': t}}},
-        {'name': 'lettering_north', 'from': [L, B, 6.984375], 'to': [R, T, 6.984375], 'shade': False,
+        {'name': 'lettering_north', 'from': [L, B, 6.875], 'to': [R, T, 6.875], 'shade': False,
          'light_emission': 15, 'faces': {'north': {'uv': ovl, 'texture': t}}},
-        {'name': 'lettering_south', 'from': [L, B, 9.015625], 'to': [R, T, 9.015625], 'shade': False,
+        {'name': 'lettering_south', 'from': [L, B, 9.125], 'to': [R, T, 9.125], 'shade': False,
          'light_emission': 15, 'faces': {'south': {'uv': ovl, 'texture': t}}},
     ]
     return [mirrored(e) if e['from'][0] < -16 else e for e in els]

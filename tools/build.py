@@ -286,7 +286,7 @@ def validate():
     # Signs and the animated war banner: pack-owned models with their own textures.
     dyed = [f'realm:banner_stag_{kind}_{dye}' for kind in ('war', 'hanging') for dye in catalogue['dyes']]
     require(len(dyed) == 32, 'Expected 16 dyed war banners and 16 hanging banners.')
-    for sign in ['realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:banner_stag_war_azure'] + dyed:
+    for sign in ['realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:florist_sign', 'realm:banner_stag_war_azure'] + dyed:
         entry = read(resource('items', sign))['model']['model']
         own_model(entry)
         for element in read(resource('models', entry))['elements']:

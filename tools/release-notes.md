@@ -1,5 +1,8 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.51:
+  - Added the Florist sign (`realm:florist_sign`), a hanging sign in the same style as the Blacksmith and Clocktower signs, with a five-petal flower emblem and `FLORIST` in capitals. Summon it like the other signs, tagged `rb_florist_sign`; the command is in the README.
+
 - v0.1.49:
   - Added the anvil hammer (`realm:anvil_hammer`): an animated blacksmith's hammer that strikes a vanilla anvil and throws glowing sparks. Put it in an invisible item frame on top of the anvil.
   - Added the blacksmith hammer (`realm:blacksmith_hammer`): the same hammer as a plain item to hold or to put in an NPC's hand.

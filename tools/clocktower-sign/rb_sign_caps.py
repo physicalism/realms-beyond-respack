@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Realms Beyond: ALL-CAPS test versions of the Blacksmith and Clocktower signs.
+"""Realms Beyond: ALL-CAPS Blacksmith, Clocktower and Florist signs.
 
 A variant of rb_clocktower_sign.py (which stays as the lowercase generator). Both
 signs are rebuilt from the lowercase Blacksmith sign's model and texture: same
@@ -7,10 +7,15 @@ bracket, spike, brace, chains, colours, raised frame and full-bright lettering.
   * capitals in the same v3 square font: 14 rows tall, 2px strokes, 2px counters, 2px gaps
   * "CLOCKTOWER" is 80 px and "BLACKSMITH" 77 px, so both boards are 23 x 13 units
     (92 x 52 px), x -18..5 (the Blacksmith board was 20 wide, the Clocktower 22)
-  * emblem: the clock, or the anvil copied from the Blacksmith texture
+  * emblem: the clock, the anvil copied from the Blacksmith texture, or a
+    five-petal flower (Florist sign)
+  * "FLORIST" is only 48 px, so its board is 20 x 13 units (80 x 52 px, the width
+    of the original Blacksmith board): pass the board width in units as the
+    optional last argument (default 23)
 
 Usage: rb_sign_caps.py <lowercase_blacksmith_model.json> <lowercase_blacksmith.png>
-                       <out_model.json> <out.png> <WORD> <clock|anvil> <texture_id>
+                       <out_model.json> <out.png> <WORD> <clock|anvil|flower> <texture_id>
+                       [board_units]
 The lowercase originals are in builds/sign-caps-backups/. Re-running gives the same result.
 """
 import copy
@@ -50,6 +55,7 @@ G = {
  'B': ["######", "######"] + ["##..##"] * 4 + ["#####.", "#####."] + ["##..##"] * 4 + ["######", "######"],
  'C': ["######", "######"] + ["##...."] * 10 + ["######", "######"],
  'E': ["#####", "#####"] + ["##..."] * 4 + ["####.", "####."] + ["##..."] * 4 + ["#####", "#####"],
+ 'F': ["#####", "#####"] + ["##..."] * 4 + ["####.", "####."] + ["##..."] * 6,
  'H': ["##..##"] * 6 + ["######", "######"] + ["##..##"] * 6,
  'I': ["##"] * 14,
  'K': ["##..##"] * 4 + ["##.##.", "##.##.", "####..", "####..", "##.##.", "##.##."] + ["##..##"] * 4,
@@ -81,6 +87,25 @@ CLOCK = [
  ".#####..#####.",
  "..##########..",
  "....######....",
+]
+
+# Flower emblem, 14 x 14: five petals round a centre. The gaps between the petals
+# and the centre are cut out, so the outline colour draws them dark.
+FLOWER = [
+ ".....####.....",
+ "....######....",
+ "....######....",
+ ".####.##.####.",
+ "######..######",
+ "######..######",
+ "#####....#####",
+ ".####....####.",
+ "...###..###...",
+ "..##########..",
+ ".#####..#####.",
+ ".#####..#####.",
+ ".####....####.",
+ "..##......##..",
 ]
 
 
@@ -141,9 +166,10 @@ def emblem_ink():
         xs = [x for x, _ in ANVIL]
         x0 = (BW - (max(xs) - min(xs) + 1)) // 2 - min(xs)
         return {(x0 + x, y) for x, y in ANVIL}
-    w = len(CLOCK[0])
+    art = FLOWER if EMBLEM_KIND == 'flower' else CLOCK
+    w = len(art[0])
     x0 = (BW - w) // 2
-    return {(x0 + c, EMBLEM_TOP + r) for r, row in enumerate(CLOCK) for c, v in enumerate(row) if v == '#'}
+    return {(x0 + c, EMBLEM_TOP + r) for r, row in enumerate(art) for c, v in enumerate(row) if v == '#'}
 
 
 def paint(img):
@@ -225,9 +251,11 @@ def board_elements():
     return [mirrored(e) if e['from'][0] < -16 else e for e in els]
 
 
-def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id):
-    global LINES, EMBLEM_KIND, ANVIL
-    LINES, EMBLEM_KIND = [(word, 26)], emblem
+def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id, board_units=23):
+    global LINES, EMBLEM_KIND, ANVIL, BW
+    assert emblem in ('clock', 'anvil', 'flower'), emblem
+    LINES, EMBLEM_KIND, BW = [(word, 26)], emblem, 4 * int(board_units)
+    assert BW <= 96, 'board would overlap the chain sprites in the atlas'
     bs = json.load(open(src_model))
     old = Image.open(src_png).convert('RGBA')
     assert old.size == (TW, TH)
@@ -284,4 +312,4 @@ def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:8])
+    main(*sys.argv[1:9])

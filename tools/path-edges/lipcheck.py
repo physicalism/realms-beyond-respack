@@ -26,7 +26,7 @@ def lipcheck(root, w, lvl=0):
             for dx,dz,d in ((1,0,'east'),(-1,0,'west'),(0,1,'south'),(0,-1,'north')):
                 nx,nz=x+dx,z+dz
                 if not (0<=nx<W and 0<=nz<H): continue
-                if abs(h[nz,nx]-(lvl+15/16))>1e-6: continue
+                if abs(h[nz,nx]-(lvl+15/16))>2e-3: continue
                 gx, gz = x + x0*16, z + z0*16
                 if d=='east': key=('x', gx+1, gz, d)
                 elif d=='west': key=('x', gx, gz, d)

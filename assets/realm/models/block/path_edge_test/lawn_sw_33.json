@@ -9,7 +9,9 @@
   "side_top": "minecraft:block/grass_block_top",
   "path": "minecraft:block/dirt_path_top",
   "path_side": "minecraft:block/dirt_path_side",
-  "bottom": "minecraft:block/dirt"
+  "bottom": "minecraft:block/dirt",
+  "farm": "minecraft:block/farmland",
+  "farm_moist": "minecraft:block/farmland_moist"
  },
  "elements": [
   {
@@ -159,98 +161,6 @@
      "texture": "#top",
      "tintindex": 0,
      "cullface": "up"
-    }
-   }
-  },
-  {
-   "from": [
-    0,
-    15,
-    8
-   ],
-   "to": [
-    2,
-    15,
-    15
-   ],
-   "faces": {
-    "up": {
-     "uv": [
-      0,
-      8,
-      2,
-      15
-     ],
-     "texture": "#path"
-    }
-   }
-  },
-  {
-   "from": [
-    2,
-    15,
-    9
-   ],
-   "to": [
-    3,
-    15,
-    14
-   ],
-   "faces": {
-    "up": {
-     "uv": [
-      2,
-      9,
-      3,
-      14
-     ],
-     "texture": "#path"
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    15,
-    10
-   ],
-   "to": [
-    5,
-    15,
-    13
-   ],
-   "faces": {
-    "up": {
-     "uv": [
-      3,
-      10,
-      5,
-      13
-     ],
-     "texture": "#path"
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    15,
-    13
-   ],
-   "to": [
-    4,
-    15,
-    14
-   ],
-   "faces": {
-    "up": {
-     "uv": [
-      3,
-      13,
-      4,
-      14
-     ],
-     "texture": "#path"
     }
    }
   },

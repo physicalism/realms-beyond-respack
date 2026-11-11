@@ -195,14 +195,18 @@ def synth(name):
         return t
     if name == 'GS':
         t = noisy((134, 96, 67), 18, 2)
-        ov = Image.open(f'{ROOT}/assets/realm/textures/block/path_edge_test/side_grass_overlay.png').convert('RGBA')
-        ov = np.array(ov, float)
+        _p = f'{ROOT}/assets/realm/textures/block/path_edge_test/side_grass_overlay.png'
+        if os.path.exists(_p):
+            ov = np.array(Image.open(_p).convert('RGBA'), float)
+        else:   # texture no longer shipped: stand-in fringe (top 3 rows)
+            ov = np.zeros((16, 16, 4)); ov[:3] = (170, 170, 170, 255)
         g = noisy(GREEN, 16, 6)
         m = ov[..., 3:4] > 0
         return np.where(m, g * ov[..., :3] / 170, t)
     if name == 'minecraft:block/oak_planks': return noisy((160, 120, 70), 10, 8)
     if name == 'minecraft:block/stone': return noisy((125, 125, 125), 10, 10)
-    if name == 'minecraft:block/farmland': return noisy((90, 60, 40), 10, 11)
+    if name == 'minecraft:block/farmland': return noisy((120, 80, 50), 10, 11)
+    if name == 'minecraft:block/farmland_moist': return noisy((80, 50, 30), 10, 15)
     if name == 'minecraft:block/torch': return noisy((240, 200, 80), 5, 12)
     if name == 'minecraft:block/void': return np.full((16, 16, 3), (255, 0, 255), float)
     if name in ('minecraft:block/coarse_dirt', 'minecraft:block/rooted_dirt', 'minecraft:block/podzol'):

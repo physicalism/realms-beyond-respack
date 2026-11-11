@@ -1,0 +1,35 @@
+{
+ "loader": "fusion:model",
+ "type": "base",
+ "textures": {
+  "path": "minecraft:block/dirt_path_top",
+  "farm": "minecraft:block/farmland",
+  "farm_moist": "minecraft:block/farmland_moist",
+  "particle": "#path"
+ },
+ "elements": [
+  {
+   "from": [
+    0,
+    15.02,
+    15
+   ],
+   "to": [
+    1,
+    15.02,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      0,
+      15,
+      1,
+      16
+     ],
+     "texture": "#farm"
+    }
+   }
+  }
+ ]
+}

@@ -6,10 +6,10 @@ from 4 corner tiles (one per corner) chosen by Fusion conditions on 3 neighbours
 evaluate the same function, so seams always agree.
 
 Cell types seen by the shape function:
-  P  dirt path (same level)
+  P  dirt path or farmland (same level; both are 15px tall, so they share one shape and only the paving differs)
   G  grass block with air/plants/fence/torch above (participates)
   S  wooden stair/slab step at the same level, or open air with a wooden stair/slab just below
-  N  anything else (air, farmland, stone, non-participating grass, ...)
+  N  anything else (air, stone, non-participating grass, ...)
 """
 import json, math, os, shutil, sys, itertools
 import numpy as np
@@ -517,9 +517,7 @@ def grass_tile(q, cells, kl=0):
     for (x0, z0, x1, z1) in rects(g):
         els.append({'from': [x0, 15, z0], 'to': [x1, 16, z1],
                     'faces': {'up': {'uv': [x0, z0, x1, z1], 'texture': '#top', 'tintindex': 0, 'cullface': 'up'}}})
-    for (x0, z0, x1, z1) in rects(p):
-        els.append({'from': [x0, 15, z0], 'to': [x1, 15, z1],
-                    'faces': {'up': {'uv': [x0, z0, x1, z1], 'texture': '#path'}}})
+    # (the lowered floor is drawn by the separate floor_* models, see floor_tile)
     # lips (inside cell + across the block edge): lawn texel next to a lower texel / open side
     lips = {d: [] for d in DIRV}
     for z in zs:
@@ -698,7 +696,56 @@ def NOT(c): return {'type': 'not', 'predicate': c}
 def AND(*cs): return {'type': 'and', 'predicates': list(cs)}
 def OR(*cs): return cs[0] if len(cs) == 1 else {'type': 'or', 'predicates': list(cs)}
 
-def isP(o): return mb(o, ['minecraft:dirt_path'])
+LOW = ['minecraft:dirt_path', 'minecraft:farmland']   # blocks whose surface is the lowered (15px) level
+def isP(o): return mb(o, LOW)
+def _farm(o, moist):
+    return {'type': 'match_state', 'offset': list(o), 'apply_model_rotation': False, 'block': 'minecraft:farmland',
+            'properties': {'moisture': ['7'] if moist else [str(i) for i in range(7)]}}
+# floor kinds (what the lowered part of a lawn block is paved with): P dirt path, F dry farmland, M moist farmland, - none
+FLOOR_TEX = {'P': '#path', 'F': '#farm', 'M': '#farm_moist'}
+def floor_typ(o, t):
+    return {'P': mb(o, ['minecraft:dirt_path']), 'F': _farm(o, False), 'M': _farm(o, True), '-': NOT(isP(o))}[t]
+def floor_cond(cfgs, offs):
+    U = 'PFM-'; cfgset = set(cfgs); remaining = set(cfgset); terms = []
+    while remaining:
+        c0 = sorted(remaining)[0]
+        box = [{c0[0]}, {c0[1]}, {c0[2]}]
+        for slot in range(3):
+            for t in U:
+                trial = [set(b) for b in box]; trial[slot].add(t)
+                if all(c in cfgset for c in itertools.product(*trial)): box = trial
+        for c in itertools.product(*box): remaining.discard(c)
+        parts = []
+        for sl in range(3):
+            if len(box[sl]) == 4: continue
+            if box[sl] == set('PFM'): parts.append(isP(offs[sl])); continue
+            parts.append(OR(*[floor_typ(offs[sl], t) for t in sorted(box[sl], key=U.index)]))
+        terms.append(AND(*parts) if len(parts) > 1 else parts[0])
+    return OR(*terms)
+def floor_tile(q, ka, kb, kd):
+    """Lowered floor (y=15) for quadrant q of a lawn block: each texel is paved like the nearest low neighbour.
+    Drawn under the whole quadrant; the raised lawn (15..16 boxes with top faces and lips) hides the rest."""
+    qx, qz = QUADS[q]
+    A, Bn, D = neighbours_for(q)
+    xs = range(0, 8) if qx == 0 else range(8, 16)
+    zs = range(0, 8) if qz == 0 else range(8, 16)
+    els = []
+    masks = {k: np.zeros((16, 16), bool) for k in 'PFM'}
+    for z in zs:
+        for x in xs:
+            best = None
+            for pri, ((cx, cz), k) in enumerate(((A, ka), (Bn, kb), (D, kd))):
+                if k == '-': continue
+                px, pz = x + .5, z + .5
+                nx = min(max(px, cx * 16), cx * 16 + 16); nz = min(max(pz, cz * 16), cz * 16 + 16)
+                d = math.hypot(px - nx, pz - nz)
+                if best is None or d < best[0] - 1e-9: best = (d, k)
+            masks[best[1]][z, x] = True
+    for k in 'PFM':
+        for (x0, z0, x1, z1) in rects(masks[k]):
+            els.append({'from': [x0, 15, z0], 'to': [x1, 15, z1],
+                        'faces': {'up': {'uv': [x0, z0, x1, z1], 'texture': FLOOR_TEX[k]}}})
+    return els
 def isG(o): return AND({'type': 'match_state', 'offset': list(o), 'apply_model_rotation': False, 'block': 'minecraft:grass_block',
                         'properties': {'snowy': ['false']}}, mb(up(o), AIRISH))
 def isS(o): return OR(mb(o, WOOD), AND(mb(o, AIR3), mb(down(o), WOOD)))
@@ -717,6 +764,34 @@ SELF_OK = mb((0, 1, 0), AIRISH)
 NEI8 = [(dx, 0, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx, dz) != (0, 0)]
 ANY_P = OR(*[isP(o) for o in NEI8])
 
+# ---------------------------------------------------------------- farmland <-> path seam (flat, texture only)
+# Farmland and paths are both 15px tall, so their seam is only a change of paving. It reuses the lawn/path shape
+# with farmland standing in for the lawn ('G', plant class 0) and everything that is not farmland/path as 'N':
+# where that shape says "path" inside a farmland block the block gets a thin path-paved overlay, and where it says
+# "lawn" inside a path block (rounded corners, bulges) the block gets a farmland-paved overlay.
+SEAM_Y = 15.02      # just above the block top (and above the earth/gravel speckle overlays at 15.01)
+def seam_typ(o, t):
+    return {'P': mb(o, ['minecraft:dirt_path']), 'G': mb(o, ['minecraft:farmland']), 'N': NOT(isP(o))}[t]
+def seam_cells(cells):
+    """real-ish cells (P path, F farmland, anything else) -> cells for the seam shape"""
+    return {c: {'P': 'P', 'F': 'G'}.get(t, 'N') for c, t in cells.items()}
+def seam_mask(q, me, ta, tb, td):
+    """16x16 bool mask of the overlay in quadrant q of a block of seam type `me` ('G' farmland / 'P' path)."""
+    A, Bn, D = neighbours_for(q)
+    H = window_H(q, {(0, 0): me, A: ta, Bn: tb, D: td}, 0)
+    qx, qz = QUADS[q]
+    xs = range(0, 8) if qx == 0 else range(8, 16)
+    zs = range(0, 8) if qz == 0 else range(8, 16)
+    want = 15 if me == 'G' else 16
+    m = np.zeros((16, 16), bool)
+    for z in zs:
+        for x in xs:
+            m[z, x] = H[z + 1, x + 1] == want
+    return m
+def seam_elements(m, tex):
+    return [{'from': [x0, SEAM_Y, z0], 'to': [x1, SEAM_Y, z1], 'faces': {'up': {'uv': [x0, z0, x1, z1], 'texture': tex}}}
+            for (x0, z0, x1, z1) in rects(m)]
+
 # ---------------------------------------------------------------- build everything
 def canon(els):
     return json.dumps(els, sort_keys=True)
@@ -731,7 +806,8 @@ def build(out_root, ns='realm', folder='path_edge_test'):
     GT = {'particle': 'minecraft:block/dirt', 'top': 'minecraft:block/grass_block_top',
           'side': 'minecraft:block/grass_block_side', 'overlay': 'minecraft:block/grass_block_side_overlay',
           'side_top': 'minecraft:block/grass_block_top', 'path': 'minecraft:block/dirt_path_top',
-          'path_side': 'minecraft:block/dirt_path_side', 'bottom': 'minecraft:block/dirt'}
+          'path_side': 'minecraft:block/dirt_path_side', 'bottom': 'minecraft:block/dirt',
+          'farm': 'minecraft:block/farmland', 'farm_moist': 'minecraft:block/farmland_moist'}
     grass_appends, path_appends = [], []
     stats = {}
     # lawn base: body box, bottom only
@@ -770,6 +846,19 @@ def build(out_root, ns='realm', folder='path_edge_test'):
                     tail = [mb((0, 1, 0), sorted(b for k in kls for b in CLASSES[k]))]
                 grass_appends.append({'model': ref, 'show_breaking_overlay': True,
                                       'conditions': AND(*pre, *([cond] if cond else []), *tail)})
+    # lowered floors, paved like the neighbouring path / farmland
+    for q in QUADS:
+        A, Bn, D = neighbours_for(q)
+        offs = [(A[0], 0, A[1]), (Bn[0], 0, Bn[1]), (D[0], 0, D[1])]
+        groups = {}
+        for cfg in itertools.product('PFM-', repeat=3):
+            if cfg == ('-', '-', '-'): continue
+            els = floor_tile(q, *cfg)
+            groups.setdefault(canon(els), (els, []))[1].append(cfg)
+        for i, (key, (els, cfgs)) in enumerate(sorted(groups.items(), key=lambda kv: -len(kv[1][1]))):
+            ref = write_model(f'floor_{q}_{i:02d}', GT, els)
+            grass_appends.append({'model': ref, 'show_breaking_overlay': False,
+                                  'conditions': AND(floor_cond(cfgs, offs), SELF_OK)})
     # backing walls: only where a lowered lawn edge meets something solid up to the top of the block
     BT = {'side': 'minecraft:block/grass_block_top', 'particle': '#side'}
     STAIRS = sorted(b for b in set(LISTS['26']) | set(LISTS['84']) if b.endswith('_stairs'))
@@ -837,7 +926,39 @@ def build(out_root, ns='realm', folder='path_edge_test'):
     grass_mod = {'targets': [{'block': 'minecraft:grass_block', 'properties': {'snowy': ['false']}}],
                  'default_model_overrides': [{'model': base, 'conditions': AND(SELF_OK, ANY_P)}],
                  'append_models': grass_appends}
-    return grass_mod, path_appends, stats
+    # farmland <-> path seam overlays
+    ST = {'path': 'minecraft:block/dirt_path_top', 'farm': 'minecraft:block/farmland',
+          'farm_moist': 'minecraft:block/farmland_moist', 'particle': '#path'}
+    farm_seam, path_seam = [], []
+    for q in QUADS:
+        A, Bn, D = neighbours_for(q)
+        offs = [(A[0], 0, A[1]), (Bn[0], 0, Bn[1]), (D[0], 0, D[1])]
+        for me in 'GP':
+            groups = {}
+            for cfg in itertools.product('PGN', repeat=3):
+                m = seam_mask(q, me, *cfg)
+                if m.any(): groups.setdefault(m.tobytes(), (m, []))[1].append(cfg)
+            for i, (m, cfgs) in enumerate(sorted(groups.values(), key=lambda v: -len(v[1]))):
+                def shape_cond(cfg):
+                    return [seam_typ(o, t) for o, t in zip(offs, cfg)]
+                if me == 'G':    # path paving creeping onto the farmland block
+                    ref = write_model(f'seam_farm_{q}_{i:02d}', ST, seam_elements(m, '#path'))
+                    farm_seam.append({'model': ref, 'show_breaking_overlay': False,
+                                      'conditions': OR(*[AND(*shape_cond(c)) for c in cfgs])})
+                else:            # farmland paving in the path block, dry or moist like the nearest farmland
+                    for moist in (False, True):
+                        ref = write_model(f'seam_path_{q}_{i:02d}_{"moist" if moist else "dry"}', ST,
+                                          seam_elements(m, '#farm_moist' if moist else '#farm'))
+                        ors = []
+                        for c in cfgs:
+                            if 'G' not in c: continue
+                            ors.append(AND(*shape_cond(c), _farm(offs[c.index('G')], moist)))
+                        assert len(ors) == len(cfgs)
+                        path_seam.append({'model': ref, 'show_breaking_overlay': False, 'conditions': OR(*ors)})
+    stats['seam'] = (len(farm_seam), len(path_seam))
+    farm_mod = {'targets': ['minecraft:farmland'], 'append_models': path_appends + farm_seam}
+    path_appends = path_appends + path_seam
+    return grass_mod, path_appends, stats, farm_mod
 
 def simplify_or(cfgs, offs):
     """Build an OR condition for the list of (ta,tb,td) configs, collapsing full universes per slot."""
@@ -874,7 +995,7 @@ def simplify_or(cfgs, offs):
 
 if __name__ == '__main__':
     out = sys.argv[1]
-    gm, pa, stats = build(out)
+    gm, pa, stats, fm = build(out)
     print('distinct lawn tiles per corner:', stats, 'appends:', len(gm['append_models']))
     json.dump({'gm': gm, 'pa': pa}, open(out + '/_gen.json', 'w'))
 
@@ -901,3 +1022,11 @@ def global_height(cells, tx, tz, klass=None):
             m = path_tuft(q, ta, tb, td, (klass or {}).get(lawn, 0))
             if m is not None and m[lz, lx]: return 16
     return 16 if v == 1 else 15
+
+
+def seam_kind(cells, tx, tz):
+    """Ground truth for the farmland/path seam: paving ('P' path / 'F' farmland) of texel (tx,tz); cells use
+    P path, F farmland, anything else. None if the texel is in neither."""
+    c = cell_of((tx, tz))
+    if cells.get(c) not in ('P', 'F'): return None
+    return 'P' if global_height(seam_cells(cells), tx, tz) == 15 else 'F'

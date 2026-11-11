@@ -12,7 +12,7 @@ for it in range(N):
         r = ''
         for x in range(n):
             u = rnd.random()
-            r += 'P' if u < p else ('G' if u < 0.93 else rnd.choice('FSn.'))
+            r += rnd.choice('PPFFf') if u < p else ('G' if u < 0.93 else rnd.choice('FSn.'))
         rows.append(r)
     # S -> stone, n -> stairs facing north at same level, '.' -> drop
     w = scenes.build(rows, depth=-2)
@@ -26,7 +26,7 @@ for it in range(N):
     for (x, y, z), b in w.items():
         if y != 0: continue
         nm = b[0]
-        if nm == 'minecraft:dirt_path': cells[(x, z)] = 'P'
+        if nm in ('minecraft:dirt_path', 'minecraft:farmland'): cells[(x, z)] = 'P'
         elif nm == 'minecraft:grass_block': cells[(x, z)] = 'G'
         elif nm.endswith('_stairs'): cells[(x, z)] = 'S'
         else: cells[(x, z)] = 'N'
@@ -43,7 +43,20 @@ for it in range(N):
             for tx in range(16):
                 want = gen.global_height(cells, cx*16+tx, cz*16+tz, klass)
                 got = h[cz*16+tz, cx*16+tx]
-                if abs(got - want/16.0) > 1e-6: mism += 1
+                if abs(got - want/16.0) > 2e-3: mism += 1
+    # 1b) farmland/path seam: paving seen from above vs the seam shape
+    rc = {}
+    for (x, y, z), b in w.items():
+        if y == 0: rc[(x, z)] = {'minecraft:dirt_path': 'P', 'minecraft:farmland': 'F'}.get(b[0], 'N')
+    for (cx, cz), t in rc.items():
+        if t not in 'PF' or not (1 <= cx < n-1 and 1 <= cz < n-1): continue
+        for tz in range(16):
+            for tx in range(16):
+                X, Z = cx*16+tx, cz*16+tz
+                if h[Z, X] > 15.5/16: continue      # covered by raised lawn
+                want = gen.seam_kind(rc, X, Z)
+                got = 'P' if 'dirt_path' in c[Z, X] else ('F' if 'farmland' in c[Z, X] else '?')
+                if got != want: mism += 1
     # 2) stray pixels (interior)
     cls = np.full(h.shape, -1)
     for z in range(h.shape[0]):

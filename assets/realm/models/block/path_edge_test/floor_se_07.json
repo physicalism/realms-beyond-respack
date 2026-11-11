@@ -1,0 +1,363 @@
+{
+ "loader": "fusion:model",
+ "type": "base",
+ "textures": {
+  "particle": "minecraft:block/dirt",
+  "top": "minecraft:block/grass_block_top",
+  "side": "minecraft:block/grass_block_side",
+  "overlay": "minecraft:block/grass_block_side_overlay",
+  "side_top": "minecraft:block/grass_block_top",
+  "path": "minecraft:block/dirt_path_top",
+  "path_side": "minecraft:block/dirt_path_side",
+  "bottom": "minecraft:block/dirt",
+  "farm": "minecraft:block/farmland",
+  "farm_moist": "minecraft:block/farmland_moist"
+ },
+ "elements": [
+  {
+   "from": [
+    8,
+    15,
+    9
+   ],
+   "to": [
+    9,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      8,
+      9,
+      9,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    9,
+    15,
+    10
+   ],
+   "to": [
+    10,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      9,
+      10,
+      10,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    10,
+    15,
+    11
+   ],
+   "to": [
+    11,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      10,
+      11,
+      11,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    11,
+    15,
+    12
+   ],
+   "to": [
+    12,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      11,
+      12,
+      12,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    12,
+    15,
+    13
+   ],
+   "to": [
+    13,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      12,
+      13,
+      13,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    13,
+    15,
+    14
+   ],
+   "to": [
+    14,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      13,
+      14,
+      14,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    15,
+    15
+   ],
+   "to": [
+    15,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      14,
+      15,
+      15,
+      16
+     ],
+     "texture": "#path"
+    }
+   }
+  },
+  {
+   "from": [
+    8,
+    15,
+    8
+   ],
+   "to": [
+    16,
+    15,
+    9
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      8,
+      8,
+      16,
+      9
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    9,
+    15,
+    9
+   ],
+   "to": [
+    16,
+    15,
+    10
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      9,
+      9,
+      16,
+      10
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    10,
+    15,
+    10
+   ],
+   "to": [
+    16,
+    15,
+    11
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      10,
+      10,
+      16,
+      11
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    11,
+    15,
+    11
+   ],
+   "to": [
+    16,
+    15,
+    12
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      11,
+      11,
+      16,
+      12
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    12,
+    15,
+    12
+   ],
+   "to": [
+    16,
+    15,
+    13
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      12,
+      12,
+      16,
+      13
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    13,
+    15,
+    13
+   ],
+   "to": [
+    16,
+    15,
+    14
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      13,
+      13,
+      16,
+      14
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    15,
+    14
+   ],
+   "to": [
+    16,
+    15,
+    15
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      14,
+      14,
+      16,
+      15
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  },
+  {
+   "from": [
+    15,
+    15,
+    15
+   ],
+   "to": [
+    16,
+    15,
+    16
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      15,
+      16,
+      16
+     ],
+     "texture": "#farm_moist"
+    }
+   }
+  }
+ ]
+}

@@ -9,16 +9,19 @@ removed = []
 for f in glob.glob(mdir + '/*.json'):
     n = os.path.basename(f)[:-5]
     if n not in keep: os.remove(f); removed.append(n)
-gm, pa, stats = gen.build(out)
+gm, pa, stats, fm = gen.build(out)
 mods = f'{out}/assets/realm/fusion/model_modifiers/blocks'
 json.dump(gm, open(f'{mods}/grass_path_edge_test.json', 'w'))
 pm = json.load(open(f'{mods}/path_edge_test.json'))
 edge = [a for a in pm['append_models'] if ('earth' in a['model'] or 'gravel' in a['model'])]
 for a in edge:
-    c = a['conditions']; off = c['offset']
-    # only speckle against exposed ground, not against a dirt wall (e.g. under a landing)
-    a['conditions'] = {'type': 'and', 'predicates': [c, gen.mb((off[0], off[1] + 1, off[2]), gen.AIRISH)]}
+    c = a['conditions']
+    if 'offset' in c:   # (already wrapped in an installed pack)
+        off = c['offset']
+        # only speckle against exposed ground, not against a dirt wall (e.g. under a landing)
+        a['conditions'] = {'type': 'and', 'predicates': [c, gen.mb((off[0], off[1] + 1, off[2]), gen.AIRISH)]}
 pm['append_models'] = edge + pa
 json.dump(pm, open(f'{mods}/path_edge_test.json', 'w'))
+json.dump(fm, open(f'{mods}/farmland_edge.json', 'w'))
 print('removed', len(removed), 'tiles/corner', stats, 'grass appends', len(gm['append_models']), 'path appends', len(pm['append_models']))
 print('modifier sizes', os.path.getsize(f'{mods}/grass_path_edge_test.json'), os.path.getsize(f'{mods}/path_edge_test.json'))

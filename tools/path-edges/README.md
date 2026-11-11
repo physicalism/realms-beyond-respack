@@ -25,3 +25,13 @@ Regenerate into a copy of the pack, then check it:
     python3 fuzz.py <out> 60 1                       # random layouts (with plants): consistency, watertight, lips, pixels
 
 Needs Python 3 with numpy, Pillow, scipy (only for the checker).
+
+## Farmland (2026-11-11)
+Farmland counts as `P` for the shape (it is 15px tall like a path), so lawn edges, lips and rounded corners are
+identical. The lowered floor of lawn blocks is no longer baked into the `lawn_*` tiles: separate `floor_<corner>_NN`
+models pave each lawn quadrant like its nearest low neighbour (dirt path / dry farmland / moist farmland, moisture 7).
+`farmland_edge.json` gives farmland blocks the same raised-lawn corners (`path_corner_*`) as paths.
+assemble.py can now be re-run on an installed pack.
+Farmland <-> path seam: flat paving overlays at y=15.02 (`seam_farm_*` path paving on farmland blocks,
+`seam_path_*_{dry,moist}` farmland paving on path blocks), from the same shape with farmland standing in for lawn
+(see "farmland <-> path seam" in gen.py; `gen.seam_kind` is the ground truth, checked by fuzz.py).

@@ -16,14 +16,14 @@ def build(rows, heights=None, extra=None, base=0, depth=-4):
                 w[(x, top, z)] = B('grass_block')
             else:
                 top = h
-                m = {'G': B('grass_block'), 'P': B('dirt_path'), 'F': B('farmland'), 'D': B('dirt'),
+                m = {'G': B('grass_block'), 'P': B('dirt_path'), 'F': B('farmland', moisture=7), 'f': B('farmland', moisture=0), 'D': B('dirt'),
                      'C': B('coarse_dirt'), 'R': B('gravel'), 'S': B('stone')}
                 if ch in m: w[(x, top, z)] = m[ch]
                 elif ch == 'l':
                     w[(x, top, z)] = B('oak_slab', type='bottom')
                 elif ch in 'nesw':
                     w[(x, top, z)] = B('oak_stairs', facing={'n': 'north', 'e': 'east', 's': 'south', 'w': 'west'}[ch], half='bottom')
-                if ch == 'F': w[(x, top+1, z)] = B('wheat')
+                if ch in 'Ff': w[(x, top+1, z)] = B('wheat')
             for y in range(depth, top):
                 w[(x, y, z)] = B('dirt')
             w[(x, depth-1, z)] = B('void')
@@ -90,3 +90,13 @@ S['forest'] = forest()
 S['slab_side'] = build(["GllGG", "GPPPG", "GPPPG", "GGGGG"])
 S['crop_pit'] = build(["GG..GG", "GPPPPG", "GPPPPG", "GGGGGG"], heights=["110011", "111111", "111111", "111111"])
 S['crop_pit2'] = build(["GFFFFG", "GPPPPG", "GGPPGG", "GGGGGG"], heights=["100001", "111111", "111111", "111111"])
+
+# farmland merges with the lawn the same way as paths
+S['farm_plot'] = build(["GGGGGG", "GFFFFG", "GFFFFG", "GFFFFG", "GGGGGG"])
+S['farm_dry'] = build(["GGGGG", "GfffG", "GfFfG", "GGGGG"])
+S['farm_path'] = build(["GGGGGG", "GFFPFf", "GFFPFf", "PPPPGG", "GGfGGG"])
+S['farm_single'] = build(["GGGGG", "GGFGG", "GGGGf", "GGGGG"])
+S['farm_ledge'] = build(["GFFG", "GFFG", "...."], heights=["1111", "1111", "1111"])
+S['seam_strip'] = build(["FFFFFF", "PPPPPP", "ffFFff", "GGGGGG"])
+S['seam_mix'] = build(["GGGGGG", "GFFPFG", "GFPPFG", "GPPFFG", "GFFPPG", "GGDGGG"])
+S['seam_single'] = build(["FFFFF", "FFPFF", "FFFFF", "PPPPP", "PPFPP", "PPPPP"])

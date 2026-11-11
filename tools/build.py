@@ -174,7 +174,7 @@ def validate():
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
     for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot',
-                 'scarecrow', 'scarecrow_farm_1', 'anvil_hammer', 'blacksmith_hammer'):
+                 'scarecrow', 'scarecrow_farm_1', 'anvil_hammer', 'blacksmith_hammer', 'sharpening_sword', 'quenching_horseshoe'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])
@@ -295,6 +295,10 @@ def validate():
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:
         if variant['model'].startswith('realm:'): own_model(variant['model'])
+    # 3D stonecutter saw (tools/stonecutter-saw/gen_saw.py): vanilla model and textures, saw extruded to 1 px.
+    stonecutter = read(resource('models', 'minecraft:block/stonecutter'))
+    own_model('minecraft:block/stonecutter')
+    require(all(t.startswith('minecraft:block/stonecutter_') for t in stonecutter['textures'].values()) and len(stonecutter['elements']) == 23, 'Stonecutter must be the extruded saw on vanilla textures.')
     # Path edges and lawn tiles (tools/path-edges/gen.py): every model a Fusion modifier references.
     for modifier_path in sorted((ROOT/'assets/realm/fusion/model_modifiers/blocks').glob('*.json')):
         modifier = read(modifier_path)

@@ -1,0 +1,855 @@
+{
+ "parent": "minecraft:block/block",
+ "textures": {
+  "particle": "minecraft:block/stonecutter_bottom",
+  "bottom": "minecraft:block/stonecutter_bottom",
+  "top": "minecraft:block/stonecutter_top",
+  "side": "minecraft:block/stonecutter_side",
+  "saw": "minecraft:block/stonecutter_saw"
+ },
+ "elements": [
+  {
+   "from": [
+    0,
+    0,
+    0
+   ],
+   "to": [
+    16,
+    9,
+    16
+   ],
+   "faces": {
+    "down": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": "#bottom",
+     "cullface": "down"
+    },
+    "up": {
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ],
+     "texture": "#top"
+    },
+    "north": {
+     "uv": [
+      0,
+      7,
+      16,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "north"
+    },
+    "south": {
+     "uv": [
+      0,
+      7,
+      16,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "south"
+    },
+    "west": {
+     "uv": [
+      0,
+      7,
+      16,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "west"
+    },
+    "east": {
+     "uv": [
+      0,
+      7,
+      16,
+      16
+     ],
+     "texture": "#side",
+     "cullface": "east"
+    }
+   }
+  },
+  {
+   "name": "saw_faces",
+   "from": [
+    1,
+    9,
+    7.5
+   ],
+   "to": [
+    15,
+    16,
+    8.5
+   ],
+   "faces": {
+    "north": {
+     "uv": [
+      1,
+      9,
+      15,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "south": {
+     "uv": [
+      15,
+      9,
+      1,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_9",
+   "from": [
+    1,
+    9,
+    7.5
+   ],
+   "to": [
+    15,
+    10,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      15,
+      1,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      15,
+      1,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_10",
+   "from": [
+    1,
+    10,
+    7.5
+   ],
+   "to": [
+    15,
+    11,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      14,
+      1,
+      15
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      14,
+      1,
+      15
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_11",
+   "from": [
+    1,
+    11,
+    7.5
+   ],
+   "to": [
+    15,
+    12,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      13,
+      1,
+      14
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      13,
+      1,
+      14
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_12",
+   "from": [
+    1,
+    12,
+    7.5
+   ],
+   "to": [
+    15,
+    13,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      12,
+      1,
+      13
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      12,
+      1,
+      13
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_13",
+   "from": [
+    1,
+    13,
+    7.5
+   ],
+   "to": [
+    15,
+    14,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      11,
+      1,
+      12
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      11,
+      1,
+      12
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_14",
+   "from": [
+    1,
+    14,
+    7.5
+   ],
+   "to": [
+    15,
+    15,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      10,
+      1,
+      11
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      10,
+      1,
+      11
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_row_15",
+   "from": [
+    1,
+    15,
+    7.5
+   ],
+   "to": [
+    15,
+    16,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "uv": [
+      15,
+      9,
+      1,
+      10
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "down": {
+     "uv": [
+      15,
+      9,
+      1,
+      10
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_1",
+   "from": [
+    1,
+    9,
+    7.5
+   ],
+   "to": [
+    2,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      14,
+      9,
+      15,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      14,
+      9,
+      15,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_2",
+   "from": [
+    2,
+    9,
+    7.5
+   ],
+   "to": [
+    3,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      13,
+      9,
+      14,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      13,
+      9,
+      14,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_3",
+   "from": [
+    3,
+    9,
+    7.5
+   ],
+   "to": [
+    4,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      12,
+      9,
+      13,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      12,
+      9,
+      13,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_4",
+   "from": [
+    4,
+    9,
+    7.5
+   ],
+   "to": [
+    5,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      11,
+      9,
+      12,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      11,
+      9,
+      12,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_5",
+   "from": [
+    5,
+    9,
+    7.5
+   ],
+   "to": [
+    6,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      10,
+      9,
+      11,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      10,
+      9,
+      11,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_6",
+   "from": [
+    6,
+    9,
+    7.5
+   ],
+   "to": [
+    7,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      9,
+      9,
+      10,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      9,
+      9,
+      10,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_7",
+   "from": [
+    7,
+    9,
+    7.5
+   ],
+   "to": [
+    8,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      8,
+      9,
+      9,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      8,
+      9,
+      9,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_8",
+   "from": [
+    8,
+    9,
+    7.5
+   ],
+   "to": [
+    9,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      7,
+      9,
+      8,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      7,
+      9,
+      8,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_9",
+   "from": [
+    9,
+    9,
+    7.5
+   ],
+   "to": [
+    10,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      6,
+      9,
+      7,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      6,
+      9,
+      7,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_10",
+   "from": [
+    10,
+    9,
+    7.5
+   ],
+   "to": [
+    11,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      5,
+      9,
+      6,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      5,
+      9,
+      6,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_11",
+   "from": [
+    11,
+    9,
+    7.5
+   ],
+   "to": [
+    12,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      4,
+      9,
+      5,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      4,
+      9,
+      5,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_12",
+   "from": [
+    12,
+    9,
+    7.5
+   ],
+   "to": [
+    13,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      3,
+      9,
+      4,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      3,
+      9,
+      4,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_13",
+   "from": [
+    13,
+    9,
+    7.5
+   ],
+   "to": [
+    14,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      2,
+      9,
+      3,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      2,
+      9,
+      3,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  },
+  {
+   "name": "saw_col_14",
+   "from": [
+    14,
+    9,
+    7.5
+   ],
+   "to": [
+    15,
+    16,
+    8.5
+   ],
+   "faces": {
+    "east": {
+     "uv": [
+      1,
+      9,
+      2,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    },
+    "west": {
+     "uv": [
+      1,
+      9,
+      2,
+      16
+     ],
+     "texture": "#saw",
+     "tintindex": 0
+    }
+   }
+  }
+ ]
+}

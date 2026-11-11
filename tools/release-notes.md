@@ -1,5 +1,10 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.49:
+  - Added the anvil hammer (`realm:anvil_hammer`): an animated blacksmith's hammer that strikes a vanilla anvil and throws glowing sparks. Put it in an invisible item frame on top of the anvil.
+  - Added the blacksmith hammer (`realm:blacksmith_hammer`): the same hammer as a plain item to hold or to put in an NPC's hand.
+  - Commands for both are in the README.
+
 - v0.1.48:
   - Added the hanging stag banner (`realm:banner_stag_hanging_<dye>`) in all 16 dye colours: a small animated banner whose pole runs straight out from the end of a trapdoor and ends in a gold spike shaped like the Blacksmith sign's bracket. Summon commands are in the README.
   - The Royal Stag war banner now comes in all 16 dye colours (`realm:banner_stag_war_<dye>`) as well as azure, with a pixel-matched pole and finials.

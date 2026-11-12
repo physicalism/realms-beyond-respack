@@ -1,5 +1,8 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.55:
+  - Replaced the vanilla cake with the Ivy cake: a black Labrador topper of Ivy with fruit, flowers and icing, adapted from Hoffen's (@_InkGhoul) Jellie cake. All seven bite states keep vanilla bounds, toppings come off the cut side, and Ivy falls into the eaten area after the fifth bite. Candle cakes and the inventory icon are included.
+
 - v0.1.51:
   - Added the Florist sign (`realm:florist_sign`), a hanging sign in the same style as the Blacksmith and Clocktower signs, with a five-petal flower emblem and `FLORIST` in capitals. Summon it like the other signs, tagged `rb_florist_sign`; the command is in the README.
 

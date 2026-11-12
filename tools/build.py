@@ -315,6 +315,23 @@ def validate():
         if wardrobe.exists():
             require(wardrobe.read_text().strip() != '', 'Empty wardrobe.properties.')
             used.add(wardrobe)
+    # Jellie cake: vanilla block overrides, all bite stages, candle template, and item icon.
+    cake_models = ['cake'] + [f'cake_slice{i}' for i in range(1, 7)] + ['template_cake_with_candle']
+    for name in cake_models:
+        cake = read(resource('models', 'minecraft:block/'+name))
+        require(cake.get('elements'), f'Missing Jellie cake geometry: {name}')
+        slots = cake['textures']
+        for sprite in slots.values():
+            if sprite != 'minecraft:block/candle':
+                own_sprite(sprite)
+        for element in cake['elements']:
+            require(all(-16 <= a <= b <= 32 for a, b in zip(element['from'], element['to'])), f'Cake cuboid exceeds Java limits: {name}')
+            rotation = element.get('rotation')
+            if rotation:
+                require(rotation['axis'] in ('x', 'y', 'z') and rotation['angle'] in (-45, -22.5, 0, 22.5, 45), f'Invalid cake element rotation: {name}')
+            for face in element.get('faces', {}).values():
+                require(face['texture'].startswith('#') and face['texture'][1:] in slots, f'Unresolved cake texture slot: {name}')
+    own_sprite('minecraft:item/cake')
     actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())

@@ -336,3 +336,13 @@ A white-hot horseshoe floats down into a cauldron, hisses in a burst of steam, s
 ```
 
 The steam starts at the surface of a full cauldron (`WATER_Y` in the generator; lower it by 3 per missing water level). The dunk is a texture animation (`quenching_horseshoe.png`, twelve frames) over three heights, each with a full-bright hot shoe and a plain cool one. Regenerate with `python3 tools/quenching-horseshoe/gen_horseshoe.py .`; preview with `python3 tools/quenching-horseshoe/render.py . <out.png>`.
+
+## Ivy cake
+
+The full cake decoration layout is rotated 180°: the Labrador topper, fruit, flowers, and icing design all turn together. Ivy is a simple cookie-like head matching the original Jellie topper proportions, with two hanging ears, a shallow muzzle, and painted brown eyes and nose. Four cuboids replace the previous detailed head.
+
+All seven bite states preserve vanilla cake bounds. Toppings are removed from the cut side; Ivy falls into the eaten-away area after the fifth bite, because she now sits on the opposite side. The fallen topper is also a Labrador. Includes candle cakes and a flat 16 × 16 inventory icon.
+
+Cake and original decorations by Hoffen (@_InkGhoul), adapted from the supplied `jellie_cake_26.1.zip`. Ivy adaptation by Henry / Realms Beyond. Integrated for Minecraft Java 26.3.
+
+Generator: `python3 tools/ivy-cake/generate.py`; icon: `python3 tools/ivy-cake/icon.py`. The original model JSONs under `tools/ivy-cake/source/` are retained for repeatable generation and excluded from the installed pack.

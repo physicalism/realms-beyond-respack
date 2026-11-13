@@ -38,7 +38,7 @@ def modifiers():
 AIR = ('minecraft:air', {})
 def B(name, **props):
     if ':' not in name: name = 'minecraft:' + name
-    if name == 'minecraft:grass_block': props.setdefault('snowy', 'false')
+    if name in ('minecraft:grass_block', 'minecraft:podzol'): props.setdefault('snowy', 'false')
     return (name, {k: str(v).lower() for k, v in props.items()})
 
 class World(dict):
@@ -52,6 +52,8 @@ def ev(cond, world, pos):
     if t == 'and': return all(ev(c, world, pos) for c in cond['predicates'])
     if t == 'or': return any(ev(c, world, pos) for c in cond['predicates'])
     if t == 'not': return not ev(cond['predicate'], world, pos)
+    if 'offsets' in cond:   # Fusion: true if the block at any of the offsets matches
+        return any(ev(dict({k: v for k, v in cond.items() if k != 'offsets'}, offset=o), world, pos) for o in cond['offsets'])
     off = cond.get('offset', [0, 0, 0])
     name, props = world.get((pos[0]+off[0], pos[1]+off[1], pos[2]+off[2]))
     if t == 'match_block':
@@ -128,7 +130,7 @@ def vanilla(blk):
         return [e]
     if n in ('wheat', 'carrots', 'potatoes', 'short_grass', 'tall_grass', 'fern', 'poppy', 'dandelion', 'bush', 'pink_petals'):
         return []  # ignore plants for geometry
-    if n == 'air':
+    if n in ('air', 'cave_air', 'void_air'):
         return []
     raise ValueError(n)
 
@@ -162,8 +164,9 @@ def block_models(world, pos):
             elif base is None and ev(o['conditions'], world, pos):
                 base = o['model']
         for a in mod.get('append_models', []):
-            if ev(a['conditions'], world, pos):
-                appends.append(a['model'])
+            for e in (a if isinstance(a, list) else [a]):   # Fusion: a list entry submits its first match only
+                if 'conditions' not in e or ev(e['conditions'], world, pos):
+                    appends.append(e['model']); break
     if base:
         m = load_model(base); out.append((m['elements'], m['textures'], base))
     else:
@@ -209,8 +212,10 @@ def synth(name):
     if name == 'minecraft:block/farmland_moist': return noisy((80, 50, 30), 10, 15)
     if name == 'minecraft:block/torch': return noisy((240, 200, 80), 5, 12)
     if name == 'minecraft:block/void': return np.full((16, 16, 3), (255, 0, 255), float)
-    if name in ('minecraft:block/coarse_dirt', 'minecraft:block/rooted_dirt', 'minecraft:block/podzol'):
-        return noisy((120, 85, 60), 22, 13)
+    if name == 'minecraft:block/coarse_dirt': return noisy((120, 85, 60), 22, 13)
+    if name == 'minecraft:block/rooted_dirt': return noisy((140, 100, 75), 22, 16)
+    if name in ('minecraft:block/podzol', 'minecraft:block/podzol_top'): return noisy((95, 65, 30), 14, 17)
+    if name == 'minecraft:block/podzol_side': return noisy((134, 96, 67), 18, 18)
     if name == 'minecraft:block/gravel': return noisy((130, 125, 120), 25, 14)
     return None
 

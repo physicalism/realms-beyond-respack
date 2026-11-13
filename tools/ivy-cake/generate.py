@@ -16,7 +16,7 @@ PALETTE = [
     (26, 25, 24),  # hanging ears
     (48, 45, 41),  # broad muzzle
     (18, 17, 16),  # nose and mouth
-    (114, 73, 36), # brown eyes
+    (7, 8, 8),    # black eyes
     (7, 8, 8),    # pupils
     (221, 212, 190), # tiny eye glint
     (24, 104, 72), # emerald collar

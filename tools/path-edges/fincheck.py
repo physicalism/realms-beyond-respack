@@ -9,7 +9,7 @@ def fins(root, w):
         bx, by, bz = int(np.floor(c[0])), int(np.floor(c[1])), int(np.floor(c[2]))
         blk = w.get((bx, by, bz))[0].split(':')[1]
         if blk in ('air', 'wheat', 'short_grass', 'tall_grass', 'poppy', 'fern'): return False
-        if blk in ('grass_block', 'dirt_path', 'farmland'):
+        if blk in ('grass_block', 'dirt', 'coarse_dirt', 'rooted_dirt', 'podzol', 'dirt_path', 'farmland'):
             # sample the surface height at that texel from the up faces of that block
             tx, tz = c[0] * 16, c[2] * 16
             top = -1

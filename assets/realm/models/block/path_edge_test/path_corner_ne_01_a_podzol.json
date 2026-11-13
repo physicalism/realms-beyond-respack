@@ -1,0 +1,1 @@
+{"loader":"fusion:model","type":"base","textures":{"edge":"minecraft:block/podzol_top","particle":"#edge"},"elements":[{"from":[15,15,0],"to":[16,16,1],"faces":{"up":{"uv":[15,0,16,1],"texture":"#edge"}}},{"from":[15,15,1],"to":[16,16,1],"faces":{"south":{"uv":[15,0,16,1],"texture":"#edge"}}}]}

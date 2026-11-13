@@ -2,6 +2,7 @@ import sys, random, numpy as np, sim, scenes, gen, pixcheck, lipcheck, fincheck
 from sim import World, B
 root = sys.argv[1]; N = int(sys.argv[2]); seed = int(sys.argv[3]) if len(sys.argv) > 3 else 1
 sim.set_root(root)
+LAWN = {'minecraft:' + b for b in ('grass_block', 'dirt', 'coarse_dirt', 'rooted_dirt', 'podzol')}
 rnd = random.Random(seed)
 bad_cons = bad_px = bad_wt = 0
 for it in range(N):
@@ -12,14 +13,14 @@ for it in range(N):
         r = ''
         for x in range(n):
             u = rnd.random()
-            r += rnd.choice('PPFFf') if u < p else ('G' if u < 0.93 else rnd.choice('FSn.'))
+            r += rnd.choice('PPFFf') if u < p else (rnd.choice('GGGDCrz') if u < 0.93 else rnd.choice('FSn.'))
         rows.append(r)
     # S -> stone, n -> stairs facing north at same level, '.' -> drop
     w = scenes.build(rows, depth=-2)
     PL = {0: None, 1: 'short_grass', 2: 'tall_grass', 3: 'poppy'}
     klass = {}
     for (x, y, z), b in list(w.items()):
-        if y == 0 and b[0] == 'minecraft:grass_block':
+        if y == 0 and b[0] in LAWN:
             k = rnd.choice([0, 0, 1, 2, 3]); klass[(x, z)] = k
             if PL[k]: w[(x, 1, z)] = B(PL[k])
     cells = {}
@@ -27,7 +28,7 @@ for it in range(N):
         if y != 0: continue
         nm = b[0]
         if nm in ('minecraft:dirt_path', 'minecraft:farmland'): cells[(x, z)] = 'P'
-        elif nm == 'minecraft:grass_block': cells[(x, z)] = 'G'
+        elif nm in LAWN: cells[(x, z)] = 'G'
         elif nm.endswith('_stairs'): cells[(x, z)] = 'S'
         else: cells[(x, z)] = 'N'
     for x in range(n):

@@ -9,11 +9,12 @@ removed = []
 for f in glob.glob(mdir + '/*.json'):
     n = os.path.basename(f)[:-5]
     if n not in keep: os.remove(f); removed.append(n)
-gm, pa, stats, fm = gen.build(out)
+gm, pa, stats, fm, dm = gen.build(out)
 mods = f'{out}/assets/realm/fusion/model_modifiers/blocks'
 json.dump(gm, open(f'{mods}/grass_path_edge_test.json', 'w'))
 pm = json.load(open(f'{mods}/path_edge_test.json'))
-edge = [a for a in pm['append_models'] if ('earth' in a['model'] or 'gravel' in a['model'])]
+# earth speckles (path next to dirt) retired 2026-11-12: dirt now gets the same raised edge as grass
+edge = [a for a in pm['append_models'] if 'gravel' in a['model']]
 for a in edge:
     c = a['conditions']
     if 'offset' in c:   # (already wrapped in an installed pack)
@@ -23,5 +24,21 @@ for a in edge:
 pm['append_models'] = edge + pa
 json.dump(pm, open(f'{mods}/path_edge_test.json', 'w'))
 json.dump(fm, open(f'{mods}/farmland_edge.json', 'w'))
+for k, m in dm.items():
+    json.dump(m, open(f'{mods}/{k}_path_edge.json', 'w'))
 print('removed', len(removed), 'tiles/corner', stats, 'grass appends', len(gm['append_models']), 'path appends', len(pm['append_models']))
 print('modifier sizes', os.path.getsize(f'{mods}/grass_path_edge_test.json'), os.path.getsize(f'{mods}/path_edge_test.json'))
+
+json.dump({'textures': {'particle': 'minecraft:block/dirt'}, 'elements': []}, open(f'{mdir}/empty.json', 'w'))
+# speed: reorder/flatten every condition tree (same meaning; see optimize.py)
+import optimize, sim
+sim.set_root(out)
+ctx = optimize.contexts()
+for f in sorted(os.listdir(mods)):
+    if not f.endswith('.json'): continue
+    m = json.load(open(f'{mods}/{f}'))
+    before = optimize.cost(m, ctx)
+    if any('lawn_' in (x['model'] if isinstance(x, dict) else '') for x in m['append_models']): optimize.gate_lists(m)
+    optimize.optimize_modifier(m, ctx)
+    json.dump(m, open(f'{mods}/{f}', 'w'), separators=(',', ':'))
+    print(f'{f}: mean condition nodes per targeted block {before:.0f} -> {optimize.cost(m, ctx):.0f}')

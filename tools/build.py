@@ -174,7 +174,9 @@ def validate():
         require('elements' not in wrapper and 'textures' not in wrapper, 'Lantern must preserve block geometry and textures.')
     # Imported furniture uses item-atlas textures and optional animated atlases.
     for name in ('magic_book_stack', 'ancient_spellbook', 'dreamcatcher', 'incense_pot',
-                 'scarecrow', 'scarecrow_farm_1', 'anvil_hammer', 'blacksmith_hammer', 'sharpening_sword', 'quenching_horseshoe'):
+                 'scarecrow', 'scarecrow_farm_1', 'anvil_hammer', 'blacksmith_hammer', 'sharpening_sword', 'quenching_horseshoe',
+                 'decorations/kitchen_bread_cutting', 'decorations/kitchen_vegetable_pan',
+                 'decorations/kitchen_rotating_spit'):
         entry = read(resource('items', 'realm:'+name))['model']
         require(entry['type'] == 'minecraft:model', 'Expected a decoration model item.')
         resolved = model(entry['model'])
@@ -258,6 +260,7 @@ def validate():
     for modifier_path in sorted(modifier_dir.glob('*path_edge_test.json')):
         modifier = read(modifier_path)
         entries = modifier.get('default_model_overrides', []) + modifier.get('append_models', [])
+        entries = [e for x in entries for e in (x if isinstance(x, list) else [x])]   # first-match lists
         for entry in entries:
             edge_model = read(resource('models', entry if isinstance(entry, str) else entry['model']))
             for sprite in edge_model['textures'].values():
@@ -302,7 +305,8 @@ def validate():
     # Path edges and lawn tiles (tools/path-edges/gen.py): every model a Fusion modifier references.
     for modifier_path in sorted((ROOT/'assets/realm/fusion/model_modifiers/blocks').glob('*.json')):
         modifier = read(modifier_path)
-        for entry in modifier.get('default_model_overrides', []) + modifier.get('append_models', []):
+        for entry in [e for x in modifier.get('default_model_overrides', []) + modifier.get('append_models', [])
+                      for e in (x if isinstance(x, list) else [x])]:   # first-match lists
             own_model(entry if isinstance(entry, str) else entry['model'])
     # Wearable cosmetics (realms_beyond_cosmetics namespace).
     cosmetics = ROOT/'assets/realms_beyond_cosmetics'
@@ -331,7 +335,24 @@ def validate():
                 require(rotation['axis'] in ('x', 'y', 'z') and rotation['angle'] in (-45, -22.5, 0, 22.5, 45), f'Invalid cake element rotation: {name}')
             for face in element.get('faces', {}).values():
                 require(face['texture'].startswith('#') and face['texture'][1:] in slots, f'Unresolved cake texture slot: {name}')
+    cake_item = read(resource('items', 'minecraft:cake'))['model']
+    require(cake_item['type'] == 'minecraft:select' and cake_item['property'] == 'minecraft:display_context', 'Cake must select its held model by display context.')
+    require(cake_item['fallback'] == {'type': 'minecraft:model', 'model': 'minecraft:item/cake'}, 'Cake must retain its inventory sprite.')
+    cake_case, = cake_item['cases']
+    require(set(cake_case['when']) == {'firstperson_righthand', 'firstperson_lefthand', 'thirdperson_righthand', 'thirdperson_lefthand'}, 'Cake must render in 3D in both hands.')
+    held_cake = read(resource('models', cake_case['model']['model']))
+    require(held_cake['parent'] == 'minecraft:block/cake', 'Held cake must use the placed cake geometry.')
     own_sprite('minecraft:item/cake')
+    # Unconnected hooks use the tap; attached tripwire uses vanilla hook models.
+    hook = read(ROOT/'assets/minecraft/blockstates/tripwire_hook.json')['variants']
+    require(len(hook) == 16, 'Tripwire hook must define all 16 states.')
+    for attached in ('false', 'true'):
+        for facing, rotation in [('north', 0), ('east', 90), ('south', 180), ('west', 270)]:
+            for powered in ('false', 'true'):
+                entry = hook[f'attached={attached},facing={facing},powered={powered}']
+                expected = ('minecraft:block/tripwire_hook_attached' + ('_on' if powered == 'true' else '')) if attached == 'true' else 'realm:block/brass_tap'
+                require(entry['model'] == expected and entry.get('y', 0) == rotation, 'Invalid tap/attached hook model or rotation.')
+    own_model('realm:block/brass_tap')
     actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())

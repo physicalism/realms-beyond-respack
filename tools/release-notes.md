@@ -1,5 +1,13 @@
 Custom decorations for Minecraft Java 26.3.
 
+- v0.1.56 (13 November 2026):
+  - Added animated kitchen decorations: bread cutting, a vegetable frying pan with flames, and a rotating spit.
+  - Added the barrel tap model, used by unattached tripwire hooks; attached hooks retain their vanilla models.
+  - Added the Chef Ivy painting.
+  - Refined Ivy’s cake texture and inventory icon, with a 3D cake model in hand.
+  - Updated connected path and farmland edges, added surrounding dirt variants, and optimised their Fusion conditions.
+  - Refined Florist sign lettering spacing and updated the cosmetics player configuration.
+
 - v0.1.55:
   - Replaced the vanilla cake with the Ivy cake: a black Labrador topper of Ivy with fruit, flowers and icing, adapted from Hoffen's (@_InkGhoul) Jellie cake. All seven bite states keep vanilla bounds, toppings come off the cut side, and Ivy falls into the eaten area after the fifth bite. Candle cakes and the inventory icon are included.
 

@@ -1,0 +1,482 @@
+{
+  "credit": "Made with Blockbench",
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        -14,
+        134,
+        0
+      ],
+      "scale": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "translation": [
+        1,
+        3.75,
+        0
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -14,
+        134,
+        0
+      ],
+      "scale": [
+        0.3,
+        0.3,
+        0.3
+      ],
+      "translation": [
+        1,
+        3.75,
+        0
+      ]
+    },
+    "fixed": {
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "translation": [
+        0,
+        24,
+        -2
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.14,
+        0.14,
+        0.14
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        135,
+        0
+      ],
+      "scale": [
+        0.38,
+        0.38,
+        0.38
+      ],
+      "translation": [
+        0,
+        1.25,
+        0
+      ]
+    },
+    "head": {
+      "translation": [
+        0,
+        11,
+        -5.25
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        39,
+        168,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.1,
+        0.1
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        39,
+        168,
+        0
+      ],
+      "scale": [
+        0.1,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "texture": "#canvas",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      },
+      "from": [
+        -1,
+        -13,
+        7.01
+      ],
+      "to": [
+        17,
+        21,
+        7.01
+      ]
+    },
+    {
+      "name": "top frame rail",
+      "from": [
+        -3,
+        21,
+        7
+      ],
+      "to": [
+        19,
+        23,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            6,
+            1
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            6,
+            1
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            6,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            6,
+            1
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            0.5,
+            6,
+            1.0
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            1,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "bottom frame rail",
+      "from": [
+        -3,
+        -15,
+        7
+      ],
+      "to": [
+        19,
+        -13,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            6,
+            10
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            6,
+            10
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            6,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            6,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            9.5,
+            6,
+            10.0
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            1,
+            10.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "left frame rail",
+      "from": [
+        -3,
+        -13,
+        7
+      ],
+      "to": [
+        -1,
+        21,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            1,
+            1,
+            9.5
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            1,
+            1,
+            9.5
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            0.5,
+            1.0,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            9.5,
+            1.0,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            1,
+            1,
+            9.5
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            0.5,
+            1,
+            1,
+            9.5
+          ]
+        }
+      }
+    },
+    {
+      "name": "right frame rail",
+      "from": [
+        17,
+        -13,
+        7
+      ],
+      "to": [
+        19,
+        21,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            1,
+            6,
+            9.5
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            1,
+            6,
+            9.5
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            0.5,
+            6.0,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            9.5,
+            6.0,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            1,
+            6,
+            9.5
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            5.5,
+            1,
+            6,
+            9.5
+          ]
+        }
+      }
+    },
+    {
+      "faces": {
+        "down": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            2,
+            10.5,
+            4,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            2.5,
+            10.5,
+            2,
+            11.25
+          ]
+        },
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0,
+            10.5,
+            2,
+            11.25
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            2,
+            10,
+            4,
+            10.75
+          ]
+        },
+        "up": {
+          "rotation": 180,
+          "texture": "#0",
+          "uv": [
+            0,
+            10,
+            2,
+            10.5
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            2,
+            10.5,
+            2.5,
+            11.25
+          ]
+        }
+      },
+      "from": [
+        4,
+        -14.9,
+        6
+      ],
+      "to": [
+        12,
+        -11.9,
+        8
+      ]
+    }
+  ],
+  "textures": {
+    "0": "realm:item/painting/frame_1x2v",
+    "canvas": "realm:item/painting/ivy_chef",
+    "particle": "realm:item/painting/ivy_chef"
+  }
+}

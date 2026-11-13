@@ -1,0 +1,1 @@
+{"loader":"fusion:model","type":"base","textures":{"side":"minecraft:block/rooted_dirt","particle":"#side"},"elements":[{"from":[0.01,15,8],"to":[0.01,16,16],"faces":{"east":{"uv":[8,0,16,1],"texture":"#side"}}}]}

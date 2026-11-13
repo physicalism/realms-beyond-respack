@@ -1,0 +1,1 @@
+{"loader":"fusion:model","type":"base","textures":{"edge":"minecraft:block/dirt","particle":"#edge"},"elements":[{"from":[12,15,0],"to":[15,16,1],"faces":{"up":{"uv":[12,0,15,1],"texture":"#edge"}}},{"from":[12,15,1],"to":[15,16,1],"faces":{"south":{"uv":[12,0,15,1],"texture":"#edge"}}},{"from":[12,15,0],"to":[12,16,1],"faces":{"west":{"uv":[0,0,1,1],"texture":"#edge"}}}]}

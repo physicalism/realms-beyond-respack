@@ -1,0 +1,68 @@
+{
+  "variants": {
+    "attached=false,facing=north,powered=false": {
+      "model": "realm:block/brass_tap",
+      "y": 0
+    },
+    "attached=false,facing=north,powered=true": {
+      "model": "realm:block/brass_tap",
+      "y": 0
+    },
+    "attached=false,facing=east,powered=false": {
+      "model": "realm:block/brass_tap",
+      "y": 90
+    },
+    "attached=false,facing=east,powered=true": {
+      "model": "realm:block/brass_tap",
+      "y": 90
+    },
+    "attached=false,facing=south,powered=false": {
+      "model": "realm:block/brass_tap",
+      "y": 180
+    },
+    "attached=false,facing=south,powered=true": {
+      "model": "realm:block/brass_tap",
+      "y": 180
+    },
+    "attached=false,facing=west,powered=false": {
+      "model": "realm:block/brass_tap",
+      "y": 270
+    },
+    "attached=false,facing=west,powered=true": {
+      "model": "realm:block/brass_tap",
+      "y": 270
+    },
+    "attached=true,facing=north,powered=false": {
+      "model": "minecraft:block/tripwire_hook_attached",
+      "y": 0
+    },
+    "attached=true,facing=north,powered=true": {
+      "model": "minecraft:block/tripwire_hook_attached_on",
+      "y": 0
+    },
+    "attached=true,facing=east,powered=false": {
+      "model": "minecraft:block/tripwire_hook_attached",
+      "y": 90
+    },
+    "attached=true,facing=east,powered=true": {
+      "model": "minecraft:block/tripwire_hook_attached_on",
+      "y": 90
+    },
+    "attached=true,facing=south,powered=false": {
+      "model": "minecraft:block/tripwire_hook_attached",
+      "y": 180
+    },
+    "attached=true,facing=south,powered=true": {
+      "model": "minecraft:block/tripwire_hook_attached_on",
+      "y": 180
+    },
+    "attached=true,facing=west,powered=false": {
+      "model": "minecraft:block/tripwire_hook_attached",
+      "y": 270
+    },
+    "attached=true,facing=west,powered=true": {
+      "model": "minecraft:block/tripwire_hook_attached_on",
+      "y": 270
+    }
+  }
+}

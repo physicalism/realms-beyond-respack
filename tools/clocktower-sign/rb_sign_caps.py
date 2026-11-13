@@ -15,7 +15,8 @@ bracket, spike, brace, chains, colours, raised frame and full-bright lettering.
 
 Usage: rb_sign_caps.py <lowercase_blacksmith_model.json> <lowercase_blacksmith.png>
                        <out_model.json> <out.png> <WORD> <clock|anvil|flower> <texture_id>
-                       [board_units]
+                       [board_units] [letter_gap]
+letter_gap (px between capitals, default 2) only widens the lettering; the Florist sign uses 4.
 The lowercase originals are in builds/sign-caps-backups/. Re-running gives the same result.
 """
 import copy
@@ -251,8 +252,9 @@ def board_elements():
     return [mirrored(e) if e['from'][0] < -16 else e for e in els]
 
 
-def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id, board_units=23):
-    global LINES, EMBLEM_KIND, ANVIL, BW
+def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id, board_units=23, letter_gap=2):
+    global LINES, EMBLEM_KIND, ANVIL, BW, GAP
+    GAP = int(letter_gap)
     assert emblem in ('clock', 'anvil', 'flower'), emblem
     LINES, EMBLEM_KIND, BW = [(word, 26)], emblem, 4 * int(board_units)
     assert BW <= 96, 'board would overlap the chain sprites in the atlas'
@@ -312,4 +314,4 @@ def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id, board
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:9])
+    main(*sys.argv[1:10])

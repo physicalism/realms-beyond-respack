@@ -17,7 +17,7 @@ def build(rows, heights=None, extra=None, base=0, depth=-4):
             else:
                 top = h
                 m = {'G': B('grass_block'), 'P': B('dirt_path'), 'F': B('farmland', moisture=7), 'f': B('farmland', moisture=0), 'D': B('dirt'),
-                     'C': B('coarse_dirt'), 'R': B('gravel'), 'S': B('stone')}
+                     'C': B('coarse_dirt'), 'r': B('rooted_dirt'), 'z': B('podzol'), 'R': B('gravel'), 'S': B('stone')}
                 if ch in m: w[(x, top, z)] = m[ch]
                 elif ch == 'l':
                     w[(x, top, z)] = B('oak_slab', type='bottom')
@@ -100,3 +100,9 @@ S['farm_ledge'] = build(["GFFG", "GFFG", "...."], heights=["1111", "1111", "1111
 S['seam_strip'] = build(["FFFFFF", "PPPPPP", "ffFFff", "GGGGGG"])
 S['seam_mix'] = build(["GGGGGG", "GFFPFG", "GFPPFG", "GPPFFG", "GFFPPG", "GGDGGG"])
 S['seam_single'] = build(["FFFFF", "FFPFF", "FFFFF", "PPPPP", "PPFPP", "PPPPP"])
+
+# every dirt variant merges with paths exactly like grass (2026-11-12)
+S['dirt_path'] = build(["DDPDD", "DDPDD", "DDPPP", "DDPDD", "DDPDD"])
+S['dirt_mix'] = build(["GGPDD", "GDPCC", "rrPPz", "zzPGG", "GGPFF"])
+S['dirt_single'] = build(["CCCCC", "CCPCC", "CCCCC"])
+S['dirt_planted'] = build(["DDDDD", "PPPPP", "DDDDD"], extra={(1, 1, 0): B('short_grass'), (3, 1, 2): B('poppy')})

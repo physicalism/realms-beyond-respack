@@ -574,8 +574,31 @@ def grass_tile(q, cells, kl=0):
                 els.append({'from': fr, 'to': to, 'faces': {d: {'uv': [u0, 1, u1, 16], 'texture': '#path_side', 'cullface': d}}})
     return els
 
-def path_tile(q, cells):
-    """Raised-lawn elements inside a path block's quadrant."""
+def path_owners(q, cells):
+    """16x16 int array for a path block's quadrant: -2 = not raised, -1 = raised with no lawn neighbour at this corner,
+    j = raised and closest to neighbour slot j (0 a, 1 b, 2 diagonal) of neighbours_for(q), which is lawn ('G').
+    The raised rim takes that neighbour's texture (grass / dirt variant)."""
+    H = window_H(q, cells)
+    qx, qz = QUADS[q]
+    nb = neighbours_for(q)
+    xs = range(0, 8) if qx == 0 else range(8, 16)
+    zs = range(0, 8) if qz == 0 else range(8, 16)
+    O = np.full((16, 16), -2)
+    for z in zs:
+        for x in xs:
+            if H[z + 1, x + 1] != 16: continue
+            best = None
+            for j, (cx, cz) in enumerate(nb):
+                if cells.get((cx, cz)) != 'G': continue
+                px, pz = x + .5, z + .5
+                nx = min(max(px, cx * 16), cx * 16 + 16); nz = min(max(pz, cz * 16), cz * 16 + 16)
+                d = math.hypot(px - nx, pz - nz)
+                if best is None or d < best[0] - 1e-9: best = (d, j)
+            O[z, x] = -1 if best is None else best[1]
+    return O
+
+def path_tile(q, cells, sel=None):
+    """Raised-lawn elements inside a path block's quadrant (only texels in `sel`, if given)."""
     H = window_H(q, cells)
     qx, qz = QUADS[q]
     xs = range(0, 8) if qx == 0 else range(8, 16)
@@ -583,7 +606,7 @@ def path_tile(q, cells):
     g = np.zeros((16, 16), bool)
     for z in zs:
         for x in xs:
-            if H[z + 1, x + 1] == 16: g[z, x] = True
+            if H[z + 1, x + 1] == 16 and (sel is None or sel[z, x]): g[z, x] = True
     if not g.any(): return []
     els = []
     for (x0, z0, x1, z1) in rects(g):
@@ -746,8 +769,21 @@ def floor_tile(q, ka, kb, kd):
             els.append({'from': [x0, 15, z0], 'to': [x1, 15, z1],
                         'faces': {'up': {'uv': [x0, z0, x1, z1], 'texture': FLOOR_TEX[k]}}})
     return els
-def isG(o): return AND({'type': 'match_state', 'offset': list(o), 'apply_model_rotation': False, 'block': 'minecraft:grass_block',
-                        'properties': {'snowy': ['false']}}, mb(up(o), AIRISH))
+# Lawn-level ground that merges with paths (Henry, 2026-11-12): grass and every dirt variant. They share one shape;
+# only the textures differ (dirt variants have no grass tint and no side overlay).
+LAWN_KINDS = ['grass', 'dirt', 'coarse_dirt', 'rooted_dirt', 'podzol']
+DIRT_TEX = {'dirt': ('dirt', 'dirt'), 'coarse_dirt': ('coarse_dirt', 'coarse_dirt'),
+            'rooted_dirt': ('rooted_dirt', 'rooted_dirt'), 'podzol': ('podzol_top', 'podzol_side')}   # (top, side)
+def kind_target(k):
+    if k in ('grass', 'podzol'):
+        return {'block': 'minecraft:' + ('grass_block' if k == 'grass' else k), 'properties': {'snowy': ['false']}}
+    return 'minecraft:' + k
+def kind_cond(o, k):
+    t = kind_target(k)
+    if isinstance(t, str): return mb(o, [t])
+    return {'type': 'match_state', 'offset': list(o), 'apply_model_rotation': False, 'block': t['block'], 'properties': t['properties']}
+def isG(o): return AND(OR(kind_cond(o, 'grass'), kind_cond(o, 'podzol'),
+                          mb(o, ['minecraft:dirt', 'minecraft:coarse_dirt', 'minecraft:rooted_dirt'])), mb(up(o), AIRISH))
 def isS(o): return OR(mb(o, WOOD), AND(mb(o, AIR3), mb(down(o), WOOD)))
 def typ(o, t, universe):
     """condition that the cell at offset o has type t, with t from universe (exclusive classification)."""
@@ -801,7 +837,7 @@ def build(out_root, ns='realm', folder='path_edge_test'):
     os.makedirs(mdir, exist_ok=True)
     def write_model(name, textures, els):
         m = {'loader': 'fusion:model', 'type': 'base', 'textures': textures, 'elements': els}
-        json.dump(m, open(f'{mdir}/{name}.json', 'w'), indent=1)
+        json.dump(m, open(f'{mdir}/{name}.json', 'w'), separators=(',', ':'))   # minified: faster reloads
         return f'{ns}:block/{folder}/{name}'
     GT = {'particle': 'minecraft:block/dirt', 'top': 'minecraft:block/grass_block_top',
           'side': 'minecraft:block/grass_block_side', 'overlay': 'minecraft:block/grass_block_side_overlay',
@@ -857,8 +893,12 @@ def build(out_root, ns='realm', folder='path_edge_test'):
             groups.setdefault(canon(els), (els, []))[1].append(cfg)
         for i, (key, (els, cfgs)) in enumerate(sorted(groups.items(), key=lambda kv: -len(kv[1][1]))):
             ref = write_model(f'floor_{q}_{i:02d}', GT, els)
+            # cheap gate (implied by floor_cond): a low neighbour in the slots this tile needs
+            always = [j for j in range(3) if all(c[j] != '-' for c in cfgs)]
+            gate = AND(*[isP(offs[j]) for j in always]) if always else \
+                OR(*[isP(offs[j]) for j in range(3) if any(c[j] != '-' for c in cfgs)])
             grass_appends.append({'model': ref, 'show_breaking_overlay': False,
-                                  'conditions': AND(floor_cond(cfgs, offs), SELF_OK)})
+                                  'conditions': AND(gate, floor_cond(cfgs, offs), SELF_OK)})
     # backing walls: only where a lowered lawn edge meets something solid up to the top of the block
     BT = {'side': 'minecraft:block/grass_block_top', 'particle': '#side'}
     STAIRS = sorted(b for b in set(LISTS['26']) | set(LISTS['84']) if b.endswith('_stairs'))
@@ -898,12 +938,25 @@ def build(out_root, ns='realm', folder='path_edge_test'):
         for ta in 'PSGN':
             for tb in 'PSGN':
                 for td in 'PSGN':
-                    els = path_tile(q, {(0, 0): 'P', A: ta, Bn: tb, D: td})
-                    if els: groups.setdefault(canon(els), (els, []))[1].append((ta, tb, td))
-        for i, (key, (els, cfgs)) in enumerate(sorted(groups.items(), key=lambda kv: -len(kv[1][1]))):
-            ref = write_model(f'path_corner_{q}_{i:02d}', PT, els)
+                    cells = {(0, 0): 'P', A: ta, Bn: tb, D: td}
+                    O = path_owners(q, cells)
+                    if (O == -2).all(): continue
+                    groups.setdefault(O.tobytes(), (O, cells, []))[2].append((ta, tb, td))
+        for i, (key, (O, cells, cfgs)) in enumerate(sorted(groups.items(), key=lambda kv: -len(kv[1][2]))):
             cond = simplify_or(cfgs, offs)
-            path_appends.append({'model': ref, 'show_breaking_overlay': True, 'conditions': cond if cond else {'type': 'true'}})
+            for j in (-1, 0, 1, 2):
+                if not (O == j).any(): continue
+                els = path_tile(q, cells, O == j)
+                if j == -1:     # rim with no lawn neighbour at this corner: grass, as before
+                    ref = write_model(f'path_corner_{q}_{i:02d}', PT, els)
+                    path_appends.append({'model': ref, 'show_breaking_overlay': True, 'conditions': cond if cond else {'type': 'true'}})
+                    continue
+                for k in LAWN_KINDS:
+                    tex = PT if k == 'grass' else {'edge': 'minecraft:block/' + DIRT_TEX[k][0], 'particle': '#edge'}
+                    ref = write_model(f'path_corner_{q}_{i:02d}_{"abd"[j]}_{k}', tex, els)
+                    kc = kind_cond(offs[j], k)
+                    path_appends.append({'model': ref, 'show_breaking_overlay': True,
+                                         'conditions': AND(cond, kc) if cond else kc})
     for q in QUADS:
         A, Bn, D = neighbours_for(q)
         offs = [(A[0], 0, A[1]), (Bn[0], 0, Bn[1]), (D[0], 0, D[1])]
@@ -926,6 +979,34 @@ def build(out_root, ns='realm', folder='path_edge_test'):
     grass_mod = {'targets': [{'block': 'minecraft:grass_block', 'properties': {'snowy': ['false']}}],
                  'default_model_overrides': [{'model': base, 'conditions': AND(SELF_OK, ANY_P)}],
                  'append_models': grass_appends}
+    # dirt variants: same appends, lawn tiles/backing walls re-textured (no tint, no side overlay)
+    dirt_mods = {}
+    for k in LAWN_KINDS[1:]:
+        top, side = ('minecraft:block/' + t for t in DIRT_TEX[k])
+        refmap = {}
+        def variant(ref):
+            if ref in refmap: return refmap[ref]
+            name = ref.split('/')[-1]
+            if not name.startswith('lawn_') or name == 'lawn_base':
+                refmap[ref] = ref; return ref
+            m = json.load(open(f'{mdir}/{name}.json'))
+            if name.startswith('lawn_backing'):
+                tex = {'side': top, 'particle': '#side'}
+            else:
+                tex = {'particle': side, 'top': top, 'side_top': top, 'side': side,
+                       'path_side': m['textures']['path_side'], 'bottom': m['textures']['bottom']}
+            els = []
+            for e in m['elements']:
+                faces = {}
+                for d, fc in e['faces'].items():
+                    if fc['texture'] == '#overlay': continue
+                    fc = dict(fc); fc.pop('tintindex', None); faces[d] = fc
+                if faces: els.append(dict(e, faces=faces))
+            refmap[ref] = write_model(f'{name}_{k}', tex, els)
+            return refmap[ref]
+        dirt_mods[k] = {'targets': [kind_target(k)],
+                        'default_model_overrides': [{'model': base, 'conditions': AND(SELF_OK, ANY_P)}],
+                        'append_models': [dict(a, model=variant(a['model'])) for a in grass_appends]}
     # farmland <-> path seam overlays
     ST = {'path': 'minecraft:block/dirt_path_top', 'farm': 'minecraft:block/farmland',
           'farm_moist': 'minecraft:block/farmland_moist', 'particle': '#path'}
@@ -958,7 +1039,7 @@ def build(out_root, ns='realm', folder='path_edge_test'):
     stats['seam'] = (len(farm_seam), len(path_seam))
     farm_mod = {'targets': ['minecraft:farmland'], 'append_models': path_appends + farm_seam}
     path_appends = path_appends + path_seam
-    return grass_mod, path_appends, stats, farm_mod
+    return grass_mod, path_appends, stats, farm_mod, dirt_mods
 
 def simplify_or(cfgs, offs):
     """Build an OR condition for the list of (ta,tb,td) configs, collapsing full universes per slot."""
@@ -995,7 +1076,7 @@ def simplify_or(cfgs, offs):
 
 if __name__ == '__main__':
     out = sys.argv[1]
-    gm, pa, stats, fm = build(out)
+    gm, pa, stats, fm, dm = build(out)
     print('distinct lawn tiles per corner:', stats, 'appends:', len(gm['append_models']))
     json.dump({'gm': gm, 'pa': pa}, open(out + '/_gen.json', 'w'))
 

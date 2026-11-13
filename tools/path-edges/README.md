@@ -35,3 +35,23 @@ assemble.py can now be re-run on an installed pack.
 Farmland <-> path seam: flat paving overlays at y=15.02 (`seam_farm_*` path paving on farmland blocks,
 `seam_path_*_{dry,moist}` farmland paving on path blocks), from the same shape with farmland standing in for lawn
 (see "farmland <-> path seam" in gen.py; `gen.seam_kind` is the ground truth, checked by fuzz.py).
+
+## Dirt variants (2026-11-12)
+Dirt, coarse dirt, rooted dirt and podzol (not snowy) count as lawn (`G`) exactly like grass: same shape, lips,
+floors and backing walls. `<kind>_path_edge.json` re-uses the grass appends with re-textured copies of the lawn
+tiles (`lawn_*_<kind>`: the block's own top/side textures, no tint, no side overlay). The raised rim on path and
+farmland blocks is split by owner (`path_corner_<q>_<i>_<a|b|d>_<kind>`): each texel takes the texture of the
+nearest lawn neighbour at that corner; rims with no lawn neighbour keep `corner_grass`. The old earth speckles on
+paths next to dirt were retired (assemble.py drops them; the model files remain). Scenes `dirt_*`; fuzz mixes kinds.
+
+## Speed (2026-11-12)
+assemble.py runs optimize.py on every modifier: condition trees are flattened and reordered (and: most-likely-to-fail
+first; or: most-likely-true first), measured on sample surroundings that are mostly plain fields. Floors get a cheap
+one-lookup gate. Model JSON is minified. Meaning is unchanged (checked: same models on every block, 400 random layouts).
+Fusion's match_block walks its block list linearly (Spark: HashMap$KeyIterator under MatchBlockBlockStatePredicate),
+so optimize.py weights each check by list length and splits common blocks (air, grass, dirt, ...) out of long lists
+into one-block checks tried first. What remains is about one 2-block "path or farmland?" check per append.
+Correction (from Fusion's source, MatchBlock/MatchStateBlockStatePredicate): block lists are hashed sets (O(1)); the
+cost is the offsets HashSet iterated on every test. So optimize.py merges same-block checks into one multi-offset
+check, and gate_lists() turns each corner's mutually exclusive lawn tiles / floors into one first-match list headed by
+`empty` (shown when no path/farmland is among the 8 neighbours). Plain field block: about 2600 -> about 200 units.

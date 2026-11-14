@@ -1,6 +1,6 @@
 # Resource pack entry point
 
-Read [CLAUDE.md](CLAUDE.md) before changing this pack. It is the shared source of pack-specific development and visual rules for all assistants; do not maintain a competing copy here.
+Read [CLAUDE.md](CLAUDE.md) before changing this pack. For visible asset work, also read [ARTSTYLE.md](ARTSTYLE.md) and the relevant feature notes. It is the shared source of pack-specific development and visual rules for all assistants; do not maintain a competing copy here.
 
 Use [docs/FEATURES.md](docs/FEATURES.md) to locate the relevant generator and [README.md](README.md) for documented item commands and placement. Read only the sections relevant to the current task.
 

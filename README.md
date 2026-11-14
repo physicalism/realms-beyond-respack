@@ -2,6 +2,8 @@
 
 A custom resource pack for Minecraft Java 26.3.
 
+For all visible asset work, read the [illustrated art style guide](ARTSTYLE.md) and its [complete primary reference catalogue](docs/artstyle/CATALOGUE.md).
+
 ## Disc 13 music
 
 Disc 13 plays 178 seconds of the Legend of Korra ending from https://www.youtube.com/watch?v=_zOmj9I2zzA. The item is named Korra Record, with The Legend of Korra - End Credits as its description and the original disc 13 texture. English (UK and US) translations are included. The music repeats for the full vanilla disc duration of 2 minutes 58 seconds and fades out over the final 1.5 seconds. Reload resources with F3 + T, then eject and reinsert the disc to hear the change.
@@ -360,7 +362,7 @@ Place the invisible frame on the wall and insert the paper, leaving its rotation
 
 ## Sand shells
 
-Small cream, pale pink, warm grey, and muted mauve shells in four simple blocky shapes appear on approximately 1 in 80 ordinary sand blocks, using the same vanilla weighted model mechanism as grass stones. No mod is required. Positions are deterministic; replacing sand at the same position does not reroll them. Applies to all ordinary sand, including deserts and underwater sand; red sand is unchanged. Collision and drops remain vanilla. Reload with F3 + T.
+Small ivory, coral pink, and orange clams appear on approximately 1 in 167 ordinary sand blocks, alongside occasional vanilla-textured pebbles (1 in 222) and very rare starfish (1 in 2000). Uses vanilla weighted models, with no mod required. Applies to all ordinary sand, including deserts and underwater sand; red sand is unchanged. Collision and drops remain vanilla. Reload with F3 + T. Current artwork is awaiting visual approval.
 
 Generator and limitations: `tools/sand-shells/README.md`.
 

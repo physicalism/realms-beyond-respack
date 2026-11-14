@@ -12,7 +12,7 @@ _Last updated: 2026-11-14_
 
 | Project | Status | Next action |
 | --- | --- | --- |
-| Realms Beyond (pack) | Needs update | v0.1.57 built and validated with sand shells, Elphaba props, and sign fixes. Publication pending: GitHub network connection unavailable. Check shells in game. |
+| Realms Beyond (pack) | Needs update | v0.1.57 prepared with final shell/pebble revision, Elphaba props, sign fixes, and the illustrated art guide. Pending terminal push/publication; visual changes still need in-game review. |
 | Realms Beyond Cosmetics (SimpleBlood) | Needs update | Source 0.1.41, newest JAR 0.1.38. Run `cd ~/Desktop/Project/realms-beyond-cosmetics && python3 build.py --simpleblood` |
 | 3D Framed Maps | In progress | 2.5.1 normal release restored at user request; audio diagnostic changes archived; download available; not installed |
 | Grand Teleport (26.3 port) | Check in game | 26.3 JAR built; README lists up to 26.2 only |

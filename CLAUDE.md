@@ -32,6 +32,8 @@ Realms Beyond is a custom Minecraft Java Edition 26.3 resource pack (pack format
 
 ## Visual design
 
+Read [ARTSTYLE.md](ARTSTYLE.md) before any visible asset work. It records concrete references, accepted details, rejected approaches, and how to preserve the pack style.
+
 - Aim for a polished Minecraft-native appearance, consistent with Mojang and Origin Realms aesthetics. The Origin Realms server pack is the style reference; ask for it to be attached when a task needs its files.
 - Respect Minecraft's pixel-grid conventions and the resolution of existing assets.
 - Prefer deliberate colours, clear silhouettes and controlled shading over excessive gradients or unnecessary complexity.

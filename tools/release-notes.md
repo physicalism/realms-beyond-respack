@@ -1,8 +1,10 @@
 Custom decorations for Minecraft Java 26.3.
 
 - v0.1.57 (14 November 2026):
-  - Added sparse shells in four blocky shapes and four muted colours to ordinary sand, using vanilla random block models (approximately 1 in 80 blocks).
+  - Added sparse ivory, coral pink, and orange clam shells, occasional pebbles, and very rare starfish to ordinary sand, using vanilla random block models (shells approximately 1 in 167 blocks; starfish 1 in 2000).
+  - Added larger grey and pale ivory shell-like pebbles; preserved starfish appearance and rarity.
   - Included the latest Elphaba hat and broom assets.
+  - Added the project-wide art direction guide and complete illustrated source catalogue.
   - Fixed missing particle texture references on Blacksmith, Florist, and Clocktower signs.
   - Includes all existing kitchen, barrel tap, Chef Ivy, cake, and connected terrain changes from v0.1.56.
 

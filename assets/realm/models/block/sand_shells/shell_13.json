@@ -3,7 +3,7 @@
   "textures": {
     "particle": "minecraft:block/sand",
     "sand": "minecraft:block/sand",
-    "shell": "realm:block/sand_shells"
+    "rock": "minecraft:block/andesite"
   },
   "elements": [
     {
@@ -82,136 +82,59 @@
     },
     {
       "from": [
-        9,
+        6,
         16,
-        4
-      ],
-      "to": [
-        12,
-        17,
-        5
-      ],
-      "faces": {
-        "up": {
-          "texture": "#shell",
-          "uv": [
-            0,
-            4,
-            1,
-            5
-          ]
-        },
-        "down": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            4,
-            5,
-            5
-          ]
-        },
-        "north": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            4,
-            5,
-            5
-          ]
-        },
-        "south": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            4,
-            5,
-            5
-          ]
-        },
-        "east": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            4,
-            5,
-            5
-          ]
-        },
-        "west": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            4,
-            5,
-            5
-          ]
-        }
-      }
-    },
-    {
-      "from": [
-        9,
-        16,
-        5
-      ],
-      "to": [
-        10,
-        17,
         6
       ],
+      "to": [
+        11,
+        17,
+        10
+      ],
       "faces": {
         "up": {
-          "texture": "#shell",
+          "texture": "#rock",
           "uv": [
-            0,
-            4,
-            1,
-            5
-          ]
-        },
-        "down": {
-          "texture": "#shell",
-          "uv": [
-            4,
             4,
             5,
-            5
+            9,
+            9
           ]
         },
         "north": {
-          "texture": "#shell",
+          "texture": "#rock",
           "uv": [
             4,
-            4,
             5,
-            5
+            9,
+            6
           ]
         },
         "south": {
-          "texture": "#shell",
+          "texture": "#rock",
           "uv": [
             4,
-            4,
             5,
-            5
+            9,
+            6
           ]
         },
         "east": {
-          "texture": "#shell",
+          "texture": "#rock",
           "uv": [
             4,
-            4,
             5,
-            5
+            8,
+            6
           ]
         },
         "west": {
-          "texture": "#shell",
+          "texture": "#rock",
           "uv": [
             4,
-            4,
             5,
-            5
+            8,
+            6
           ]
         }
       }

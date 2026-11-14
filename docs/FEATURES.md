@@ -4,6 +4,7 @@ Navigation audited on 13 November 2026. Paths identify implementation candidates
 
 | Feature | Start with |
 | --- | --- |
+| Art direction and illustrated references | [ARTSTYLE.md](../ARTSTYLE.md), [complete reference catalogue](artstyle/CATALOGUE.md) |
 | Build, validation, package contents | [build.py](../tools/build.py) |
 | Release process | [release.py](../tools/release.py), [release notes](../tools/release-notes.md) |
 | Item catalogue | [catalogue.json](../tools/catalogue.json); verify against current item definitions |

@@ -2,7 +2,7 @@
 
 ## 0.1.57 — 14 November 2026
 
-- Added rarer sand shells (1 in 80), with four simple cuboid shapes and four muted colours using vanilla weighted block models.
+- Added sparse ivory, coral pink, and orange clams, vanilla-textured pebbles, and very rare starfish using vanilla weighted block models.
 - Included Elphaba hat and broom assets and sign particle fixes.
 
 ## 0.1.12 — 1 November 2026

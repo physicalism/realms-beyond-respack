@@ -318,12 +318,12 @@ def validate():
         if variant['model'].startswith('realm:'): own_model(variant['model'])
     # Sparse sand shells, following the vanilla grass-stone variant mechanism.
     sand = read(ROOT/'assets/minecraft/blockstates/sand.json')['variants']['']
-    require(len(sand) == 9 and sand[0] == {'model': 'minecraft:block/sand', 'weight': 224}, 'Invalid sand-shell frequency.')
+    require(len(sand) == 17 and sand[0] == {'model': 'minecraft:block/sand', 'weight': 1264}, 'Invalid sand-shell frequency.')
     for variant in sand[1:]:
         own_model(variant['model'])
         model = read(resource('models', variant['model']))
         require(model['textures']['particle'] == 'minecraft:block/sand', 'Shell particles must remain sand.')
-        require(len(model['elements']) == 6, 'Expected sand cube and five shell ribs.')
+        require(len(model['elements']) in (3, 4), 'Expected sand cube and two or three simple shell cuboids.')
         for element in model['elements'][1:]:
             require(all(0 <= a < b <= bound for a, b, bound in zip(element['from'], element['to'], (16, 18, 16))), 'Shell outside its block footprint.')
     # 3D stonecutter saw (tools/stonecutter-saw/gen_saw.py): vanilla model and textures, saw extruded to 1 px.

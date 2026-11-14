@@ -360,6 +360,14 @@ Place the invisible frame on the wall and insert the paper, leaving its rotation
 
 ## Sand shells
 
-Small cream and pale pink scallop shells appear on approximately 1 in 29 ordinary sand blocks, using the same vanilla weighted model mechanism as grass stones. No mod is required. Positions are deterministic; replacing sand at the same position does not reroll them. Applies to all ordinary sand, including deserts and underwater sand; red sand is unchanged. Collision and drops remain vanilla. Reload with F3 + T.
+Small cream, pale pink, warm grey, and muted mauve shells in four simple blocky shapes appear on approximately 1 in 80 ordinary sand blocks, using the same vanilla weighted model mechanism as grass stones. No mod is required. Positions are deterministic; replacing sand at the same position does not reroll them. Applies to all ordinary sand, including deserts and underwater sand; red sand is unchanged. Collision and drops remain vanilla. Reload with F3 + T.
 
 Generator and limitations: `tools/sand-shells/README.md`.
+
+To push and publish a prepared, committed release entirely from Terminal:
+
+```sh
+python3 tools/release.py --push --publish
+```
+
+Local untracked files under `builds/` are backups and do not block publication; pending source changes still do.

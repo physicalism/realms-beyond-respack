@@ -2,7 +2,7 @@
 
 ## 0.1.57 — 14 November 2026
 
-- Added sparse cream and pink sand shells using vanilla weighted block models.
+- Added rarer sand shells (1 in 80), with four simple cuboid shapes and four muted colours using vanilla weighted block models.
 - Included Elphaba hat and broom assets and sign particle fixes.
 
 ## 0.1.12 — 1 November 2026

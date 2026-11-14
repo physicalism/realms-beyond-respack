@@ -82,340 +82,204 @@
     },
     {
       "from": [
+        4,
+        16,
+        6
+      ],
+      "to": [
         8,
-        16,
-        9
-      ],
-      "to": [
-        9,
-        16.5,
-        11
-      ],
-      "faces": {
-        "up": {
-          "texture": "#shell",
-          "uv": [
-            8,
-            0,
-            9,
-            1
-          ]
-        },
-        "down": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "north": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "south": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "east": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "west": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        }
-      }
-    },
-    {
-      "from": [
-        9,
-        16,
-        8
-      ],
-      "to": [
-        10,
         17,
-        12
-      ],
-      "faces": {
-        "up": {
-          "texture": "#shell",
-          "uv": [
-            0,
-            0,
-            1,
-            1
-          ]
-        },
-        "down": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "north": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "south": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "east": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        },
-        "west": {
-          "texture": "#shell",
-          "uv": [
-            4,
-            0,
-            5,
-            1
-          ]
-        }
-      }
-    },
-    {
-      "from": [
-        10,
-        16,
         8
       ],
-      "to": [
-        11,
-        17.5,
-        12
-      ],
       "faces": {
         "up": {
           "texture": "#shell",
           "uv": [
+            0,
             8,
-            0,
-            9,
-            1
+            1,
+            9
           ]
         },
         "down": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "north": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "south": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "east": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "west": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         }
       }
     },
     {
       "from": [
-        11,
+        5,
         16,
-        8
+        5
       ],
       "to": [
-        12,
+        7,
         17,
-        12
+        6
       ],
       "faces": {
         "up": {
           "texture": "#shell",
           "uv": [
             0,
-            0,
+            8,
             1,
-            1
+            9
           ]
         },
         "down": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "north": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "south": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "east": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "west": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         }
       }
     },
     {
       "from": [
-        12,
-        16,
-        9
+        5,
+        17,
+        6
       ],
       "to": [
-        13,
-        16.5,
-        11
+        7,
+        18,
+        7
       ],
       "faces": {
         "up": {
           "texture": "#shell",
           "uv": [
             8,
-            0,
+            8,
             9,
-            1
+            9
           ]
         },
         "down": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "north": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "south": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "east": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         },
         "west": {
           "texture": "#shell",
           "uv": [
             4,
-            0,
+            8,
             5,
-            1
+            9
           ]
         }
       }

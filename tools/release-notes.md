@@ -1,7 +1,7 @@
 Custom decorations for Minecraft Java 26.3.
 
 - v0.1.57 (14 November 2026):
-  - Added sparse cream and pale pink scallop shells to ordinary sand, using vanilla random block models (approximately 1 in 29 blocks).
+  - Added sparse shells in four blocky shapes and four muted colours to ordinary sand, using vanilla random block models (approximately 1 in 80 blocks).
   - Included the latest Elphaba hat and broom assets.
   - Fixed missing particle texture references on Blacksmith, Florist, and Clocktower signs.
   - Includes all existing kitchen, barrel tap, Chef Ivy, cake, and connected terrain changes from v0.1.56.

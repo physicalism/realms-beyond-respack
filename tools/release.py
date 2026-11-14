@@ -15,6 +15,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--push', action='store_true', help='Push main before creating the draft; never force-push.')
     parser.add_argument('--dry-run', action='store_true', help='Build and show the release command without changing GitHub.')
+    parser.add_argument('--publish', action='store_true', help='Publish directly instead of creating a draft.')
     args = parser.parse_args()
     output = build()
     tag = 'v'+version()
@@ -26,7 +27,9 @@ def main():
         raise ValueError('GitHub CLI is required. Install it and run gh auth login first.')
     if run('git', 'branch', '--show-current', capture=True) != 'main':
         raise ValueError('Switch to main before making a release.')
-    if run('git', 'status', '--porcelain', capture=True):
+    status = run('git', 'status', '--porcelain', capture=True)
+    pending = [line for line in status.splitlines() if not line.startswith('?? builds/')]
+    if pending:
         raise ValueError('Commit or set aside local changes before making a release.')
     run('gh', 'auth', 'status')
     commit = run('git', 'rev-parse', 'HEAD', capture=True)
@@ -36,8 +39,8 @@ def main():
     if not remote or remote.split()[0] != commit:
         raise ValueError('Remote main does not match this commit. Push it in GitHub Desktop, or use --push.')
     run('gh', 'release', 'create', tag, str(output), str(output.with_suffix('.zip.sha256')),
-        '--target', commit, '--draft', '--title', f'Realms Beyond {tag}', '--notes-file', str(ROOT/'tools'/'release-notes.md'))
-    print('Draft release created. Review it on GitHub before publishing.')
+        '--target', commit, *([] if args.publish else ['--draft']), '--title', f'Realms Beyond {tag}', '--notes-file', str(ROOT/'tools'/'release-notes.md'))
+    print('Release published.' if args.publish else 'Draft release created.')
 
 
 if __name__ == '__main__':

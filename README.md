@@ -357,3 +357,9 @@ Chef Ivy is a tall portrait in the existing wooden Ivy painting frame, using a 1
 ```
 
 Place the invisible frame on the wall and insert the paper, leaving its rotation unchanged. It uses the same size and anchor as the original Ivy portrait (approximately 2.75 blocks wide and 4.75 blocks tall, extending upwards from the frame). Source concept and cropped canvas are preserved in `builds/chef-ivy/`.
+
+## Sand shells
+
+Small cream and pale pink scallop shells appear on approximately 1 in 29 ordinary sand blocks, using the same vanilla weighted model mechanism as grass stones. No mod is required. Positions are deterministic; replacing sand at the same position does not reroll them. Applies to all ordinary sand, including deserts and underwater sand; red sand is unchanged. Collision and drops remain vanilla. Reload with F3 + T.
+
+Generator and limitations: `tools/sand-shells/README.md`.

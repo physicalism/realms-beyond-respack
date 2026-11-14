@@ -1,6 +1,7 @@
 {
   "textures": {
-    "sign": "realm:item/decorations/town_clocktower_sign"
+    "sign": "realm:item/decorations/town_clocktower_sign",
+    "particle": "realm:item/decorations/town_clocktower_sign"
   },
   "elements": [
     {

@@ -1,6 +1,7 @@
 {
   "textures": {
-    "sign": "realm:item/decorations/florist_sign"
+    "sign": "realm:item/decorations/florist_sign",
+    "particle": "realm:item/decorations/florist_sign"
   },
   "elements": [
     {

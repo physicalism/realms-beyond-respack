@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "minecraft:block/sand",
+        "weight": 224
+      },
+      {
+        "model": "realm:block/sand_shells/shell_00",
+        "weight": 1,
+        "y": 0
+      },
+      {
+        "model": "realm:block/sand_shells/shell_01",
+        "weight": 1,
+        "y": 0
+      },
+      {
+        "model": "realm:block/sand_shells/shell_02",
+        "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "realm:block/sand_shells/shell_03",
+        "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "realm:block/sand_shells/shell_04",
+        "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "realm:block/sand_shells/shell_05",
+        "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "realm:block/sand_shells/shell_06",
+        "weight": 1,
+        "y": 270
+      },
+      {
+        "model": "realm:block/sand_shells/shell_07",
+        "weight": 1,
+        "y": 270
+      }
+    ]
+  }
+}

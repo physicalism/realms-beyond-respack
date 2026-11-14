@@ -302,7 +302,7 @@ def main(src_model, src_png, dst_model, dst_png, word, emblem, texture_id, board
             f['uv'] = [u0, v0 - 8, u1, v1 - 8]
 
     model = {
-        'textures': {'sign': texture_id},
+        'textures': {'sign': texture_id, 'particle': texture_id},
         'elements': board_elements() + bracket + chains,
         'display': {'gui': {'rotation': [12, 24, 0], 'translation': [4.5, -1, 0], 'scale': [0.42, 0.42, 0.42]}},
     }

@@ -7,3 +7,11 @@ __pycache__/
 _backup/
 builds/*.jar
 builds/petal-footprints/
+
+# macOS Finder and AppleDouble metadata
+._*
+__MACOSX/
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+.LSOverride

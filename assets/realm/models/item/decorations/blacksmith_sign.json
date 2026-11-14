@@ -1,6 +1,7 @@
 {
   "textures": {
-    "sign": "realm:item/decorations/blacksmith_sign"
+    "sign": "realm:item/decorations/blacksmith_sign",
+    "particle": "realm:item/decorations/blacksmith_sign"
   },
   "elements": [
     {

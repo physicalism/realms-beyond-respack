@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import re
+import runpy
 import struct
 import zipfile
 import zlib
@@ -286,18 +287,45 @@ def validate():
         model = read(resource('models', identifier))
         for sprite in model.get('textures', {}).values():
             if not sprite.startswith('#') and not sprite.startswith('minecraft:'): own_sprite(sprite)
+    # Separate component-selected Elphaba props; never override ordinary sticks.
+    for kind in ('broom', 'hat'):
+        identifier = 'realm:elphaba_' + kind
+        item = read(resource('items', identifier))['model']
+        require(item == {'type': 'minecraft:model', 'model': 'realm:item/elphaba_'+kind},
+                f'Invalid Elphaba item definition: {identifier}')
+        own_model(item['model'])
+        model = read(resource('models', item['model']))
+        # Current v4/v5 artwork supersedes the older exterior-mesh generator.
+        require(model.get('elements'), f'Missing Elphaba geometry: {kind}')
+        for element in model['elements']:
+            require(all(-16 <= a <= b <= 32 for a, b in zip(element['from'], element['to'])), f'Invalid Elphaba bounds: {kind}')
+            for face in element['faces'].values():
+                require(face['texture'].startswith('#') and face['texture'][1:] in model['textures'], f'Invalid Elphaba texture: {kind}')
     # Signs and the animated war banner: pack-owned models with their own textures.
     dyed = [f'realm:banner_stag_{kind}_{dye}' for kind in ('war', 'hanging') for dye in catalogue['dyes']]
     require(len(dyed) == 32, 'Expected 16 dyed war banners and 16 hanging banners.')
     for sign in ['realm:blacksmith_sign', 'realm:town_clocktower_sign', 'realm:florist_sign', 'realm:banner_stag_war_azure'] + dyed:
         entry = read(resource('items', sign))['model']['model']
         own_model(entry)
+        if sign.endswith(('blacksmith_sign', 'town_clocktower_sign', 'florist_sign')):
+            slots = read(resource('models', entry))['textures']
+            require(slots.get('particle') == slots['sign'], f'Sign particle must use its existing atlas: {sign}')
         for element in read(resource('models', entry))['elements']:
             require(all(-16 <= a <= b <= 32 for a, b in zip(element['from'], element['to'])) or 'rotation' in element or 'sign' in sign, f'Cuboid exceeds Java model limits: {sign}')
     # Lawn stones: random variants of the vanilla grass blockstate (tools/lawn-decor/gen_decor.py).
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:
         if variant['model'].startswith('realm:'): own_model(variant['model'])
+    # Sparse sand shells, following the vanilla grass-stone variant mechanism.
+    sand = read(ROOT/'assets/minecraft/blockstates/sand.json')['variants']['']
+    require(len(sand) == 9 and sand[0] == {'model': 'minecraft:block/sand', 'weight': 224}, 'Invalid sand-shell frequency.')
+    for variant in sand[1:]:
+        own_model(variant['model'])
+        model = read(resource('models', variant['model']))
+        require(model['textures']['particle'] == 'minecraft:block/sand', 'Shell particles must remain sand.')
+        require(len(model['elements']) == 6, 'Expected sand cube and five shell ribs.')
+        for element in model['elements'][1:]:
+            require(all(0 <= a < b <= bound for a, b, bound in zip(element['from'], element['to'], (16, 18, 16))), 'Shell outside its block footprint.')
     # 3D stonecutter saw (tools/stonecutter-saw/gen_saw.py): vanilla model and textures, saw extruded to 1 px.
     stonecutter = read(resource('models', 'minecraft:block/stonecutter'))
     own_model('minecraft:block/stonecutter')
@@ -353,7 +381,7 @@ def validate():
                 expected = ('minecraft:block/tripwire_hook_attached' + ('_on' if powered == 'true' else '')) if attached == 'true' else 'realm:block/brass_tap'
                 require(entry['model'] == expected and entry.get('y', 0) == rotation, 'Invalid tap/attached hook model or rotation.')
     own_model('realm:block/brass_tap')
-    actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') for s in p.relative_to(ROOT).parts)}
+    actual = {p for p in (ROOT/'assets').rglob('*') if p.is_file() and not any(s.startswith('.') or s == '__MACOSX' for s in p.relative_to(ROOT).parts)}
     require(actual == used, 'Unexpected or unused assets: '+str(sorted(str(p.relative_to(ROOT)) for p in actual-used)))
     metadata = json.loads((ROOT/'pack.mcmeta').read_text())
     require(metadata['pack']['min_format'] == [97,1] and metadata['pack']['max_format'] == [97,1], 'Unexpected Minecraft resource-pack format.')

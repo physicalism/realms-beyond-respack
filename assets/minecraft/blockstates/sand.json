@@ -3,132 +3,102 @@
     "": [
       {
         "model": "minecraft:block/sand",
-        "weight": 23736
+        "weight": 3956
       },
       {
         "model": "realm:block/sand_shells/shell_00",
-        "weight": 6,
+        "weight": 2,
         "y": 0
       },
       {
         "model": "realm:block/sand_shells/shell_01",
-        "weight": 6,
+        "weight": 2,
         "y": 90
       },
       {
         "model": "realm:block/sand_shells/shell_02",
-        "weight": 6,
+        "weight": 2,
         "y": 180
       },
       {
         "model": "realm:block/sand_shells/shell_03",
-        "weight": 6,
+        "weight": 2,
         "y": 270
       },
       {
         "model": "realm:block/sand_shells/shell_04",
-        "weight": 6,
+        "weight": 2,
         "y": 0
       },
       {
         "model": "realm:block/sand_shells/shell_05",
-        "weight": 6,
+        "weight": 2,
         "y": 90
       },
       {
         "model": "realm:block/sand_shells/shell_06",
-        "weight": 6,
+        "weight": 2,
         "y": 180
       },
       {
         "model": "realm:block/sand_shells/shell_07",
-        "weight": 6,
+        "weight": 2,
         "y": 270
       },
       {
         "model": "realm:block/sand_shells/shell_08",
-        "weight": 6,
+        "weight": 2,
         "y": 0
       },
       {
         "model": "realm:block/sand_shells/shell_09",
-        "weight": 6,
+        "weight": 2,
         "y": 90
       },
       {
         "model": "realm:block/sand_shells/shell_10",
-        "weight": 6,
+        "weight": 2,
         "y": 180
       },
       {
         "model": "realm:block/sand_shells/shell_11",
-        "weight": 6,
+        "weight": 2,
         "y": 270
       },
       {
         "model": "realm:block/sand_shells/shell_12",
-        "weight": 18,
+        "weight": 3,
         "y": 0
       },
       {
         "model": "realm:block/sand_shells/shell_13",
-        "weight": 18,
+        "weight": 3,
         "y": 90
       },
       {
         "model": "realm:block/sand_shells/shell_14",
-        "weight": 18,
+        "weight": 3,
         "y": 180
       },
       {
         "model": "realm:block/sand_shells/shell_15",
-        "weight": 3,
+        "weight": 2,
         "y": 270
       },
       {
         "model": "realm:block/sand_shells/shell_16",
-        "weight": 18,
+        "weight": 3,
         "y": 0
       },
       {
         "model": "realm:block/sand_shells/shell_17",
-        "weight": 18,
+        "weight": 3,
         "y": 90
       },
       {
         "model": "realm:block/sand_shells/shell_18",
-        "weight": 18,
+        "weight": 3,
         "y": 180
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_seashell_white",
-        "weight": 24,
-        "y": 0
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_seashell_pink",
-        "weight": 24,
-        "y": 90
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_seashell_yellow",
-        "weight": 24,
-        "y": 180
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_starfish_orange",
-        "weight": 3,
-        "y": 270
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_starfish_pink",
-        "weight": 3,
-        "y": 0
-      },
-      {
-        "model": "realm:block/this_rocks/natural/sand_starfish_red",
-        "weight": 3,
-        "y": 0
       }
     ]
   }

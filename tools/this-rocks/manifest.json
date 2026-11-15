@@ -477,24 +477,7 @@
       "model": "realm:block/this_rocks/snowy_geyser_off"
     }
   ],
-  "natural_models": [
-    "realm:block/this_rocks/natural/grass_oak_stick_small",
-    "realm:block/this_rocks/natural/grass_oak_stick_medium",
-    "realm:block/this_rocks/natural/grass_oak_stick_large",
-    "realm:block/this_rocks/natural/grass_spruce_stick_small",
-    "realm:block/this_rocks/natural/grass_spruce_stick_medium",
-    "realm:block/this_rocks/natural/grass_spruce_stick_large",
-    "realm:block/this_rocks/natural/grass_birch_stick_small",
-    "realm:block/this_rocks/natural/grass_birch_stick_medium",
-    "realm:block/this_rocks/natural/grass_birch_stick_large",
-    "realm:block/this_rocks/natural/grass_pinecone",
-    "realm:block/this_rocks/natural/sand_seashell_white",
-    "realm:block/this_rocks/natural/sand_seashell_pink",
-    "realm:block/this_rocks/natural/sand_seashell_yellow",
-    "realm:block/this_rocks/natural/sand_starfish_orange",
-    "realm:block/this_rocks/natural/sand_starfish_pink",
-    "realm:block/this_rocks/natural/sand_starfish_red"
-  ],
-  "grass_extras": 10,
-  "sand_total_weight": 24000
+  "natural_models": [],
+  "grass_extras": 0,
+  "sand_total_weight": 4000
 }

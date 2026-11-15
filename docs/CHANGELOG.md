@@ -2,6 +2,8 @@
 
 ## Source updates after 0.1.57 — 15 November 2026
 
+- Reverted the recent stone geometry/rarity and automatic This Rocks! ground additions at Henry’s request: restored previous grass and beach decoration, without scattered twigs or pinecones. Manual prop IDs remain available.
+
 - Added Git Pack Manager distribution through the generated `server-pack` branch; automatic builds identify the exact source commit in the visible description and metadata. Numbered GitHub Releases remain optional.
 - Recorded the existing This Rocks! catalogue: 95 placeable props, sparse natural branches/pinecones, shared coastal decoration rates, and retained upstream source/licence. Reduced large grass-rock rarity and refined grass/sand pebble geometry.
 - Corrected lotus centre overlap and separated upper/lower petal surfaces; the latest correction still needs in-game shader approval.

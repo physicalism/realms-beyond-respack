@@ -107,50 +107,12 @@ def main():
         tex='minecraft:block/'+base
         m['textures'].update({'substrate':tex,'particle':tex}); m['elements'].insert(0,cube)
         return m
+    # Automatic scatter reverted at Henry's request on 15 November 2026.
+    # Keep manual item identifiers available without changing terrain decoration.
     natural=[]
-    # Preserve the approved rocks and reduced huge-rock probability. Extras
-    # add only about 0.5% grass coverage; no automatic geysers or odd wood colours.
-    grass_path=ROOT/'assets/minecraft/blockstates/grass_block.json'
-    grass=json.loads(grass_path.read_text()); vs=grass['variants']['snowy=false']
-    vs[:]=[v for v in vs if not v['model'].startswith('realm:block/this_rocks/')]
-    for i,v in enumerate(vs):v['weight']=2425 if i<4 else (24 if i<14 else 6)
-    extras=[(f'{w}_stick_{s}',weight) for w in ['oak','spruce','birch']
-            for s,weight in [('small',9),('medium',4),('large',1)]]+[('pinecone',8)]
-    # Reuse the existing grass cube/tint/overlay exactly.
-    grass_base=json.loads((ROOT/'assets/realm/models/block/lawn_decor/rock/rock_00.json').read_text())
-    for name,weight in extras:
-        m=combined('grass_block',name)
-        m['elements']=copy.deepcopy(grass_base['elements'][:2])+m['elements'][1:]
-        for e in m['elements'][:2]:
-            for f in e['faces'].values():f['texture']='#grass_'+f['texture'][1:]
-        m['textures'].update({'grass_'+k:v for k,v in grass_base['textures'].items() if k!='rock'})
-        m['textures']['particle']='minecraft:block/dirt'
-        identifier=f'realm:block/this_rocks/natural/grass_{name}'
-        write(ROOT/f'assets/realm/models/block/this_rocks/natural/grass_{name}.json',m)
-        vs.append({'model':identifier,'weight':weight,'y':(len(vs)%4)*90}); natural.append(identifier)
-    write(grass_path,grass)
-    # New shell/starfish designs share the existing rates, keeping existing art.
-    sand_path=ROOT/'assets/minecraft/blockstates/sand.json'
-    sand=json.loads(sand_path.read_text()); vs=sand['variants']['']
-    vs[:]=[v for v in vs if not v['model'].startswith('realm:block/this_rocks/')]
-    # Double all old weights, then split shell/starfish shares across both designs.
-    for i,v in enumerate(vs):v['weight']=7912 if i==0 else (2 if i==16 else (2 if 1<=i<=12 else 6))
-    for name,weight in [(f'seashell_{c}',8) for c in ['white','pink','yellow']]+[(f'starfish_{c}',w) for c,w in [('orange',1),('pink',1),('red',0)]]:
-        if not weight:continue
-        identifier=f'realm:block/this_rocks/natural/sand_{name}'
-        write(ROOT/f'assets/realm/models/block/this_rocks/natural/sand_{name}.json',combined('sand',name))
-        vs.append({'model':identifier,'weight':weight,'y':(len(vs)%4)*90}); natural.append(identifier)
-    write(sand_path,sand)
-    # Red starfish is also included naturally; use weights 3 old : 1 per new
-    # colour, total 6 / 12000 = the original 0.05%.
-    for v in vs:v['weight']*=3
-    vs[16]['weight']=6
-    # Existing two new colours now weigh 3 each; add red and take three from old.
-    vs[16]['weight']=3
-    name='starfish_red'; identifier=f'realm:block/this_rocks/natural/sand_{name}'
-    write(ROOT/f'assets/realm/models/block/this_rocks/natural/sand_{name}.json',combined('sand',name))
-    vs.append({'model':identifier,'weight':3,'y':0});natural.append(identifier)
-    write(sand_path,sand)
+    extras=[]
+    sand=json.loads((ROOT/'assets/minecraft/blockstates/sand.json').read_text())
+    vs=sand['variants']['']
     manifest={'source':'This Rocks! 1.10.0 / Motschen and TeamMidnightDust',
               'items':entries,'natural_models':natural,'grass_extras':len(extras),
               'sand_total_weight':sum(v['weight']for v in vs)}

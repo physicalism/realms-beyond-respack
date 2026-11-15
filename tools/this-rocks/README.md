@@ -1,6 +1,10 @@
 # This Rocks! decoration catalogue
 
-## 15 November 2026
+## Current status — reverted automatic decoration
+
+Henry preferred the ground decoration before the 15 November stone changes. Grass and sand blockstates, stone models, and their base generators are restored to the preceding Git revision. Automatic branches, pinecones, and imported coastal variants are disabled. The catalogue generator now only maintains manually placeable props; it no longer changes terrain decoration. Manual item IDs remain compatible.
+
+## Historical implementation — 15 November 2026
 
 95 placeable models adapted from This Rocks! 1.10.0 (Motschen / TeamMidnightDust): 44 rocks, 39 branches, one pinecone, three shells, three starfish, and five static geyser appearances. Source assets and checksum are retained here; attribution and the MIT licence are in `../../THIRD_PARTY_LICENSES/This-Rocks-MIT.txt` and included by the pack builder.
 
@@ -12,7 +16,7 @@ Vanilla weighted blockstates cannot select branches by biome or check for air ab
 
 ## Generation
 
-`python3 tools/this-rocks/generate.py` regenerates from the checked-in source assets. For an intentional source refresh, add `--jar /absolute/path/to/rocks-fabric-1.10.0+26.3.jar`. Run this generator AFTER regenerating lawn-decor or sand-shells, since those base generators restore their original variant lists. Keep a snapshot of current blockstates before regenerating.
+`python3 tools/this-rocks/generate.py` regenerates from the checked-in source assets. For an intentional source refresh, add `--jar /absolute/path/to/rocks-fabric-1.10.0+26.3.jar`. This generator no longer modifies the lawn-decor or sand-shells variant lists. Keep a snapshot of current blockstates before regenerating.
 
 Models are flattened into the realm namespace, with vanilla textures or four included mod textures. Bounds are normalised to a single-block footprint. Illegal Java starfish element angles (17.5 / 35 degrees) are snapped to the closest legal angle (22.5 / 45 degrees), so those silhouettes are adapted rather than exact copies. All other supported element rotations and UVs are retained.
 

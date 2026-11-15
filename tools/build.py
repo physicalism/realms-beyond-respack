@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import os
 import re
 import runpy
 import struct
@@ -316,17 +317,37 @@ def validate():
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:
         if variant['model'].startswith('realm:'): own_model(variant['model'])
-    # Sparse sand shells, following the vanilla grass-stone variant mechanism.
+    # Sand rates include the original art and imported This Rocks! designs.
     sand = read(ROOT/'assets/minecraft/blockstates/sand.json')['variants']['']
-    require(len(sand) == 20 and sand[0] == {'model': 'minecraft:block/sand', 'weight': 3956}, 'Invalid sand-shell frequency.')
-    require([v['weight'] for v in sand] == [3956] + [2]*12 + [3]*3 + [2] + [3]*3, 'Invalid shell, pebble, or starfish rarity.')
+    require(sum(v['weight'] for v in sand) == 24000, 'Invalid sand decoration total weight.')
     for variant in sand[1:]:
         own_model(variant['model'])
-        model = read(resource('models', variant['model']))
-        require(model['textures']['particle'] == 'minecraft:block/sand', 'Shell particles must remain sand.')
-        require(len(model['elements']) > 1, 'Missing sand decoration.')
-        for element in model['elements'][1:]:
-            require(all(0 <= a < b <= bound for a, b, bound in zip(element['from'], element['to'], (16, 18, 16))), 'Shell outside its block footprint.')
+        m = read(resource('models', variant['model']))
+        require(m['textures']['particle'] == 'minecraft:block/sand', 'Sand particles must remain sand.')
+        require(len(m['elements']) > 1, 'Missing sand decoration.')
+    nature = json.loads((ROOT/'tools/this-rocks/manifest.json').read_text())
+    require(len(nature['items']) == 95, 'Missing This Rocks! model variants.')
+    for entry in nature['items']:
+        item = read(resource('items', entry['item_model']))['model']
+        require(item == {'type':'minecraft:model','model':entry['model']}, 'Incorrect nature item definition.')
+        own_model(entry['model'])
+    for identifier in nature['natural_models']: own_model(identifier)
+    # Validate every imported model, its slots, Java rotations and model bounds.
+    identifiers = [x['model'] for x in nature['items']] + nature['natural_models']
+    for identifier in identifiers:
+        m = read(resource('models',identifier)); slots = m['textures']
+        for element in m['elements']:
+            require(all(-16 <= a <= b <= 32 for a,b in zip(element['from'],element['to'])), 'Nature model exceeds Java bounds: '+identifier)
+            rotation = element.get('rotation')
+            if rotation:
+                require(rotation['angle'] in (-45,-22.5,0,22.5,45), 'Invalid nature rotation: '+identifier)
+            for face in element['faces'].values():
+                value = face['texture']; seen = set()
+                while value.startswith('#'):
+                    key = value[1:]
+                    require(key in slots and key not in seen,'Invalid nature texture slot: '+identifier)
+                    seen.add(key);value=slots[key]
+                require(value.startswith(('minecraft:','realm:')), 'Unconverted nature texture: '+value)
     # 3D stonecutter saw (tools/stonecutter-saw/gen_saw.py): vanilla model and textures, saw extruded to 1 px.
     stonecutter = read(resource('models', 'minecraft:block/stonecutter'))
     own_model('minecraft:block/stonecutter')
@@ -391,11 +412,17 @@ def validate():
 
 
 def build():
+    revision = os.environ.get('REALMS_BEYOND_BUILD_COMMIT')
+    require(revision is None or re.fullmatch(r'[0-9a-f]{40}', revision), 'Build commit must be a full lowercase Git SHA.')
     metadata_path = ROOT/'pack.mcmeta'
     metadata = json.loads(metadata_path.read_text())
-    metadata['pack']['description'] = f'§5■ §bv{version()}\n§5■ §6By Henry§r'
+    label = f'v{version()}' + (f' · {revision[:7]}' if revision else '')
+    metadata['pack']['description'] = f'§5■ §b{label}\n§5■ §6By Henry§r'
+    metadata.pop('realms_beyond', None)
+    if revision:
+        metadata['realms_beyond'] = {'version': version(), 'source_commit': revision}
     metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2)+'\n')
-    files = validate() | {ROOT/'pack.mcmeta'}
+    files = validate() | {ROOT/'pack.mcmeta', ROOT/'THIRD_PARTY_LICENSES/This-Rocks-MIT.txt'}
     if (ROOT/'pack.png').exists():
         files.add(ROOT/'pack.png')
     destination = ROOT/'dist'

@@ -1,5 +1,13 @@
 # Changelog
 
+## Source updates after 0.1.57 — 15 November 2026
+
+- Added Git Pack Manager distribution through the generated `server-pack` branch; automatic builds identify the exact source commit in the visible description and metadata. Numbered GitHub Releases remain optional.
+- Recorded the existing This Rocks! catalogue: 95 placeable props, sparse natural branches/pinecones, shared coastal decoration rates, and retained upstream source/licence. Reduced large grass-rock rarity and refined grass/sand pebble geometry.
+- Corrected lotus centre overlap and separated upper/lower petal surfaces; the latest correction still needs in-game shader approval.
+- Updated the tracker and source workflow; kept new local backups/previews out of Git status without deleting existing reference material.
+- Nature generators reproduced the current assets exactly in a temporary copy. These are source revisions of base version 0.1.57, not a newly published numbered release.
+
 ## 0.1.57 — 14 November 2026
 
 - Added sparse ivory, coral pink, and orange clams, vanilla-textured pebbles, and very rare starfish using vanilla weighted block models.

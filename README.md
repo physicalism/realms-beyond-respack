@@ -71,7 +71,13 @@ Generator: `tools/hanging-banner/rb_hanging_banner.py <pack_root> [preview_dir]`
 python3 tools/build.py
 ```
 
-Packages are written to `dist/`. Set the version in `tools/VERSION`. To preview a GitHub draft release, run `python3 tools/release.py --dry-run`; omit `--dry-run` after committing and pushing to create the draft. GitHub releases require the GitHub CLI.
+Packages are written to `dist/`. `tools/VERSION` records the base release version. Normal server updates use **commit → push to main → automatic build → server-pack branch → Git Pack Manager**; a GitHub Release and the client Loader are optional legacy distribution routes. See [server setup and verification](docs/GIT-PACK-MANAGER.md).
+
+Automatic server builds display the base version plus the seven-character source commit, and retain the full commit under `realms_beyond.source_commit` in `pack.mcmeta`. The distribution branch also records `SOURCE_COMMIT`. This distinguishes updates without inventing a new numbered release for each edit. `0.1.57` alone does not establish which revision is installed.
+
+For an optional numbered release, deliberately update `tools/VERSION` and the changelog, validate, and follow the release instructions below. To preview a GitHub draft release, run `python3 tools/release.py --dry-run`; omit `--dry-run` after committing and pushing to create the draft. GitHub releases require the GitHub CLI.
+
+Keep source, generators, imported reference assets, and licences in Git. New local backups and previews under `builds/`, packages under `dist/`, and Python caches are ignored; existing tracked reference material remains preserved. Before pushing, inspect `git status --short` and run `python3 tools/build.py --check`. For nature regeneration, run lawn-decor, sand-shells, then this-rocks in that order; see the feature notes.
 
 ## Credits
 

@@ -1,0 +1,500 @@
+{
+  "source": "This Rocks! 1.10.0 / Motschen and TeamMidnightDust",
+  "items": [
+    {
+      "name": "rock_tiny",
+      "item_model": "realm:this_rocks/rock_tiny",
+      "model": "realm:block/this_rocks/rock_tiny"
+    },
+    {
+      "name": "rock_small",
+      "item_model": "realm:this_rocks/rock_small",
+      "model": "realm:block/this_rocks/rock_small"
+    },
+    {
+      "name": "rock_medium",
+      "item_model": "realm:this_rocks/rock_medium",
+      "model": "realm:block/this_rocks/rock_medium"
+    },
+    {
+      "name": "rock_large",
+      "item_model": "realm:this_rocks/rock_large",
+      "model": "realm:block/this_rocks/rock_large"
+    },
+    {
+      "name": "andesite_rock_tiny",
+      "item_model": "realm:this_rocks/andesite_rock_tiny",
+      "model": "realm:block/this_rocks/andesite_rock_tiny"
+    },
+    {
+      "name": "andesite_rock_small",
+      "item_model": "realm:this_rocks/andesite_rock_small",
+      "model": "realm:block/this_rocks/andesite_rock_small"
+    },
+    {
+      "name": "andesite_rock_medium",
+      "item_model": "realm:this_rocks/andesite_rock_medium",
+      "model": "realm:block/this_rocks/andesite_rock_medium"
+    },
+    {
+      "name": "andesite_rock_large",
+      "item_model": "realm:this_rocks/andesite_rock_large",
+      "model": "realm:block/this_rocks/andesite_rock_large"
+    },
+    {
+      "name": "diorite_rock_tiny",
+      "item_model": "realm:this_rocks/diorite_rock_tiny",
+      "model": "realm:block/this_rocks/diorite_rock_tiny"
+    },
+    {
+      "name": "diorite_rock_small",
+      "item_model": "realm:this_rocks/diorite_rock_small",
+      "model": "realm:block/this_rocks/diorite_rock_small"
+    },
+    {
+      "name": "diorite_rock_medium",
+      "item_model": "realm:this_rocks/diorite_rock_medium",
+      "model": "realm:block/this_rocks/diorite_rock_medium"
+    },
+    {
+      "name": "diorite_rock_large",
+      "item_model": "realm:this_rocks/diorite_rock_large",
+      "model": "realm:block/this_rocks/diorite_rock_large"
+    },
+    {
+      "name": "granite_rock_tiny",
+      "item_model": "realm:this_rocks/granite_rock_tiny",
+      "model": "realm:block/this_rocks/granite_rock_tiny"
+    },
+    {
+      "name": "granite_rock_small",
+      "item_model": "realm:this_rocks/granite_rock_small",
+      "model": "realm:block/this_rocks/granite_rock_small"
+    },
+    {
+      "name": "granite_rock_medium",
+      "item_model": "realm:this_rocks/granite_rock_medium",
+      "model": "realm:block/this_rocks/granite_rock_medium"
+    },
+    {
+      "name": "granite_rock_large",
+      "item_model": "realm:this_rocks/granite_rock_large",
+      "model": "realm:block/this_rocks/granite_rock_large"
+    },
+    {
+      "name": "gravel_rock_tiny",
+      "item_model": "realm:this_rocks/gravel_rock_tiny",
+      "model": "realm:block/this_rocks/gravel_rock_tiny"
+    },
+    {
+      "name": "gravel_rock_small",
+      "item_model": "realm:this_rocks/gravel_rock_small",
+      "model": "realm:block/this_rocks/gravel_rock_small"
+    },
+    {
+      "name": "gravel_rock_medium",
+      "item_model": "realm:this_rocks/gravel_rock_medium",
+      "model": "realm:block/this_rocks/gravel_rock_medium"
+    },
+    {
+      "name": "gravel_rock_large",
+      "item_model": "realm:this_rocks/gravel_rock_large",
+      "model": "realm:block/this_rocks/gravel_rock_large"
+    },
+    {
+      "name": "sand_rock_tiny",
+      "item_model": "realm:this_rocks/sand_rock_tiny",
+      "model": "realm:block/this_rocks/sand_rock_tiny"
+    },
+    {
+      "name": "sand_rock_small",
+      "item_model": "realm:this_rocks/sand_rock_small",
+      "model": "realm:block/this_rocks/sand_rock_small"
+    },
+    {
+      "name": "sand_rock_medium",
+      "item_model": "realm:this_rocks/sand_rock_medium",
+      "model": "realm:block/this_rocks/sand_rock_medium"
+    },
+    {
+      "name": "sand_rock_large",
+      "item_model": "realm:this_rocks/sand_rock_large",
+      "model": "realm:block/this_rocks/sand_rock_large"
+    },
+    {
+      "name": "red_sand_rock_tiny",
+      "item_model": "realm:this_rocks/red_sand_rock_tiny",
+      "model": "realm:block/this_rocks/red_sand_rock_tiny"
+    },
+    {
+      "name": "red_sand_rock_small",
+      "item_model": "realm:this_rocks/red_sand_rock_small",
+      "model": "realm:block/this_rocks/red_sand_rock_small"
+    },
+    {
+      "name": "red_sand_rock_medium",
+      "item_model": "realm:this_rocks/red_sand_rock_medium",
+      "model": "realm:block/this_rocks/red_sand_rock_medium"
+    },
+    {
+      "name": "red_sand_rock_large",
+      "item_model": "realm:this_rocks/red_sand_rock_large",
+      "model": "realm:block/this_rocks/red_sand_rock_large"
+    },
+    {
+      "name": "ice_rock_tiny",
+      "item_model": "realm:this_rocks/ice_rock_tiny",
+      "model": "realm:block/this_rocks/ice_rock_tiny"
+    },
+    {
+      "name": "ice_rock_small",
+      "item_model": "realm:this_rocks/ice_rock_small",
+      "model": "realm:block/this_rocks/ice_rock_small"
+    },
+    {
+      "name": "ice_rock_medium",
+      "item_model": "realm:this_rocks/ice_rock_medium",
+      "model": "realm:block/this_rocks/ice_rock_medium"
+    },
+    {
+      "name": "ice_rock_large",
+      "item_model": "realm:this_rocks/ice_rock_large",
+      "model": "realm:block/this_rocks/ice_rock_large"
+    },
+    {
+      "name": "end_stone_rock_tiny",
+      "item_model": "realm:this_rocks/end_stone_rock_tiny",
+      "model": "realm:block/this_rocks/end_stone_rock_tiny"
+    },
+    {
+      "name": "end_stone_rock_small",
+      "item_model": "realm:this_rocks/end_stone_rock_small",
+      "model": "realm:block/this_rocks/end_stone_rock_small"
+    },
+    {
+      "name": "end_stone_rock_medium",
+      "item_model": "realm:this_rocks/end_stone_rock_medium",
+      "model": "realm:block/this_rocks/end_stone_rock_medium"
+    },
+    {
+      "name": "end_stone_rock_large",
+      "item_model": "realm:this_rocks/end_stone_rock_large",
+      "model": "realm:block/this_rocks/end_stone_rock_large"
+    },
+    {
+      "name": "netherrack_rock_tiny",
+      "item_model": "realm:this_rocks/netherrack_rock_tiny",
+      "model": "realm:block/this_rocks/netherrack_rock_tiny"
+    },
+    {
+      "name": "netherrack_rock_small",
+      "item_model": "realm:this_rocks/netherrack_rock_small",
+      "model": "realm:block/this_rocks/netherrack_rock_small"
+    },
+    {
+      "name": "netherrack_rock_medium",
+      "item_model": "realm:this_rocks/netherrack_rock_medium",
+      "model": "realm:block/this_rocks/netherrack_rock_medium"
+    },
+    {
+      "name": "netherrack_rock_large",
+      "item_model": "realm:this_rocks/netherrack_rock_large",
+      "model": "realm:block/this_rocks/netherrack_rock_large"
+    },
+    {
+      "name": "soul_soil_rock_tiny",
+      "item_model": "realm:this_rocks/soul_soil_rock_tiny",
+      "model": "realm:block/this_rocks/soul_soil_rock_tiny"
+    },
+    {
+      "name": "soul_soil_rock_small",
+      "item_model": "realm:this_rocks/soul_soil_rock_small",
+      "model": "realm:block/this_rocks/soul_soil_rock_small"
+    },
+    {
+      "name": "soul_soil_rock_medium",
+      "item_model": "realm:this_rocks/soul_soil_rock_medium",
+      "model": "realm:block/this_rocks/soul_soil_rock_medium"
+    },
+    {
+      "name": "soul_soil_rock_large",
+      "item_model": "realm:this_rocks/soul_soil_rock_large",
+      "model": "realm:block/this_rocks/soul_soil_rock_large"
+    },
+    {
+      "name": "oak_stick_small",
+      "item_model": "realm:this_rocks/oak_stick_small",
+      "model": "realm:block/this_rocks/oak_stick_small"
+    },
+    {
+      "name": "oak_stick_medium",
+      "item_model": "realm:this_rocks/oak_stick_medium",
+      "model": "realm:block/this_rocks/oak_stick_medium"
+    },
+    {
+      "name": "oak_stick_large",
+      "item_model": "realm:this_rocks/oak_stick_large",
+      "model": "realm:block/this_rocks/oak_stick_large"
+    },
+    {
+      "name": "spruce_stick_small",
+      "item_model": "realm:this_rocks/spruce_stick_small",
+      "model": "realm:block/this_rocks/spruce_stick_small"
+    },
+    {
+      "name": "spruce_stick_medium",
+      "item_model": "realm:this_rocks/spruce_stick_medium",
+      "model": "realm:block/this_rocks/spruce_stick_medium"
+    },
+    {
+      "name": "spruce_stick_large",
+      "item_model": "realm:this_rocks/spruce_stick_large",
+      "model": "realm:block/this_rocks/spruce_stick_large"
+    },
+    {
+      "name": "birch_stick_small",
+      "item_model": "realm:this_rocks/birch_stick_small",
+      "model": "realm:block/this_rocks/birch_stick_small"
+    },
+    {
+      "name": "birch_stick_medium",
+      "item_model": "realm:this_rocks/birch_stick_medium",
+      "model": "realm:block/this_rocks/birch_stick_medium"
+    },
+    {
+      "name": "birch_stick_large",
+      "item_model": "realm:this_rocks/birch_stick_large",
+      "model": "realm:block/this_rocks/birch_stick_large"
+    },
+    {
+      "name": "jungle_stick_small",
+      "item_model": "realm:this_rocks/jungle_stick_small",
+      "model": "realm:block/this_rocks/jungle_stick_small"
+    },
+    {
+      "name": "jungle_stick_medium",
+      "item_model": "realm:this_rocks/jungle_stick_medium",
+      "model": "realm:block/this_rocks/jungle_stick_medium"
+    },
+    {
+      "name": "jungle_stick_large",
+      "item_model": "realm:this_rocks/jungle_stick_large",
+      "model": "realm:block/this_rocks/jungle_stick_large"
+    },
+    {
+      "name": "acacia_stick_small",
+      "item_model": "realm:this_rocks/acacia_stick_small",
+      "model": "realm:block/this_rocks/acacia_stick_small"
+    },
+    {
+      "name": "acacia_stick_medium",
+      "item_model": "realm:this_rocks/acacia_stick_medium",
+      "model": "realm:block/this_rocks/acacia_stick_medium"
+    },
+    {
+      "name": "acacia_stick_large",
+      "item_model": "realm:this_rocks/acacia_stick_large",
+      "model": "realm:block/this_rocks/acacia_stick_large"
+    },
+    {
+      "name": "dark_oak_stick_small",
+      "item_model": "realm:this_rocks/dark_oak_stick_small",
+      "model": "realm:block/this_rocks/dark_oak_stick_small"
+    },
+    {
+      "name": "dark_oak_stick_medium",
+      "item_model": "realm:this_rocks/dark_oak_stick_medium",
+      "model": "realm:block/this_rocks/dark_oak_stick_medium"
+    },
+    {
+      "name": "dark_oak_stick_large",
+      "item_model": "realm:this_rocks/dark_oak_stick_large",
+      "model": "realm:block/this_rocks/dark_oak_stick_large"
+    },
+    {
+      "name": "mangrove_stick_small",
+      "item_model": "realm:this_rocks/mangrove_stick_small",
+      "model": "realm:block/this_rocks/mangrove_stick_small"
+    },
+    {
+      "name": "mangrove_stick_medium",
+      "item_model": "realm:this_rocks/mangrove_stick_medium",
+      "model": "realm:block/this_rocks/mangrove_stick_medium"
+    },
+    {
+      "name": "mangrove_stick_large",
+      "item_model": "realm:this_rocks/mangrove_stick_large",
+      "model": "realm:block/this_rocks/mangrove_stick_large"
+    },
+    {
+      "name": "cherry_stick_small",
+      "item_model": "realm:this_rocks/cherry_stick_small",
+      "model": "realm:block/this_rocks/cherry_stick_small"
+    },
+    {
+      "name": "cherry_stick_medium",
+      "item_model": "realm:this_rocks/cherry_stick_medium",
+      "model": "realm:block/this_rocks/cherry_stick_medium"
+    },
+    {
+      "name": "cherry_stick_large",
+      "item_model": "realm:this_rocks/cherry_stick_large",
+      "model": "realm:block/this_rocks/cherry_stick_large"
+    },
+    {
+      "name": "pale_oak_stick_small",
+      "item_model": "realm:this_rocks/pale_oak_stick_small",
+      "model": "realm:block/this_rocks/pale_oak_stick_small"
+    },
+    {
+      "name": "pale_oak_stick_medium",
+      "item_model": "realm:this_rocks/pale_oak_stick_medium",
+      "model": "realm:block/this_rocks/pale_oak_stick_medium"
+    },
+    {
+      "name": "pale_oak_stick_large",
+      "item_model": "realm:this_rocks/pale_oak_stick_large",
+      "model": "realm:block/this_rocks/pale_oak_stick_large"
+    },
+    {
+      "name": "poplar_stick_small",
+      "item_model": "realm:this_rocks/poplar_stick_small",
+      "model": "realm:block/this_rocks/poplar_stick_small"
+    },
+    {
+      "name": "poplar_stick_medium",
+      "item_model": "realm:this_rocks/poplar_stick_medium",
+      "model": "realm:block/this_rocks/poplar_stick_medium"
+    },
+    {
+      "name": "poplar_stick_large",
+      "item_model": "realm:this_rocks/poplar_stick_large",
+      "model": "realm:block/this_rocks/poplar_stick_large"
+    },
+    {
+      "name": "bamboo_stick_small",
+      "item_model": "realm:this_rocks/bamboo_stick_small",
+      "model": "realm:block/this_rocks/bamboo_stick_small"
+    },
+    {
+      "name": "bamboo_stick_medium",
+      "item_model": "realm:this_rocks/bamboo_stick_medium",
+      "model": "realm:block/this_rocks/bamboo_stick_medium"
+    },
+    {
+      "name": "bamboo_stick_large",
+      "item_model": "realm:this_rocks/bamboo_stick_large",
+      "model": "realm:block/this_rocks/bamboo_stick_large"
+    },
+    {
+      "name": "crimson_stick_small",
+      "item_model": "realm:this_rocks/crimson_stick_small",
+      "model": "realm:block/this_rocks/crimson_stick_small"
+    },
+    {
+      "name": "crimson_stick_medium",
+      "item_model": "realm:this_rocks/crimson_stick_medium",
+      "model": "realm:block/this_rocks/crimson_stick_medium"
+    },
+    {
+      "name": "crimson_stick_large",
+      "item_model": "realm:this_rocks/crimson_stick_large",
+      "model": "realm:block/this_rocks/crimson_stick_large"
+    },
+    {
+      "name": "warped_stick_small",
+      "item_model": "realm:this_rocks/warped_stick_small",
+      "model": "realm:block/this_rocks/warped_stick_small"
+    },
+    {
+      "name": "warped_stick_medium",
+      "item_model": "realm:this_rocks/warped_stick_medium",
+      "model": "realm:block/this_rocks/warped_stick_medium"
+    },
+    {
+      "name": "warped_stick_large",
+      "item_model": "realm:this_rocks/warped_stick_large",
+      "model": "realm:block/this_rocks/warped_stick_large"
+    },
+    {
+      "name": "pinecone",
+      "item_model": "realm:this_rocks/pinecone",
+      "model": "realm:block/this_rocks/pinecone"
+    },
+    {
+      "name": "seashell_white",
+      "item_model": "realm:this_rocks/seashell_white",
+      "model": "realm:block/this_rocks/seashell_white"
+    },
+    {
+      "name": "seashell_pink",
+      "item_model": "realm:this_rocks/seashell_pink",
+      "model": "realm:block/this_rocks/seashell_pink"
+    },
+    {
+      "name": "seashell_yellow",
+      "item_model": "realm:this_rocks/seashell_yellow",
+      "model": "realm:block/this_rocks/seashell_yellow"
+    },
+    {
+      "name": "starfish_orange",
+      "item_model": "realm:this_rocks/starfish_orange",
+      "model": "realm:block/this_rocks/starfish_orange"
+    },
+    {
+      "name": "starfish_pink",
+      "item_model": "realm:this_rocks/starfish_pink",
+      "model": "realm:block/this_rocks/starfish_pink"
+    },
+    {
+      "name": "starfish_red",
+      "item_model": "realm:this_rocks/starfish_red",
+      "model": "realm:block/this_rocks/starfish_red"
+    },
+    {
+      "name": "geyser_off",
+      "item_model": "realm:this_rocks/geyser_off",
+      "model": "realm:block/this_rocks/geyser_off"
+    },
+    {
+      "name": "geyser_on",
+      "item_model": "realm:this_rocks/geyser_on",
+      "model": "realm:block/this_rocks/geyser_on"
+    },
+    {
+      "name": "nether_geyser_off",
+      "item_model": "realm:this_rocks/nether_geyser_off",
+      "model": "realm:block/this_rocks/nether_geyser_off"
+    },
+    {
+      "name": "nether_geyser_on",
+      "item_model": "realm:this_rocks/nether_geyser_on",
+      "model": "realm:block/this_rocks/nether_geyser_on"
+    },
+    {
+      "name": "snowy_geyser_off",
+      "item_model": "realm:this_rocks/snowy_geyser_off",
+      "model": "realm:block/this_rocks/snowy_geyser_off"
+    }
+  ],
+  "natural_models": [
+    "realm:block/this_rocks/natural/grass_oak_stick_small",
+    "realm:block/this_rocks/natural/grass_oak_stick_medium",
+    "realm:block/this_rocks/natural/grass_oak_stick_large",
+    "realm:block/this_rocks/natural/grass_spruce_stick_small",
+    "realm:block/this_rocks/natural/grass_spruce_stick_medium",
+    "realm:block/this_rocks/natural/grass_spruce_stick_large",
+    "realm:block/this_rocks/natural/grass_birch_stick_small",
+    "realm:block/this_rocks/natural/grass_birch_stick_medium",
+    "realm:block/this_rocks/natural/grass_birch_stick_large",
+    "realm:block/this_rocks/natural/grass_pinecone",
+    "realm:block/this_rocks/natural/sand_seashell_white",
+    "realm:block/this_rocks/natural/sand_seashell_pink",
+    "realm:block/this_rocks/natural/sand_seashell_yellow",
+    "realm:block/this_rocks/natural/sand_starfish_orange",
+    "realm:block/this_rocks/natural/sand_starfish_pink",
+    "realm:block/this_rocks/natural/sand_starfish_red"
+  ],
+  "grass_extras": 10,
+  "sand_total_weight": 24000
+}

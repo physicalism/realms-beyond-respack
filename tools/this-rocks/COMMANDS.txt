@@ -1,0 +1,288 @@
+# Each line is a separate Minecraft chat command. Requires creative/operator permissions.
+# Item displays: decorations only; use ground context to preserve scale.
+# Remove only this preview: /kill @e[type=minecraft:item_display,tag=rb_nature_preview]
+# rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/rock_tiny"]
+/summon minecraft:item_display ~0 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/rock_tiny"}},item_display:"ground"}
+# rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/rock_small"]
+/summon minecraft:item_display ~1.5 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/rock_small"}},item_display:"ground"}
+# rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/rock_medium"]
+/summon minecraft:item_display ~3 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/rock_medium"}},item_display:"ground"}
+# rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/rock_large"]
+/summon minecraft:item_display ~4.5 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/rock_large"}},item_display:"ground"}
+# andesite_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/andesite_rock_tiny"]
+/summon minecraft:item_display ~6 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/andesite_rock_tiny"}},item_display:"ground"}
+# andesite_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/andesite_rock_small"]
+/summon minecraft:item_display ~7.5 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/andesite_rock_small"}},item_display:"ground"}
+# andesite_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/andesite_rock_medium"]
+/summon minecraft:item_display ~9 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/andesite_rock_medium"}},item_display:"ground"}
+# andesite_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/andesite_rock_large"]
+/summon minecraft:item_display ~10.5 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/andesite_rock_large"}},item_display:"ground"}
+# diorite_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/diorite_rock_tiny"]
+/summon minecraft:item_display ~12 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/diorite_rock_tiny"}},item_display:"ground"}
+# diorite_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/diorite_rock_small"]
+/summon minecraft:item_display ~13.5 ~ ~0 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/diorite_rock_small"}},item_display:"ground"}
+# diorite_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/diorite_rock_medium"]
+/summon minecraft:item_display ~0 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/diorite_rock_medium"}},item_display:"ground"}
+# diorite_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/diorite_rock_large"]
+/summon minecraft:item_display ~1.5 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/diorite_rock_large"}},item_display:"ground"}
+# granite_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/granite_rock_tiny"]
+/summon minecraft:item_display ~3 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/granite_rock_tiny"}},item_display:"ground"}
+# granite_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/granite_rock_small"]
+/summon minecraft:item_display ~4.5 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/granite_rock_small"}},item_display:"ground"}
+# granite_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/granite_rock_medium"]
+/summon minecraft:item_display ~6 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/granite_rock_medium"}},item_display:"ground"}
+# granite_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/granite_rock_large"]
+/summon minecraft:item_display ~7.5 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/granite_rock_large"}},item_display:"ground"}
+# gravel_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/gravel_rock_tiny"]
+/summon minecraft:item_display ~9 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/gravel_rock_tiny"}},item_display:"ground"}
+# gravel_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/gravel_rock_small"]
+/summon minecraft:item_display ~10.5 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/gravel_rock_small"}},item_display:"ground"}
+# gravel_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/gravel_rock_medium"]
+/summon minecraft:item_display ~12 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/gravel_rock_medium"}},item_display:"ground"}
+# gravel_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/gravel_rock_large"]
+/summon minecraft:item_display ~13.5 ~ ~1.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/gravel_rock_large"}},item_display:"ground"}
+# sand_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/sand_rock_tiny"]
+/summon minecraft:item_display ~0 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/sand_rock_tiny"}},item_display:"ground"}
+# sand_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/sand_rock_small"]
+/summon minecraft:item_display ~1.5 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/sand_rock_small"}},item_display:"ground"}
+# sand_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/sand_rock_medium"]
+/summon minecraft:item_display ~3 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/sand_rock_medium"}},item_display:"ground"}
+# sand_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/sand_rock_large"]
+/summon minecraft:item_display ~4.5 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/sand_rock_large"}},item_display:"ground"}
+# red_sand_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/red_sand_rock_tiny"]
+/summon minecraft:item_display ~6 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/red_sand_rock_tiny"}},item_display:"ground"}
+# red_sand_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/red_sand_rock_small"]
+/summon minecraft:item_display ~7.5 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/red_sand_rock_small"}},item_display:"ground"}
+# red_sand_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/red_sand_rock_medium"]
+/summon minecraft:item_display ~9 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/red_sand_rock_medium"}},item_display:"ground"}
+# red_sand_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/red_sand_rock_large"]
+/summon minecraft:item_display ~10.5 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/red_sand_rock_large"}},item_display:"ground"}
+# ice_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/ice_rock_tiny"]
+/summon minecraft:item_display ~12 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/ice_rock_tiny"}},item_display:"ground"}
+# ice_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/ice_rock_small"]
+/summon minecraft:item_display ~13.5 ~ ~3 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/ice_rock_small"}},item_display:"ground"}
+# ice_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/ice_rock_medium"]
+/summon minecraft:item_display ~0 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/ice_rock_medium"}},item_display:"ground"}
+# ice_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/ice_rock_large"]
+/summon minecraft:item_display ~1.5 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/ice_rock_large"}},item_display:"ground"}
+# end_stone_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/end_stone_rock_tiny"]
+/summon minecraft:item_display ~3 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/end_stone_rock_tiny"}},item_display:"ground"}
+# end_stone_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/end_stone_rock_small"]
+/summon minecraft:item_display ~4.5 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/end_stone_rock_small"}},item_display:"ground"}
+# end_stone_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/end_stone_rock_medium"]
+/summon minecraft:item_display ~6 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/end_stone_rock_medium"}},item_display:"ground"}
+# end_stone_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/end_stone_rock_large"]
+/summon minecraft:item_display ~7.5 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/end_stone_rock_large"}},item_display:"ground"}
+# netherrack_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/netherrack_rock_tiny"]
+/summon minecraft:item_display ~9 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/netherrack_rock_tiny"}},item_display:"ground"}
+# netherrack_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/netherrack_rock_small"]
+/summon minecraft:item_display ~10.5 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/netherrack_rock_small"}},item_display:"ground"}
+# netherrack_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/netherrack_rock_medium"]
+/summon minecraft:item_display ~12 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/netherrack_rock_medium"}},item_display:"ground"}
+# netherrack_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/netherrack_rock_large"]
+/summon minecraft:item_display ~13.5 ~ ~4.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/netherrack_rock_large"}},item_display:"ground"}
+# soul_soil_rock_tiny
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/soul_soil_rock_tiny"]
+/summon minecraft:item_display ~0 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/soul_soil_rock_tiny"}},item_display:"ground"}
+# soul_soil_rock_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/soul_soil_rock_small"]
+/summon minecraft:item_display ~1.5 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/soul_soil_rock_small"}},item_display:"ground"}
+# soul_soil_rock_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/soul_soil_rock_medium"]
+/summon minecraft:item_display ~3 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/soul_soil_rock_medium"}},item_display:"ground"}
+# soul_soil_rock_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/soul_soil_rock_large"]
+/summon minecraft:item_display ~4.5 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/soul_soil_rock_large"}},item_display:"ground"}
+# oak_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/oak_stick_small"]
+/summon minecraft:item_display ~6 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/oak_stick_small"}},item_display:"ground"}
+# oak_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/oak_stick_medium"]
+/summon minecraft:item_display ~7.5 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/oak_stick_medium"}},item_display:"ground"}
+# oak_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/oak_stick_large"]
+/summon minecraft:item_display ~9 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/oak_stick_large"}},item_display:"ground"}
+# spruce_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/spruce_stick_small"]
+/summon minecraft:item_display ~10.5 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/spruce_stick_small"}},item_display:"ground"}
+# spruce_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/spruce_stick_medium"]
+/summon minecraft:item_display ~12 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/spruce_stick_medium"}},item_display:"ground"}
+# spruce_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/spruce_stick_large"]
+/summon minecraft:item_display ~13.5 ~ ~6 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/spruce_stick_large"}},item_display:"ground"}
+# birch_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/birch_stick_small"]
+/summon minecraft:item_display ~0 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/birch_stick_small"}},item_display:"ground"}
+# birch_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/birch_stick_medium"]
+/summon minecraft:item_display ~1.5 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/birch_stick_medium"}},item_display:"ground"}
+# birch_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/birch_stick_large"]
+/summon minecraft:item_display ~3 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/birch_stick_large"}},item_display:"ground"}
+# jungle_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/jungle_stick_small"]
+/summon minecraft:item_display ~4.5 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/jungle_stick_small"}},item_display:"ground"}
+# jungle_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/jungle_stick_medium"]
+/summon minecraft:item_display ~6 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/jungle_stick_medium"}},item_display:"ground"}
+# jungle_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/jungle_stick_large"]
+/summon minecraft:item_display ~7.5 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/jungle_stick_large"}},item_display:"ground"}
+# acacia_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/acacia_stick_small"]
+/summon minecraft:item_display ~9 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/acacia_stick_small"}},item_display:"ground"}
+# acacia_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/acacia_stick_medium"]
+/summon minecraft:item_display ~10.5 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/acacia_stick_medium"}},item_display:"ground"}
+# acacia_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/acacia_stick_large"]
+/summon minecraft:item_display ~12 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/acacia_stick_large"}},item_display:"ground"}
+# dark_oak_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/dark_oak_stick_small"]
+/summon minecraft:item_display ~13.5 ~ ~7.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/dark_oak_stick_small"}},item_display:"ground"}
+# dark_oak_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/dark_oak_stick_medium"]
+/summon minecraft:item_display ~0 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/dark_oak_stick_medium"}},item_display:"ground"}
+# dark_oak_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/dark_oak_stick_large"]
+/summon minecraft:item_display ~1.5 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/dark_oak_stick_large"}},item_display:"ground"}
+# mangrove_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/mangrove_stick_small"]
+/summon minecraft:item_display ~3 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/mangrove_stick_small"}},item_display:"ground"}
+# mangrove_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/mangrove_stick_medium"]
+/summon minecraft:item_display ~4.5 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/mangrove_stick_medium"}},item_display:"ground"}
+# mangrove_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/mangrove_stick_large"]
+/summon minecraft:item_display ~6 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/mangrove_stick_large"}},item_display:"ground"}
+# cherry_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/cherry_stick_small"]
+/summon minecraft:item_display ~7.5 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/cherry_stick_small"}},item_display:"ground"}
+# cherry_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/cherry_stick_medium"]
+/summon minecraft:item_display ~9 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/cherry_stick_medium"}},item_display:"ground"}
+# cherry_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/cherry_stick_large"]
+/summon minecraft:item_display ~10.5 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/cherry_stick_large"}},item_display:"ground"}
+# pale_oak_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/pale_oak_stick_small"]
+/summon minecraft:item_display ~12 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/pale_oak_stick_small"}},item_display:"ground"}
+# pale_oak_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/pale_oak_stick_medium"]
+/summon minecraft:item_display ~13.5 ~ ~9 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/pale_oak_stick_medium"}},item_display:"ground"}
+# pale_oak_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/pale_oak_stick_large"]
+/summon minecraft:item_display ~0 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/pale_oak_stick_large"}},item_display:"ground"}
+# poplar_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/poplar_stick_small"]
+/summon minecraft:item_display ~1.5 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/poplar_stick_small"}},item_display:"ground"}
+# poplar_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/poplar_stick_medium"]
+/summon minecraft:item_display ~3 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/poplar_stick_medium"}},item_display:"ground"}
+# poplar_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/poplar_stick_large"]
+/summon minecraft:item_display ~4.5 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/poplar_stick_large"}},item_display:"ground"}
+# bamboo_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/bamboo_stick_small"]
+/summon minecraft:item_display ~6 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/bamboo_stick_small"}},item_display:"ground"}
+# bamboo_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/bamboo_stick_medium"]
+/summon minecraft:item_display ~7.5 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/bamboo_stick_medium"}},item_display:"ground"}
+# bamboo_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/bamboo_stick_large"]
+/summon minecraft:item_display ~9 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/bamboo_stick_large"}},item_display:"ground"}
+# crimson_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/crimson_stick_small"]
+/summon minecraft:item_display ~10.5 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/crimson_stick_small"}},item_display:"ground"}
+# crimson_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/crimson_stick_medium"]
+/summon minecraft:item_display ~12 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/crimson_stick_medium"}},item_display:"ground"}
+# crimson_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/crimson_stick_large"]
+/summon minecraft:item_display ~13.5 ~ ~10.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/crimson_stick_large"}},item_display:"ground"}
+# warped_stick_small
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/warped_stick_small"]
+/summon minecraft:item_display ~0 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/warped_stick_small"}},item_display:"ground"}
+# warped_stick_medium
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/warped_stick_medium"]
+/summon minecraft:item_display ~1.5 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/warped_stick_medium"}},item_display:"ground"}
+# warped_stick_large
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/warped_stick_large"]
+/summon minecraft:item_display ~3 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/warped_stick_large"}},item_display:"ground"}
+# pinecone
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/pinecone"]
+/summon minecraft:item_display ~4.5 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/pinecone"}},item_display:"ground"}
+# seashell_white
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/seashell_white"]
+/summon minecraft:item_display ~6 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/seashell_white"}},item_display:"ground"}
+# seashell_pink
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/seashell_pink"]
+/summon minecraft:item_display ~7.5 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/seashell_pink"}},item_display:"ground"}
+# seashell_yellow
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/seashell_yellow"]
+/summon minecraft:item_display ~9 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/seashell_yellow"}},item_display:"ground"}
+# starfish_orange
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/starfish_orange"]
+/summon minecraft:item_display ~10.5 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/starfish_orange"}},item_display:"ground"}
+# starfish_pink
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/starfish_pink"]
+/summon minecraft:item_display ~12 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/starfish_pink"}},item_display:"ground"}
+# starfish_red
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/starfish_red"]
+/summon minecraft:item_display ~13.5 ~ ~12 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/starfish_red"}},item_display:"ground"}
+# geyser_off
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/geyser_off"]
+/summon minecraft:item_display ~0 ~ ~13.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/geyser_off"}},item_display:"ground"}
+# geyser_on
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/geyser_on"]
+/summon minecraft:item_display ~1.5 ~ ~13.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/geyser_on"}},item_display:"ground"}
+# nether_geyser_off
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/nether_geyser_off"]
+/summon minecraft:item_display ~3 ~ ~13.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/nether_geyser_off"}},item_display:"ground"}
+# nether_geyser_on
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/nether_geyser_on"]
+/summon minecraft:item_display ~4.5 ~ ~13.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/nether_geyser_on"}},item_display:"ground"}
+# snowy_geyser_off
+/give @s minecraft:paper[minecraft:item_model="realm:this_rocks/snowy_geyser_off"]
+/summon minecraft:item_display ~6 ~ ~13.5 {Tags:["rb_nature_preview"],item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"realm:this_rocks/snowy_geyser_off"}},item_display:"ground"}

@@ -1,6 +1,6 @@
 # Sand decoration
 
-Run `python3 tools/sand-shells/generate.py` from the pack root. Generates only sand blockstates, sixteen decoration models, and a 16 × 16 painted shell atlas; grass assets are untouched. Read `../../ARTSTYLE.md` before changing artwork.
+Run `python3 tools/sand-shells/generate.py` from the pack root. Generates only sand blockstates, nineteen decoration models, and a 16 × 16 painted shell atlas; grass assets are untouched. Read `../../ARTSTYLE.md` before changing artwork.
 
 ## Current revision — 14 November 2026
 
@@ -31,3 +31,11 @@ Latest request supersedes the flat-only direction: more detailed 3D shells are a
 Sandstone colour correction: removed red sandstone at Henry’s request; all sandy pebbles now use ordinary pale sandstone textures. Shapes and frequencies unchanged.
 
 Latest colour direction supersedes the sandstone texture choices: all three sandy pebble variants use generated `realm:block/sand_pebble_ivory`, a warm chalky ivory palette lighter than vanilla sand, with broad quiet pixel clusters for a sand-pebble / shell appearance. Geometry, ordinary grey stones, shells, starfish, and weights are unchanged. Shader appearance needs in-game review.
+
+## 15 November 2026 — This Rocks! inspired pebbles
+
+Six pebble variants now use broader low stepped silhouettes with offset caps and shoulders, via `../lawn-decor/rock_shapes.py`. Original geometry follows the inspected This Rocks! 1.10.0 direction. Grey stone materials and the custom warm ivory material are retained. Sand rocks remain at most two model pixels high. Exterior faces are merged without hidden faces or coplanar overlaps. Shells, starfish, textures, rotations, and all probabilities are unchanged. Backup for this joint edit is under `builds/lawn-decor-backups/rocks-style-20261115-134119/`. In-game and shader appearance remain unverified.
+
+## Expanded nature catalogue
+
+`../this-rocks/generate.py` shares the existing shell and starfish rates with adapted This Rocks! variants after this base generator. Run it last when regenerating. See [nature catalogue](../this-rocks/README.md).

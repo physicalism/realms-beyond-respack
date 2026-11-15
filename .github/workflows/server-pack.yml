@@ -24,6 +24,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate and build
+        env:
+          REALMS_BEYOND_BUILD_COMMIT: ${{ github.sha }}
         run: python3 tools/build.py
       - name: Update distribution branch
         shell: bash

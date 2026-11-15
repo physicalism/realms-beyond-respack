@@ -1,15 +1,17 @@
 """Natural variation via vanilla weighted random blockstate variants (truly random per position, no mod needed).
 
-- Grass: chunky little boulders/pebble clusters (stone, andesite, cobblestone) on ~7% of plain grass blocks.
+- Grass: chunky little boulders/pebble clusters (stone, andesite, cobblestone) on ~2.5% of plain grass blocks.
 - (paths: removed at Henry's request) Dirt path: worn patches (coarse dirt / gravel / packed mud) and a few small pebbles on ~30% of path blocks,
   kept to the middle of the block (texels 4..11) so they never meet the Fusion lawn-edge pieces.
 Grass next to paths uses the Fusion path models instead, so no boulders on path edges.
 Re-run: python3 tools/lawn-decor/gen_decor.py
 """
 import json, os, random, copy
+from rock_shapes import rock_elements
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-GRASS_CHANCE, GRASS_VARIANTS = 0.035, 10
-BIG_VARIANTS = 2   # extra, bigger single stones (same rarity per variant as the others)
+GRASS_CHANCE, GRASS_VARIANTS = 0.025, 10
+BIG_VARIANTS = 2   # largest stones have one quarter of the ordinary variant weight
+ROCK_WEIGHT, BIG_ROCK_WEIGHT = 4, 1
 PATH_CHANCE, PATH_VARIANTS = 0.30, 14
 rng = random.Random('realms-beyond-decor-v2')
 
@@ -42,30 +44,25 @@ def free(occ, cells):
     return not any((x + dx, z + dz) in occ for (x, z) in cells for dx in (-1, 0, 1) for dz in (-1, 0, 1))
 
 def stone(els, occ, tex, size, lo, hi, base_y):
-    """A rounded little rock: a base slab plus a smaller offset cap (bigger sizes), placed within [lo, hi)."""
+    """Broad low stones with asymmetric ledges, at native texture scale."""
     shapes = {
-        'pebble': [((2, 1, 1), None), ((1, 1, 2), None), ((2, 1, 2), None)],
-        'small':  [((2, 1, 2), None), ((3, 1, 2), None), ((2, 1, 3), None)],
-        'medium': [((3, 1, 3), None), ((4, 1, 2), None), ((2, 1, 4), None), ((3, 2, 2), None)],
-        'large':  [((4, 2, 4), (3, 1, 2)), ((5, 2, 3), (3, 1, 2)), ((4, 3, 5), (2, 1, 3))],
-        'big':    [((5, 2, 4), None), ((4, 2, 5), None), ((6, 2, 4), None), ((5, 3, 5), None)],
+        'pebble': [(3,1,2), (4,1,2)],
+        'small': [(5,1,3), (5,1,4), (6,1,3)],
+        'medium': [(7,2,4), (6,2,4)],
+        'large': [(8,2,5)],
+        'big': [(9,3,6), (8,3,6)],
     }
-    (w, h, d), cap = rng.choice(shapes[size])
+    w,h,d = rng.choice(shapes[size])
+    depth = d + (w >= 7)
     for _ in range(40):
-        x, z = rng.randint(lo, hi - w), rng.randint(lo, hi - d)
-        cells = [(xx, zz) for xx in range(x, x + w) for zz in range(z, z + d)]
-        if free(occ, cells): break
+        x,z = rng.randint(lo,hi-w), rng.randint(lo,hi-depth)
+        cells = [(xx,zz) for xx in range(x,x+w) for zz in range(z,z+depth)]
+        if free(occ,cells): break
     else:
         return False
-    occ |= set(cells)
-    u, v = rng.randint(0, 16 - max(w, d) - 2), rng.randint(0, 9 - h)
-    els.append(box(x, base_y, z, w, h, d, tex, u, v))
-    if cap and SIMPLE is False:
-        cw, ch, cd = cap
-        cx = x + rng.randint(0, w - cw); cz = z + rng.randint(0, d - cd)
-        els.append(box(cx, base_y + h, cz, cw, ch, cd, tex, (u + 3) % (16 - cw), v))
-    if not SIMPLE and size in ('medium', 'large') and rng.random() < 0.6:     # a chipped-off pebble beside it
-        stone(els, occ, tex, 'pebble', lo, hi, base_y)
+    occ.update(cells)
+    u,v = rng.randint(0,16-max(w,depth)), rng.randint(0,16-max(depth,h+1))
+    els.extend(rock_elements(x,base_y,z,w,h,d,tex,u,v))
     return True
 
 SIMPLE = True   # single-box stones (no caps / chips)
@@ -116,11 +113,13 @@ def path_variant():
 
 def write(block, models, plain_model, plain_rot, chance, subdir):
     mdir = f"{ROOT}/assets/realm/models/block/{subdir}"; os.makedirs(mdir, exist_ok=True)
-    plain_w = max(1, round(len(models) * (1 - chance) / chance / len(plain_rot)))   # each decor variant has weight 1
+    weights = [ROCK_WEIGHT]*GRASS_VARIANTS + [BIG_ROCK_WEIGHT]*BIG_VARIANTS
+    assert len(weights) == len(models)
+    plain_w = max(1, round(sum(weights) * (1 - chance) / chance / len(plain_rot)))
     variants = [dict({"model": plain_model, "weight": plain_w}, **({"y": y} if y else {})) for y in plain_rot]
     for i, m in enumerate(models):
         json.dump(m, open(f"{mdir}/{subdir.split('/')[-1]}_{i:02d}.json", "w"), indent=1)
-        v = {"model": f"realm:block/{subdir}/{subdir.split('/')[-1]}_{i:02d}", "weight": 1}
+        v = {"model": f"realm:block/{subdir}/{subdir.split('/')[-1]}_{i:02d}", "weight": weights[i]}
         y = rng.choice([0, 90, 180, 270])
         if y: v["y"] = y
         variants.append(v)

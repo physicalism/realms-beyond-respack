@@ -1,9 +1,12 @@
 """Sparse clam shells, vanilla-textured pebbles, and very rare five-arm starfish."""
 import json
+import sys
 from pathlib import Path
 import struct
 import zlib
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT/'tools/lawn-decor'))
+from rock_shapes import rock_elements
 # Shells 24/4000, pebble patches 18/4000, starfish 2/4000.
 PLAIN_WEIGHT = 3956
 PALETTES = [
@@ -102,14 +105,11 @@ def generate():
             materials = ['stone','andesite','cobblestone'] if i<15 else ['sandstone_top','sandstone_bottom','sandstone']
             textures['rock'] = ('minecraft:block/'+materials[index]) if i<15 else 'realm:block/sand_pebble_ivory'
             decor = []
-            # Broad solitary stones; third variant has differently sized,
-            # offset stones rather than the disliked matching pebble pair.
-            plans = [[(5,7,4,3,1)], [(6,6,5,4,1)],
-                     [(3,4,4,3,1),(10,10,3,2,1)]]
+            # Low stepped silhouettes, retaining grey and warm ivory materials.
+            plans = [[(5,6,5,3,1)], [(4,5,7,4,1)],
+                     [(2,3,5,3,1),(10,10,4,2,1)]]
             for x,z,w,d,h in plans[index]:
-                decor.append({'from':[x,16,z],'to':[x+w,16+h,z+d], 'faces':{
-                    side:{'texture':'#rock','uv':[4,5,4+(d if side in ('east','west') else w),5+(d if side in ('up','down') else 1)]}
-                    for side in ('up','north','south','east','west')}})
+                decor.extend(rock_elements(x,16,z,w,h,d,'#rock',0,0))
             weight = 3
         else:
             textures['shell'] = 'realm:block/sand_shells'

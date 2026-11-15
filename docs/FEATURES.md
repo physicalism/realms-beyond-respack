@@ -12,6 +12,7 @@ Navigation audited on 13 November 2026. Paths identify implementation candidates
 | Hanging banners | [hanging-banner](../tools/hanging-banner/) |
 | Connected paths and edges | [path-edges README](../tools/path-edges/README.md) |
 | Sand shells | [generator and notes](../tools/sand-shells/README.md) |
+| This Rocks! models, natural extras, and placement | [catalogue and generator](../tools/this-rocks/README.md) |
 | Grass decoration | [gen_decor.py](../tools/lawn-decor/gen_decor.py) |
 | Lily-pad colour selection | [lily_pad_mix.py](../tools/lily_pad_mix.py) |
 | Blacksmith, clocktower, and florist lettering | [rb_sign_caps.py](../tools/clocktower-sign/rb_sign_caps.py); older sign experiments also exist under `tools/blacksmith-sign/` |

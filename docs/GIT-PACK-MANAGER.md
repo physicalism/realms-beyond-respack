@@ -11,7 +11,7 @@ Read through Cyberduck from the live server configuration:
 - Repository URL: `https://github.com/physicalism/realms-beyond-respack.git`.
 - Resource-pack provider enabled; root `/resourcepacks`.
 - Datapack provider disabled. Leave it disabled to retain existing world datapack management.
-- Current repository branch setting is `main`; change it to `server-pack` only after the distribution branch exists.
+- Repository branch is now `server-pack`; updated through Cyberduck and saved before restart.
 
 The main source repository has its pack at the repository root, whereas Git Pack Manager expects individual packs inside its configured resource-pack directory. Both unpacked folders and priority-prefixed ZIPs are supported; a ZIP is not intrinsically required.
 
@@ -21,7 +21,7 @@ The main source repository has its pack at the repository root, whereas Git Pack
 
 This distributes committed source changes automatically; it is not restricted to published GitHub Releases. Existing uncommitted source edits will not be distributed until deliberately committed and pushed.
 
-## Activation still required
+## Activation procedure
 
 1. Review and commit the workflow, model fix, and intended source changes, then push to `main`. Do not blindly include unrelated pending work.
 2. Confirm the GitHub Actions run succeeds and `server-pack/resourcepacks/0-realms-beyond.zip` exists.
@@ -34,4 +34,10 @@ A webhook on this repository receives the distribution branch push as well as th
 
 ## Status
 
-Local validator passed for the lily-pad model fix. Distribution shell tested against a temporary local Git remote for initial branch creation and a subsequent update; both passed. Workflow not run on GitHub. Server settings inspected, not changed; no restart or webhook creation performed. No commit, push, release, or version bump performed. Distribution and in-game appearance remain unverified.
+Activated on 15 November 2026. Source commit `3d3065603dab0159621ac50eaa3f18e855143034` was pushed to main. GitHub Actions generated `server-pack`, with SOURCE_COMMIT matching that source commit. The live server config was changed to `server-pack`, webhook 712350502 was created for push events, and the server was restarted through the Modrinth web dashboard.
+
+The server generated `4976881525863590517.zip` (8.5 MB). Its public HTTP download succeeded; all 2,449 downloaded asset files matched committed source byte-for-byte, including the five inset lotus centres. Safari automatically extracted the verification download. The pack format and version remain unchanged. Other pending working-tree changes, including the This Rocks work, were deliberately left uncommitted and are not part of this deployment.
+
+The existing server clone retained its local branch name `main` and generated a local merge when pulling `server-pack`; the downloaded contents nevertheless match the distribution source exactly. Do not infer pack contents from the branch name printed in these server logs. Log messages about an absent nested `packs` directory did not prevent the complete pack being assembled; download verification establishes the resulting contents.
+
+Local validator, clean committed-source build, and distribution shell checks passed. In-game shader appearance still needs Henry's check. No version bump or GitHub Release was created.

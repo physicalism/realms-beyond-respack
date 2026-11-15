@@ -127,7 +127,7 @@ To adjust placement in Blockbench, open `assets/realm/models/item/balcony_flower
 
 Ordinary placed lily pads show six equally likely variants: plain leaf, pink, purple, white, pale tropical aqua, and yellow (1/6 each, approximately 16.7%). Aqua and yellow are recoloured from the white Origin Realms lotus. Each also has four equally likely rotations. The plain leaf uses the same lotus pad texture without the flower.
 
-The flower centre uses a slightly inset inner surface (0.02 model units) to avoid coplanar inner/outer faces flickering under shaders. Applied to all five flower colours on 15 November 2026; in-game shader verification is pending.
+The flower centre uses a slightly inset inner surface (0.02 model units) to avoid coplanar inner/outer faces flickering under shaders. Applied to all five flower colours on 15 November 2026. Henry subsequently reported persistent flickering on the outer petals. Those four petals now have 0.0625 model units of thickness, separating their formerly coincident upper/lower faces while retaining the UVs, rotations, and centre height. The client cache and live alias both contained the first centre fix, so that change alone was insufficient. This second shader-facing correction still needs in-game verification.
 
 Place normal lily pads on water; no commands, frames, mods, or datapacks are needed. Existing pads also change appearance. Variants depend on block position, so breaking and replacing a pad at the same position does not reroll its appearance. These are probabilities, not a guaranteed equal count in each pond. Lily pad behaviour and collision remain vanilla. Pond models and textures adapted from Origin Realms.
 

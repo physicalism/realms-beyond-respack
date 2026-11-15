@@ -317,9 +317,9 @@ def validate():
     grass = read(ROOT/'assets/minecraft/blockstates/grass_block.json')
     for variant in grass['variants']['snowy=false']:
         if variant['model'].startswith('realm:'): own_model(variant['model'])
-    # Sand rates include the original art and imported This Rocks! designs.
+    # Restored original sand decoration; imported props are manual only.
     sand = read(ROOT/'assets/minecraft/blockstates/sand.json')['variants']['']
-    require(sum(v['weight'] for v in sand) == 24000, 'Invalid sand decoration total weight.')
+    require(len(sand) == 20 and [v['weight'] for v in sand] == [3956] + [2]*12 + [3]*3 + [2] + [3]*3, 'Invalid restored sand decoration rates.')
     for variant in sand[1:]:
         own_model(variant['model'])
         m = read(resource('models', variant['model']))

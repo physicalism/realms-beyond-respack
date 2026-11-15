@@ -6,7 +6,7 @@
   "top": "minecraft:block/grass_block_top",
   "side": "minecraft:block/grass_block_side",
   "overlay": "minecraft:block/grass_block_side_overlay",
-  "rock": "minecraft:block/stone"
+  "rock": "minecraft:block/andesite"
  },
  "elements": [
   {
@@ -144,300 +144,119 @@
   },
   {
    "from": [
-    2,
-    17,
-    7
+    9,
+    16,
+    6
    ],
    "to": [
-    7,
+    12,
     17,
     8
    ],
    "faces": {
     "up": {
-     "texture": "#rock",
      "uv": [
-      2,
-      1,
-      7,
-      2
-     ]
+      11,
+      6,
+      14,
+      8
+     ],
+     "texture": "#rock"
+    },
+    "north": {
+     "uv": [
+      11,
+      8,
+      14,
+      9
+     ],
+     "texture": "#rock"
+    },
+    "south": {
+     "uv": [
+      11,
+      8,
+      14,
+      9
+     ],
+     "texture": "#rock"
+    },
+    "west": {
+     "uv": [
+      12,
+      8,
+      14,
+      9
+     ],
+     "texture": "#rock"
+    },
+    "east": {
+     "uv": [
+      12,
+      8,
+      14,
+      9
+     ],
+     "texture": "#rock"
     }
    }
   },
   {
    "from": [
-    2,
-    17,
+    4,
+    16,
     8
    ],
    "to": [
-    3,
-    17,
-    11
-   ],
-   "faces": {
-    "up": {
-     "texture": "#rock",
-     "uv": [
-      2,
-      2,
-      3,
-      5
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    3,
+    5,
     17,
     10
    ],
-   "to": [
-    7,
-    17,
-    11
-   ],
    "faces": {
     "up": {
-     "texture": "#rock",
      "uv": [
       3,
+      7,
       4,
-      7,
-      5
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    5,
-    17,
-    8
-   ],
-   "to": [
-    7,
-    17,
-    10
-   ],
-   "faces": {
-    "up": {
-     "texture": "#rock",
-     "uv": [
-      5,
-      2,
-      7,
-      4
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    18,
-    8
-   ],
-   "to": [
-    5,
-    18,
-    10
-   ],
-   "faces": {
-    "up": {
-     "texture": "#rock",
-     "uv": [
-      3,
-      2,
-      5,
-      4
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    2,
-    16,
-    7
-   ],
-   "to": [
-    7,
-    17,
-    7
-   ],
-   "faces": {
+      9
+     ],
+     "texture": "#rock"
+    },
     "north": {
-     "texture": "#rock",
-     "uv": [
-      2,
-      1,
-      7,
-      2
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    17,
-    8
-   ],
-   "to": [
-    5,
-    18,
-    8
-   ],
-   "faces": {
-    "north": {
-     "texture": "#rock",
      "uv": [
       3,
-      2,
-      5,
-      3
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    17,
-    10
-   ],
-   "to": [
-    5,
-    18,
-    10
-   ],
-   "faces": {
+      9,
+      4,
+      10
+     ],
+     "texture": "#rock"
+    },
     "south": {
-     "texture": "#rock",
      "uv": [
       3,
-      2,
-      5,
-      3
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    2,
-    16,
-    11
-   ],
-   "to": [
-    7,
-    17,
-    11
-   ],
-   "faces": {
-    "south": {
-     "texture": "#rock",
-     "uv": [
-      2,
-      1,
-      7,
-      2
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    2,
-    16,
-    7
-   ],
-   "to": [
-    2,
-    17,
-    11
-   ],
-   "faces": {
+      9,
+      4,
+      10
+     ],
+     "texture": "#rock"
+    },
     "west": {
-     "texture": "#rock",
      "uv": [
-      2,
-      1,
+      4,
+      9,
       6,
-      2
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    3,
-    17,
-    8
-   ],
-   "to": [
-    3,
-    18,
-    10
-   ],
-   "faces": {
-    "west": {
-     "texture": "#rock",
-     "uv": [
-      3,
-      2,
-      5,
-      3
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    5,
-    17,
-    8
-   ],
-   "to": [
-    5,
-    18,
-    10
-   ],
-   "faces": {
+      10
+     ],
+     "texture": "#rock"
+    },
     "east": {
-     "texture": "#rock",
      "uv": [
-      3,
-      2,
-      5,
-      3
-     ]
-    }
-   }
-  },
-  {
-   "from": [
-    7,
-    16,
-    7
-   ],
-   "to": [
-    7,
-    17,
-    11
-   ],
-   "faces": {
-    "east": {
-     "texture": "#rock",
-     "uv": [
-      2,
-      1,
+      4,
+      9,
       6,
-      2
-     ]
+      10
+     ],
+     "texture": "#rock"
     }
    }
   }

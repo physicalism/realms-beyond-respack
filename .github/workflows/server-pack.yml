@@ -1,0 +1,53 @@
+name: Build server resource pack
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/**'
+      - 'pack.mcmeta'
+      - 'pack.png'
+      - 'THIRD_PARTY_LICENSES/**'
+      - 'tools/**'
+      - '.github/workflows/server-pack.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: server-pack
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and build
+        run: python3 tools/build.py
+      - name: Update distribution branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_commit=$(git rev-parse HEAD)
+          pack_source="$PWD/dist/Realms Beyond.zip"
+          deploy_dir=$(mktemp -d)
+          if git ls-remote --exit-code --heads origin server-pack >/dev/null; then
+            git fetch origin server-pack
+            git worktree add "$deploy_dir" FETCH_HEAD
+            cd "$deploy_dir"
+          else
+            git worktree add --detach "$deploy_dir" HEAD
+            cd "$deploy_dir"
+            git switch --orphan server-pack
+          fi
+          mkdir -p resourcepacks
+          cp "$pack_source" resourcepacks/0-realms-beyond.zip
+          printf '%s\n' "$source_commit" > SOURCE_COMMIT
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add resourcepacks/0-realms-beyond.zip SOURCE_COMMIT
+          if ! git diff --cached --quiet; then
+            git commit -m "Build server pack from $source_commit"
+            git push origin HEAD:server-pack
+          fi

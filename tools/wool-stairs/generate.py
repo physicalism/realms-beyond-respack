@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Raised wool profiles, fixed UV variety, and conditional Fusion stair spills."""
+"""Raised wool profiles with fixed fluff, UV variety, and conditional Fusion stair spills."""
 import argparse
+import random
 import copy
 import json
 from collections import defaultdict
@@ -88,6 +89,109 @@ def surface(cells, skip=None, blocked=frozenset()):
     return elements
 
 
+# --- Fluff -----------------------------------------------------------------
+# Informed by Fluffy Carpets (bebebea_loste): small 2x2 wool patches lifted
+# about 0.25 px from the surface, and soft carpet edges. Nothing is copied.
+# Patches here are closed boxes rather than floating planes, placed by a seeded
+# layout instead of a checkerboard, and each of the four fixed alternatives has
+# its own layout. Positions are on the quarter-pixel grid and are rejected if
+# any face would share a plane with another face.
+LIFT=0.25        # tuft height above a tread
+DROOP=0.5        # how far a riser-edge tuft hangs below its nose
+LIP=0.5          # how far a riser-edge tuft leans out over the drop
+Q=4              # quarter-pixel raster used for coplanarity checks
+
+
+def heightmap(high):
+    return {(x,z):(9 if x==-1 else raised(high,x,z)) for x in range(-1,16) for z in range(16)}
+
+
+def box_faces(fr,to,omit=()):
+    """Faces of a box with native-density UVs taken from the same wool region."""
+    faces={}
+    for direction in DIRECTIONS:
+        if direction in omit:continue
+        if direction in ('up','down'):u,v=(fr[0],to[0]),(fr[2],to[2]);texture='#top' if direction=='up' else '#bottom'
+        else:
+            u=(fr[0],to[0]) if direction in ('north','south') else (fr[2],to[2])
+            v=(17-to[1],17-fr[1]);texture='#side'
+        def fit(a,b):
+            shift=max(0,-a)-max(0,b-16)
+            return a+shift,b+shift
+        (u0,u1),(v0,v1)=fit(*u),fit(*v)
+        faces[direction]={'uv':[u0,v0,u1,v1],'texture':texture}
+    return {'from':list(fr),'to':list(to),'faces':faces}
+
+
+def face_cells(element):
+    """Quarter-pixel cells covered by each face, keyed by axis and plane."""
+    cells=set()
+    fr,to=element['from'],element['to']
+    for direction in element['faces']:
+        delta=DIRECTIONS[direction];axis=next(i for i,v in enumerate(delta) if v)
+        plane=round((to if delta[axis]>0 else fr)[axis]*Q)
+        a,b=[i for i in range(3) if i!=axis]
+        for i in range(round(fr[a]*Q),round(to[a]*Q)):
+            for j in range(round(fr[b]*Q),round(to[b]*Q)):cells.add((axis,plane,i,j))
+    return cells
+
+
+def boxes_touch(e,f,gap=0):
+    return all(e['from'][i]-gap<f['to'][i] and f['from'][i]-gap<e['to'][i] for i in range(3))
+
+
+def fluff(suffix,variant):
+    """Seeded tufts for one stair shape and alternative (deterministic)."""
+    high=SHAPES[suffix];h=heightmap(high);rng=random.Random(f'wool-fluff{suffix}-{variant}')
+    used=set().union(*(face_cells(e) for e in surface(volume(high))))
+    tufts=[]
+    def accept(element):
+        cells=face_cells(element)
+        if cells&used or any(boxes_touch(element,t,1) for t in tufts):return False
+        used.update(cells);tufts.append(element);return True
+    # Riser and front edges: a soft, slightly irregular nose. Interior risers
+    # lean out over the drop; the front lip stays within the block profile.
+    edges=defaultdict(list)
+    for (x,z),top in h.items():
+        for dx,dz in ((-1,0),(0,-1),(0,1)):
+            n=(x+dx,z+dz)
+            if n[0]==-2 or (n in h and h[n]<=top-4):edges[(dx,dz,top,x if dx else z)].append(z if dx else x)
+    for (dx,dz,top,line),points in sorted(edges.items()):
+        points=sorted(points);runs=[[points[0]]]
+        for p in points[1:]:
+            if p==runs[-1][-1]+1:runs[-1].append(p)
+            else:runs.append([p])
+        for run in runs:
+            t=run[0]+1+rng.randrange(2)
+            while t+2<=run[-1] and t+2<=14:
+                length=min(rng.choice((2,2,3)),run[-1]-t,14-t)
+                front=line==-1 and dx
+                if dx:
+                    near=line if dx<0 else line+1
+                    out=0 if front else LIP
+                    fr=[near-out if dx<0 else near-2,top-(0 if front else DROOP),t];to=[near+2 if dx<0 else near+out,top+LIFT,t+length]
+                else:
+                    near=line if dz<0 else line+1
+                    fr=[t,top-DROOP,near-LIP if dz<0 else near-2];to=[t+length,top+LIFT,near+2 if dz<0 else near+LIP]
+                accept(box_faces(fr,to,() if not front else ('down',)))
+                t+=length+2+rng.randrange(3)
+    # Tread tufts: a few 2x2, 2x1 and 1x2 patches, kept a pixel away from
+    # block sides, risers, nose tufts and each other.
+    flat=[(x,z) for (x,z),top in h.items() if 0<=x<=13 and 1<=z<=14
+          and all(h.get((x+a,z+b),-1)==top for a,b in ((1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)))]
+    target=len(tufts)+max(3,len(flat)//22)
+    for _ in range(400):
+        if len(tufts)>=target:break
+        x,z=rng.choice(flat);w,d=rng.choice(((2,2),(2,2),(2,1),(1,2)))
+        if not all((x+i,z+j) in flat and h[(x+i,z+j)]==h[(x,z)] for i in range(w) for j in range(d)):continue
+        accept(box_faces([x,h[(x,z)],z],[x+w,h[(x,z)]+LIFT,z+d],('down',)))
+    return tufts
+
+
+def stair_elements(suffix,variant):
+    return with_variation(surface(volume(SHAPES[suffix]))+fluff(suffix,variant),variant)
+
+
 def with_variation(elements, variant):
     elements=copy.deepcopy(elements)
     for e in elements:
@@ -145,10 +249,9 @@ def main(jar):
         carpet_template=json.loads(z.read('assets/minecraft/models/block/carpet.json'))
     default={'particle':'#side',**{k:'minecraft:block/white_wool' for k in ('top','side','bottom')}}
     for suffix,high in SHAPES.items():
-        elements=surface(volume(high))
         for variant in range(4):
             name='carpeted_wool_stairs'+suffix+('' if variant==0 else f'_v{variant}')
-            write(f'assets/realm/models/block/{name}.json',{'parent':'minecraft:block/stairs','textures':default,'elements':with_variation(elements,variant)})
+            write(f'assets/realm/models/block/{name}.json',{'parent':'minecraft:block/stairs','textures':default,'elements':stair_elements(suffix,variant)})
             for colour in COLOURS:
                 texture='minecraft:block/'+colour+'_wool'
                 model_name=colour+'_wool_stairs'+suffix+('' if variant==0 else f'_v{variant}')
@@ -183,6 +286,7 @@ def main(jar):
     # Each appended strip belongs to the wool block, reaches only 1px sideways,
     # and is gated on a dry neighbouring stair with exactly the same state.
     # Its join face is omitted, so no two visible faces share that join plane.
+    spill_written=set()
     for colour in COLOURS:
         appends=[]
         for key,entry in stair_states['variants'].items():
@@ -208,17 +312,23 @@ def main(jar):
                 host_range=range(-16,0) if side==-1 else range(16,32)
                 host={(x,y,z) for x in range(16) for z in host_range
                       for y in range(height(high,x,z+16 if side==-1 else z-16))}
-                els=rotate(surface(cells,blocked=host | volume(high)),turns)
-                name=f'{colour}_{props["facing"]}_{props["shape"]}_{"left" if side==-1 else "right"}'
-                identifier='realm:block/wool_spill/'+name
-                texture='minecraft:block/'+colour+'_wool'
-                write(f'assets/realm/models/block/wool_spill/{name}.json',{'parent':'minecraft:block/block','textures':{k:texture for k in ('top','side','bottom','particle')},'elements':els})
                 offset=rot_point((0,0,side),turns,True)
+                # Vanilla shares one model and rotation between pairs such as
+                # east inner_left and north inner_right, so the spill geometry
+                # is identical: write it once, keep the exact state condition.
+                toward=next(k for k,v in DIRECTIONS.items() if list(v)==offset)
+                name=f'{colour}_{(suffix[1:] or "straight")}_y{turns*90}_{toward}'
+                identifier='realm:block/wool_spill/'+name
+                if name not in spill_written:
+                    els=rotate(surface(cells,blocked=host | volume(high)),turns)
+                    texture='minecraft:block/'+colour+'_wool'
+                    write(f'assets/realm/models/block/wool_spill/{name}.json',{'parent':'minecraft:block/block','textures':{k:texture for k in ('top','side','bottom','particle')},'elements':els})
+                    spill_written.add(name)
                 appends.append({'model':identifier,'show_breaking_overlay':True,'conditions':{'type':'and','predicates':[
                     match(['minecraft:'+colour+'_wool_stairs'],props),match(stair_blocks,props,offset)]}})
         write(f'assets/realm/fusion/model_modifiers/blocks/wool_spill_{colour}.json',
               {'targets':[{'block':'minecraft:'+colour+'_wool_stairs','properties':{'half':['bottom'],'waterlogged':['false']}}], 'append_models':appends})
-    write('tools/wool-stairs/generated.json',{'source':'Minecraft 26.3 vanilla client assets','paths':sorted(WRITTEN),'spill_width':1,'variation':'Four fixed UV patterns, equal weights; original wool textures retained.'})
+    write('tools/wool-stairs/generated.json',{'source':'Minecraft 26.3 vanilla client assets','paths':sorted(WRITTEN),'spill_width':1,'variation':'Four fixed alternatives (UV orientation and seeded 0.25 px fluff layout), equal weights; original wool textures retained.'})
 
 
 if __name__=='__main__':

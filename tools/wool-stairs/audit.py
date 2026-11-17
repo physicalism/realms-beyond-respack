@@ -17,9 +17,22 @@ def check(condition,message):
     if not condition:raise AssertionError(message)
 
 
+def is_base(element):
+    return all(float(v).is_integer() for v in element['from']+element['to'])
+
+
+def planes(model):
+    # Quarter-pixel raster of every face, ignoring normal sign: opposite-facing
+    # coplanar faces also intersect and can flicker under shaders.
+    result=Counter()
+    for element in model['elements']:result.update(gen.face_cells(element))
+    return result
+
+
 def quads(model):
     result=Counter()
     for element in model['elements']:
+        if not is_base(element):continue
         fr,to=element['from'],element['to']
         for direction,face in element['faces'].items():
             axis=next(i for i,v in enumerate(gen.DIRECTIONS[direction]) if v)
@@ -84,12 +97,13 @@ def main(jar):
                     ns,name=texture.split(':',1)
                     file=f'assets/{ns}/textures/{name}.png'
                     check((ROOT/file).exists() or file in z.namelist(),f'Missing texture {texture}')
-            if 'elements' in data:check(all(n==1 for n in quads(data).values()),f'Duplicate coplanar faces: {filename}')
+            if 'elements' in data:check(all(n==1 for n in planes(data).values()),f'Duplicate coplanar faces: {filename}')
             models+=1
         gates=0
         for colour in gen.COLOURS:
             modifier=json.loads((ROOT/f'assets/realm/fusion/model_modifiers/blocks/wool_spill_{colour}.json').read_text())
             check(len(modifier['append_models'])==40,'Missing stair orientations')
+            check(len({e['model'] for e in modifier['append_models']})==24,'Spill geometry should be shared between equivalent stair states')
             for entry in modifier['append_models']:
                 self_test,other_test=entry['conditions']['predicates']
                 props={k:v[0] for k,v in self_test['properties'].items()}
@@ -114,11 +128,10 @@ def main(jar):
                 # Hosts extend beyond the block bounds in source coordinates;
                 # UVs are irrelevant to this geometric intersection test.
                 host_model={'elements':gen.rotate(gen.surface(host),turns)}
-                source_model={'elements':gen.rotate(gen.surface(gen.volume(high)),turns)}
+                source_model={'elements':[e for v in range(4) for e in gen.rotate(gen.stair_elements(suffix,v),turns)]}
                 spill_model=json.loads((ROOT/('assets/realm/models/'+entry['model'].split(':',1)[1]+'.json')).read_text())
                 def plane_keys(model):
-                    return {(next(i for i,v in enumerate(gen.DIRECTIONS[d]) if v),p,a,b)
-                            for d,p,a,b in quads(model)}
+                    return set(planes(model))
                 existing=plane_keys(host_model)|plane_keys(source_model)
                 check(not plane_keys(spill_model)&existing,f'Coplanar spill contact: {entry["model"]}')
                 check(not predicate(entry['conditions'],{(0,0,0):source}),'Spill into air')
@@ -131,9 +144,37 @@ def main(jar):
         for v in range(4):
             name=f'carpeted_wool_stairs{suffix}'+('' if v==0 else f'_v{v}')+'.json'
             m=json.loads((ROOT/'assets/realm/models/block'/name).read_text())
-            check(quads(m)==quads(data),'Variant changed geometry')
+            check(quads(m)==quads(data),'Variant changed base geometry')
             variants.append(json.dumps(m['elements'],sort_keys=True))
-        check(len(set(variants))==4,'Stair variants must differ')
+            # Every tuft is anchored: most of its footprint sits on, or is
+            # sunk into, the tread it decorates. Nothing hovers in the air.
+            heights=gen.heightmap(high)
+            tufts=[e for e in m['elements'] if not is_base(e)]
+            check(len(tufts)>=6,f'Too little fluff: {name}')
+            for t in tufts:
+                cells=[(x,z) for x in range(int(t['from'][0]//1),int(-(-t['to'][0]//1)))
+                       for z in range(int(t['from'][2]//1),int(-(-t['to'][2]//1)))]
+                anchored=[c for c in cells if c in heights and t['from'][1]<=heights[c]<=t['to'][1]]
+                check(len(anchored)*2>=len(cells),f'Floating tuft {t["from"]} in {name}')
+                check(t['to'][1]-heights[anchored[0]]<=gen.LIFT,f'Tuft too tall in {name}')
+                check('up' in t['faces'],f'Tuft without top in {name}')
+                for other in tufts:
+                    check(other is t or not gen.boxes_touch(t,other,1),f'Touching tufts in {name}')
+    # Every fluff face samples one texel per model pixel (no stretched fibres).
+    for filename in paths:
+        if '/carpeted_wool_stairs' not in filename or '/realm/' not in filename:continue
+        for e in json.loads((ROOT/filename).read_text())['elements']:
+            if is_base(e):continue
+            size=[b-a for a,b in zip(e['from'],e['to'])]
+            for direction,face in e['faces'].items():
+                axis=next(i for i,v in enumerate(gen.DIRECTIONS[direction]) if v)
+                a,b=[i for i in range(3) if i!=axis]
+                if direction in ('up','down'):want=(size[0],size[2])
+                elif axis==0:want=(size[2],size[1])
+                else:want=(size[0],size[1])
+                uv=face['uv'];got=(abs(uv[2]-uv[0]),abs(uv[3]-uv[1]))
+                if face.get('rotation',0)%180:got=got[::-1]
+                check(got==want,f'Stretched fluff UV: {filename} {direction}')
     # Regression: every horizontal strip must sample one texel per model pixel,
     # including the world-rotated north/south strips and wrapped border texels.
     for filename in paths:
@@ -146,7 +187,7 @@ def main(jar):
                 u,v=abs(uv[2]-uv[0]),abs(uv[3]-uv[1])
                 if face.get('rotation',0)%180:u,v=v,u
                 check((u,v)==(e['to'][0]-e['from'][0],e['to'][2]-e['from'][2]),f'Stretched horizontal UV: {filename}')
-    print(f'Checked {models} resolved models, {gates} Fusion seams, all surface faces, four variants, and unsafe neighbour cases.')
+    print(f'Checked {models} resolved models, {gates} Fusion seams, all surface faces, anchored non-touching fluff, four variants, and unsafe neighbour cases.')
 
 
 if __name__=='__main__':

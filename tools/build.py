@@ -357,7 +357,8 @@ def validate():
             identifier = path.parts[path.parts.index('assets')+1]+':'+relative.split('/models/',1)[1][:-5]
             own_model(identifier)
             for element in data.get('elements', []):
-                require(all(-1 <= a <= b <= 17 for a,b in zip(element['from'],element['to'])), 'Invalid wool profile bounds: '+relative)
+                # 17.25: quarter-pixel fluff tufts on the raised upper tread.
+                require(all(-1 <= a <= b <= 17.25 for a,b in zip(element['from'],element['to'])), 'Invalid wool profile bounds: '+relative)
                 for face in element['faces'].values():
                     require(all(0 <= v <= 16 for v in face.get('uv', [])), 'Invalid wool UV: '+relative)
         elif '/blockstates/' in relative:
@@ -367,7 +368,8 @@ def validate():
                     require(resource('models',entry['model']).is_file(), 'Missing wool variant: '+entry['model'])
     for suffix in ('', '_inner', '_outer'):
         stair = read(resource('models','realm:block/carpeted_wool_stairs'+suffix))
-        require(max(e['to'][1] for e in stair['elements']) == 17, 'Wool upper tread must stay raised by one pixel.')
+        base = [e for e in stair['elements'] if all(float(v).is_integer() for v in e['from']+e['to'])]
+        require(max(e['to'][1] for e in base) == 17, 'Wool upper tread must stay raised by one pixel.')
         require(min(e['from'][0] for e in stair['elements']) == -1, 'Wool front lip must extend by one pixel.')
     # Solid wooden ladder: vanilla facing rotations and texture, within the climbable shape.
     ladder = read(resource('models', 'minecraft:block/ladder'))

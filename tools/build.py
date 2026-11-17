@@ -348,6 +348,13 @@ def validate():
                     require(key in slots and key not in seen,'Invalid nature texture slot: '+identifier)
                     seen.add(key);value=slots[key]
                 require(value.startswith(('minecraft:','realm:')), 'Unconverted nature texture: '+value)
+    # Solid wooden ladder: vanilla facing rotations and texture, within the climbable shape.
+    ladder = read(resource('models', 'minecraft:block/ladder'))
+    own_model('minecraft:block/ladder')
+    require(ladder['textures'] == {'particle': 'minecraft:block/ladder', 'texture': 'minecraft:block/ladder'}, 'Ladder must retain the vanilla texture.')
+    require(len(ladder['elements']) == 6, 'Ladder must have two rails and four rungs.')
+    for element in ladder['elements']:
+        require(all(0 <= a < b <= 16 for a, b in zip(element['from'], element['to'])) and element['from'][2] >= 13, 'Ladder must fit inside the vanilla climbable shape.')
     # 3D stonecutter saw (tools/stonecutter-saw/gen_saw.py): vanilla model and textures, saw extruded to 1 px.
     stonecutter = read(resource('models', 'minecraft:block/stonecutter'))
     own_model('minecraft:block/stonecutter')

@@ -1,8 +1,1 @@
-{
-  "parent": "realm:block/carpeted_wool_stairs_inner",
-  "textures": {
-    "bottom": "minecraft:block/brown_wool",
-    "side": "minecraft:block/brown_wool",
-    "top": "minecraft:block/brown_wool"
-  }
-}
+{"parent":"realm:block/carpeted_wool_stairs_inner","textures":{"top":"minecraft:block/brown_wool","side":"minecraft:block/brown_wool","bottom":"minecraft:block/brown_wool"}}

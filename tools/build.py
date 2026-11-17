@@ -348,21 +348,27 @@ def validate():
                     require(key in slots and key not in seen,'Invalid nature texture slot: '+identifier)
                     seen.add(key);value=slots[key]
                 require(value.startswith(('minecraft:','realm:')), 'Unconverted nature texture: '+value)
-    # Raised wool stair overrides: all colours and corner shapes.
-    wool_colours = 'white orange magenta light_blue yellow lime pink gray light_gray cyan purple blue brown green red black'.split()
-    for suffix in ('', '_inner', '_outer'):
-        identifier = 'realm:block/carpeted_wool_stairs' + suffix
-        stair = read(resource('models', identifier))
-        own_model(identifier)
-        require(max(e['to'][1] for e in stair['elements']) == 17, 'Wool stairs must have a one-pixel raised upper tread.')
-        for element in stair['elements']:
-            require(all(0 <= a < b <= 17 for a, b in zip(element['from'], element['to'])), 'Invalid raised wool stair bounds.')
-        for colour in wool_colours:
-            identifier = 'minecraft:block/' + colour + '_wool_stairs' + suffix
+    # Generated wool profiles, fixed UV alternatives, and Fusion spill strips.
+    wool_manifest = json.loads((ROOT/'tools/wool-stairs/generated.json').read_text())
+    for relative in wool_manifest['paths']:
+        path = ROOT/relative
+        data = read(path)
+        if '/models/' in relative:
+            identifier = path.parts[path.parts.index('assets')+1]+':'+relative.split('/models/',1)[1][:-5]
             own_model(identifier)
-            override = read(resource('models', identifier))
-            require(override['parent'] == 'realm:block/carpeted_wool_stairs' + suffix, 'Incorrect wool stair shape.')
-            require(set(override['textures'].values()) == {'minecraft:block/' + colour + '_wool'}, 'Wool texture changed.')
+            for element in data.get('elements', []):
+                require(all(-1 <= a <= b <= 17 for a,b in zip(element['from'],element['to'])), 'Invalid wool profile bounds: '+relative)
+                for face in element['faces'].values():
+                    require(all(0 <= v <= 16 for v in face.get('uv', [])), 'Invalid wool UV: '+relative)
+        elif '/blockstates/' in relative:
+            for entries in data['variants'].values():
+                require(len(entries)==4 and all(e.get('weight')==1 for e in entries), 'Wool needs four equal fixed alternatives.')
+                for entry in entries:
+                    require(resource('models',entry['model']).is_file(), 'Missing wool variant: '+entry['model'])
+    for suffix in ('', '_inner', '_outer'):
+        stair = read(resource('models','realm:block/carpeted_wool_stairs'+suffix))
+        require(max(e['to'][1] for e in stair['elements']) == 17, 'Wool upper tread must stay raised by one pixel.')
+        require(min(e['from'][0] for e in stair['elements']) == -1, 'Wool front lip must extend by one pixel.')
     # Solid wooden ladder: vanilla facing rotations and texture, within the climbable shape.
     ladder = read(resource('models', 'minecraft:block/ladder'))
     own_model('minecraft:block/ladder')

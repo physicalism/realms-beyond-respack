@@ -1,0 +1,8 @@
+{
+  "parent": "realm:block/carpeted_wool_stairs_inner",
+  "textures": {
+    "bottom": "minecraft:block/lime_wool",
+    "side": "minecraft:block/lime_wool",
+    "top": "minecraft:block/lime_wool"
+  }
+}

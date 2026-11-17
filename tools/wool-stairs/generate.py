@@ -100,6 +100,7 @@ LIFT=0.25        # tuft height above a tread
 DROOP=0.5        # how far a riser-edge tuft hangs below its nose
 LIP=0.5          # how far a riser-edge tuft leans out over the drop
 Q=4              # quarter-pixel raster used for coplanarity checks
+EDGE_LUMPS=False # riser/front-edge lumps: rejected in game
 
 
 def heightmap(high):
@@ -151,8 +152,10 @@ def fluff(suffix,variant):
         used.update(cells);tufts.append(element);return True
     # Riser and front edges: a soft, slightly irregular nose. Interior risers
     # lean out over the drop; the front lip stays within the block profile.
+    # Disabled after in-game review (17 Nov 2026): the step-edge lumps looked
+    # wrong. Kept switchable for reference; tread tufts remain.
     edges=defaultdict(list)
-    for (x,z),top in h.items():
+    for (x,z),top in (h.items() if EDGE_LUMPS else ()):
         for dx,dz in ((-1,0),(0,-1),(0,1)):
             n=(x+dx,z+dz)
             if n[0]==-2 or (n in h and h[n]<=top-4):edges[(dx,dz,top,x if dx else z)].append(z if dx else x)

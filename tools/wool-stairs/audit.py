@@ -150,7 +150,8 @@ def main(jar):
             # sunk into, the tread it decorates. Nothing hovers in the air.
             heights=gen.heightmap(high)
             tufts=[e for e in m['elements'] if not is_base(e)]
-            check(len(tufts)>=6,f'Too little fluff: {name}')
+            check(len(tufts)>=3,f'Too little fluff: {name}')
+            check(all(t['from'][1]==int(t['from'][1]) for t in tufts) or gen.EDGE_LUMPS,f'Edge lumps present: {name}')
             for t in tufts:
                 cells=[(x,z) for x in range(int(t['from'][0]//1),int(-(-t['to'][0]//1)))
                        for z in range(int(t['from'][2]//1),int(-(-t['to'][2]//1)))]

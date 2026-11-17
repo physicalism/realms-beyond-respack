@@ -134,6 +134,18 @@ def main(jar):
             check(quads(m)==quads(data),'Variant changed geometry')
             variants.append(json.dumps(m['elements'],sort_keys=True))
         check(len(set(variants))==4,'Stair variants must differ')
+    # Regression: every horizontal strip must sample one texel per model pixel,
+    # including the world-rotated north/south strips and wrapped border texels.
+    for filename in paths:
+        if '/wool_spill/' not in filename and '/carpeted_wool_stairs' not in filename:continue
+        data=json.loads((ROOT/filename).read_text())
+        for e in data.get('elements',[]):
+            for direction,face in e['faces'].items():
+                if direction not in ('up','down'):continue
+                uv=face['uv']
+                u,v=abs(uv[2]-uv[0]),abs(uv[3]-uv[1])
+                if face.get('rotation',0)%180:u,v=v,u
+                check((u,v)==(e['to'][0]-e['from'][0],e['to'][2]-e['from'][2]),f'Stretched horizontal UV: {filename}')
     print(f'Checked {models} resolved models, {gates} Fusion seams, all surface faces, four variants, and unsafe neighbour cases.')
 
 

@@ -60,7 +60,15 @@ def surface(cells, skip=None, blocked=frozenset()):
             planes[key].add(point)
     elements=[]
     for (direction,plane),points in sorted(planes.items()):
-        for a,b,c,d in rectangles(points):
+        # Never merge a wrapping edge texel with the main material face:
+        # clamping that combined UV would stretch its border across the strip.
+        groups=defaultdict(set)
+        for a,b in points:
+            first=-1 if a<0 else 1 if a>=16 else 0
+            second=(-1 if b<0 else 1 if b>=16 else 0) if direction in ('up','down') else (0 if b<1 else 1)
+            groups[(first,second)].add((a,b))
+        patches=[rect for group in groups.values() for rect in rectangles(group)]
+        for a,b,c,d in patches:
             if direction in ('east','west'):
                 fr,to=[plane,b,a],[plane,d,c]
             elif direction in ('up','down'):
@@ -111,6 +119,10 @@ def rotate(elements, turns):
             vector=rot_point(DIRECTIONS[direction],turns,True)
             name=next(k for k,v in DIRECTIONS.items() if list(v)==vector)
             if 'cullface' in face:face['cullface']=name
+            # Baking a Y rotation into the bounds swaps top-face dimensions;
+            # rotate its UV corners too, as vanilla's model baker would.
+            if direction in ('up','down'):
+                face['rotation']=(face.get('rotation',0)+(turns*90 if direction=='up' else -turns*90))%360
             faces[name]=face
         e['faces']=faces
     return result

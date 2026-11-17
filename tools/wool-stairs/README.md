@@ -6,7 +6,7 @@ Updated 17 November 2026. All 16 wool stair colours keep their existing wool tex
 
 Wool blocks, carpets, and wool stairs have four equally weighted model alternatives, selected by vanilla's position-seeded model randomisation. The pattern stays fixed when walking or reloading. Cubes and carpets use rotated wool UVs; stair faces use mirrored UVs and square-face rotations. Cropped rectangular stair faces are not rotated through 90 degrees, which would stretch their texels. All use the existing `minecraft:block/<colour>_wool` texture, so higher-priority texture replacements still apply. This changes texture orientation, not colour or animation, and works without Fusion.
 
-The Fluffy Carpets v1.1 ZIP was identified but could not be downloaded in this session because file transfer failed with DNS errors, including after the user re-uploaded it. Its implementation and licence were not inspected. No models or textures from that pack have been copied; these variations are an original model-based treatment and are not claimed to reproduce its fluff.
+The Fluffy Carpets v1.1 ZIP could not be downloaded in this session because file transfer failed with DNS errors, including after re-upload. The separately uploaded `wool.json` and `carpet.json` were subsequently readable. They credit bebebea_loste. The visible wool source uses small 2×2 face patches offset by 0.25 model pixels; the carpet source uses 2×2 patches at y=1.25 and angled edge fringes (±22.5°). These are geometric fluff, rather than evidence of random texture selection. Their blockstates and licence have not been inspected. No models or textures from that pack have been copied into the live pack. Current variation remains an original UV-based treatment.
 
 ## Fusion spill
 
@@ -36,3 +36,8 @@ python3 tools/build.py --check
 ```
 
 The original raised implementation is retained in a dated `builds/wool-stairs-backups/before-spill-*.tar.gz` snapshot, and in Git. An asset audit does not establish in-game visual approval: F3+T and check the runner, corner transitions, and shader lighting. No version bump or release is implied.
+
+
+## Upper/side UV correction — 17 November 2026
+
+The user supplied an in-game screenshot showing stretched upper edge strips. The spill geometry's baked quarter-turn rotations changed its horizontal aspect ratio without rotating its up/down face UVs. `rotate()` now rotates those UV corners with the geometry. Surface merging also partitions the extra border texels from the main material, so clamped edge sampling cannot stretch a neighbouring face. Geometry and neighbour conditions are otherwise preserved. `audit.py` now checks one texture texel per model pixel on every horizontal generated stair/spill face after UV rotation, including all four fixed alternatives. Post-fix in-game appearance is pending.
